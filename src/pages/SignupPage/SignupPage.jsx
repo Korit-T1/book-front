@@ -8,6 +8,7 @@ import { useInput } from "../../hooks/userInput";
 import { useNavigate } from "react-router-dom";
 import { LOCATION } from "../../constants/localDistrict";
 import { signupRequest } from "../../apis/api/signup";
+import { useMutation } from "react-query";
 
 function SignupPage() {
     const navigate = useNavigate();
@@ -17,18 +18,47 @@ function SignupPage() {
     const [ name, nameChange, nameMessage ] = useInput("name");
     const [ email, emailChange, emailMessage ] = useInput("email");
     const [ phone, phoneChange, phoneMessage ] = useInput("phone");
-    const [ address, setAddress, addressMessage ] = useState("");
-    const [ gender, setGender, genderMessage] = useState("");
+    const [ address, setAddress ] = useState("");
+    const [ addressMessage, setAddressMessage ] = useState("");
+    const [ gender, setGender ] = useState("");
+    const [ genderMessage, setGenderMessage ] = useState("");
     const [ age, ageChange, ageMessage ] = useInput("age");
     const [ birth, birthChange, birthMessage ] = useInput("birth");
     const [ checkPasswordMessage, setCheckPasswordMessage ] = useState(null);
-
+    
     const addressOptions = (LOCATION)
     
     const genderOptions = [
         { value: '남', label: '남' },
         { value: '여', label: '여' }
     ];
+    
+    const signupMutation = useMutation({
+        mutationKey: "signupMutation",
+        mutationFn: signupRequest,
+        onSuccess: response => {
+            alert("회원 가입이 완료되었습니다.")
+            navigate("/auth/signin");
+        },
+        onError: error => {
+            if(error.response.status === 400) {
+            const errorMap = error.response.data;
+            const errorEntries = Object.entries(errorMap);
+            for(let [k, v] of errorEntries) {
+                if(k === "username") {
+                    setUsernameMessage(() => {
+                        return {
+                            type: "error",
+                            test: v
+                        }
+                    })
+                }
+            }
+            }else {
+                alert("회원가입 오류");
+            }
+        }
+    });
 
     useEffect(()=> { // 비밀번호 일치하는지 확인
         if(!checkPassword || !password) { // 비밀번호가 빈칸일때 비밀번호 확인란 반응x 
@@ -53,6 +83,45 @@ function SignupPage() {
         }
     }, [checkPassword, password]);
 
+    const handleAddressChange = (selectedOption) => {
+        if (!selectedOption) {
+            setAddressMessage(addressMessage => {
+                return {
+                    type: "error",
+                    text: "주소를 선택해주세요."
+                }
+            });
+        } else {
+            setAddress(selectedOption.value);
+            setAddressMessage(addressMessage => {
+                return {
+                    type: "success",
+                    text: ""
+                }
+            }); 
+        }
+    };
+    
+    const handleGenderChange = (selectedOption) => {
+        if (!selectedOption) {
+            setGenderMessage(genderMessage => {
+                return {
+                    type: "error",
+                    text: "성별을 선택해주세요."
+                }
+            });
+        } else {
+            setGender(selectedOption.value);
+            setGenderMessage(genderMessage => {
+                return {
+                    type: "success",
+                    text: ""
+                }
+            }); 
+        }
+    };
+
+
     const handleSignupSubmit = () => {
         const checkFlags = [
             usernameMessage?.type,
@@ -61,18 +130,18 @@ function SignupPage() {
             nameMessage?.type,
             emailMessage?.type,
             phoneMessage?.type,
-            // addressMessage?.type,
-            // genderMessage?.type,
+            addressMessage?.type,
+            genderMessage?.type,
             ageMessage?.type,
             birthMessage?.type
         ];
-        console.log(checkFlags)
+
         if(checkFlags.includes("error") || checkFlags.includes(null) || checkFlags.includes(undefined)) {
             alert("가입 정보를 다시 확인해주세요.");
             return;
         }
 
-        signupRequest({
+        signupMutation.mutate({
             username,
             password,
             name,
@@ -82,28 +151,6 @@ function SignupPage() {
             gender,
             age,
             birth
-        }).then(response => {
-            console.log(response);
-            if(response.status === 201) {
-                navigate("/auth/signin");
-            }
-        }).catch(error => {
-            if(error.response.status === 400) {
-                const errorMap = error.response.date;
-                const errorEntries = Object.entries(errorMap);
-                for(let [k, v] of errorEntries) {
-                    if(k === "username") {
-                        setUsernameMessage(() => {
-                            return {
-                                type: "error",
-                                test: v
-                            }
-                        })
-                    }
-                }
-            }else {
-                alert("회원가입 오류");
-            }
         });
     }
 
@@ -161,14 +208,20 @@ function SignupPage() {
                 message={phoneMessage}
             />
             <Select
-                options={addressOptions}
+                type={"text"}
+                name={"address"}
                 placeholder="주소를 선택하세요"
-                onChange={(selectedOption) => setAddress(selectedOption.value)}
+                options={addressOptions}
+                onChange={handleAddressChange}
+                message={addressMessage}
             />
             <Select
-                options={genderOptions}
+                type={"text"}
+                name={"gender"}
                 placeholder="성별을 선택하세요"
-                onChange={(selectedOption) => setGender(selectedOption.value)}
+                options={genderOptions}
+                onChange={handleGenderChange}
+                message={genderMessage}
             />
             <AuthPageInput 
                 type={"text"}
