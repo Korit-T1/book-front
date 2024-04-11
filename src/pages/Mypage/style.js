@@ -2,22 +2,18 @@ import { css } from "@emotion/react";
 
 // 바디
 export const bodyLayout = css`
-    margin: 0 auto;
-    background-color: beige;
-    width: 1200px;
-    height: 100%
-`;
-
-export const profileContainer = css`
-    height: 100%;
     display: flex;
+    margin: 0 auto;
     background-color: #dbdbdb;
+    max-width: 1200px;
+    height: 100%;
 `;
 
 export const left = css`
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 250px;
 `;
 
 export const profile = css`
@@ -95,5 +91,7 @@ export const menuItem = css`
 `;
 
 export const right = css`
+    /* display: flex; */
+    width: 950px;
     height: 100%;
 `;
