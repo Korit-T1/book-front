@@ -1,40 +1,5 @@
 import { css } from "@emotion/react";
 
-export const loanTable = css`
-    border-collapse: collapse;
-    border: 1px solid black;
-
-    font-size: 14px;
-
-    th, td {
-        border: 1px solid black;
-        padding: 10px; 
-    }
-
-    th {
-        background-color: #bab3b3;
-        text-align: left;
-    }
-`;
-
-// 헤더
-export const headerLayout = css`
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-    background-color: white;
-`;
-
-export const header = css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    width: 1200px;
-    background-color: #e6dea8;
-`;
-
-
 // 바디
 export const bodyLayout = css`
     margin: 0 auto;
