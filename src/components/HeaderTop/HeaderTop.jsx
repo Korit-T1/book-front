@@ -5,10 +5,10 @@ import * as s from "./style";
 function HeaderTop(props) {
     const navigate = useNavigate();
     const goToSingin = () => {
-        navigate("/signin");
+        navigate("/auth/signin");
     }
     const goToSignup = () => {
-        navigate("/signup");
+        navigate("/auth/signup");
     }
 
     return (
