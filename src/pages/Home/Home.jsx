@@ -5,6 +5,10 @@ import { useQuery } from "react-query"
 import Mypage from "../Mypage/Mypage";
 import Header from "../../components/Header/Header";
 import { getPrincipalRequest } from "../../apis/api/principal";
+import SignupPage from "../SignupPage/SignupPage";
+import BookInfoPage from "../BookInfoPage/BookInfoPage";
+import SigninPage from "../SigninPage/SigninPage";
+import MainPage from "../MainPage/MainPage";
 
 function Home(props) {
     const principalQuery = useQuery(["principalQuery"], getPrincipalRequest,
@@ -24,8 +28,11 @@ function Home(props) {
             <Header />
             <Link to={"/mypage"} /> 
             <Routes>
+                <Route path="/" element={<MainPage /> } />
                 <Route path="/mypage/*" element={<Mypage />} />
-                
+                <Route path="/signup" element={<SignupPage /> } />
+                <Route path="/signin" element={<SigninPage /> } />
+                <Route path="/books" element={<BookInfoPage /> } />
             </Routes>
         </div>
     );
