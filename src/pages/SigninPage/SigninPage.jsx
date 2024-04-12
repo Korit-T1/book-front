@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
 
-function SinginPage(props) {
+function SigninPage(props) {
     return (
         <div css={s.layout}>
             <h1>로그인 페이지 입니다.</h1>
@@ -18,4 +18,4 @@ function SinginPage(props) {
     );
 }
 
-export default SinginPage;
+export default SigninPage;
