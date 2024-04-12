@@ -4,14 +4,12 @@ import { useState } from "react";
 import { useQuery } from "react-query"
 import { getLoanDataRequest } from "../../apis/api/mypage";
 
-function LoanAndReturn(props) {
+function LoanAndReturn(data) {
     const [ loanList, setLoanList ] = useState([]);
 
     const searchLoansQuery = useQuery(
-        ["searchLoansQuery"],
-        async () => await getLoanDataRequest({
-            username: "ajvlzla0207"
-        }),
+        ["searchLoansQuery", data?.data?.username],
+        async () => await getLoanDataRequest(data.data.username),
         {
             retry: 0,
             refetchOnWindowFocus: false,

@@ -1,32 +1,15 @@
 import { css } from "@emotion/react";
-
+   
 export const layout = css`
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-`;
-export const loginBox = css`
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #dbdbdb;
-    border-radius: 5px;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
 
-    width: 460px;
-    height: 400px;
-`;
-export const inputBox = css`
-    flex-direction: row;
-    border: 1px solid #dbdbdb;
-    border-radius: 5px;
-    width: 400px;
-    height: 50px;
-`;
+    flex-direction: column;
 
-export const loginInput = css`
-    
+    margin: 0 auto;
+    width: 600px;
+    height: 100vh;
+    border-left: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
 `;

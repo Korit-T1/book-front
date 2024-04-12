@@ -1,10 +1,12 @@
 import React from 'react';
+import AuthPageInput from '../../components/AuthPageInput/AuthPageInput';
+import PasswordEditPage from '../PasswordEditPage/PasswordEditPage';
 
-function UserInfoModification(props) {
+function UserInfoModification(data) {
+    console.log(data);
+
     return (
-        <div>
-            <h1>개인정보수정</h1>
-        </div>
+        <PasswordEditPage />
     );
 }
 
