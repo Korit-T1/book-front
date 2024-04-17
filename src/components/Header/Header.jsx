@@ -6,7 +6,7 @@ import instance from "../../apis/utils/instance";
 import { Link } from "react-router-dom";
 
 function Header(props) {
-    const [ isLogin,  setLogin ] = useState(false);
+    const [ isLogin, setLogin ] = useState(false);
     const queryClient = useQueryClient();
     const principalQueryState = queryClient.getQueryState("principalQuery");
 
@@ -29,7 +29,7 @@ function Header(props) {
             <div css={s.header}>
                 <h1>HEADER</h1>
                 {
-                   isLogin 
+                    isLogin 
                     ? 
                     <><button onClick={handleLogoutClick}>로그아웃</button>
                     <Link to="/mypage"><button>마이페이지</button></Link></>

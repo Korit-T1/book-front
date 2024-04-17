@@ -15,19 +15,20 @@ function Home(props) {
         refetchOnWindowFocus: false,
         onSuccess: response => {
             console.log(response);
-            console.log(response.data);
         },
         onError: error => {
             console.log("error");
         }
     });
 
+    // const userData = response.data;
+
     return (
         <div css={s.layout}>
             {!principalQuery.isLoading &&
                 <>
                     <Header />
-                    <Link to={"/mypage"} /> 
+                    <Link to={"/mypage"} />
                     <Routes>
                         <Route path="/*" element={<MainPage /> } />
                         <Route path="/mypage/*" element={<Mypage />} />

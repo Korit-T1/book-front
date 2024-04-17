@@ -16,8 +16,8 @@ function AdminsigninPage(props) {
         mutationFn: adminSigninRequest,
         onSuccess: response => {
             const accessToken = response.data;
-            localStorage.setItem("AccessAdminToken", accessToken);
-            window.location.replace("/")
+            localStorage.setItem("AccessToken", accessToken);
+            window.location.replace("/admin")
         },
         onError: error => {
             alert(error.response.data);
@@ -33,24 +33,26 @@ function AdminsigninPage(props) {
 
     return (
         <>
-            <div>
-                <h1>관리자 로그인</h1>
-                <button onClick={handleAdminSigninSubmit}>로그인 하기</button>
+            <div css={s.background}>
+                <div css={s.layout}>
+                    <h1>관리자 로그인</h1>
+                    <AuthPageInput 
+                        type={"text"}
+                        name={"username"}
+                        placeholder={"아이디"}
+                        value={username}
+                        onChange={usernameChange}
+                    />
+                    <AuthPageInput 
+                        type={"password"}
+                        name={"password"}
+                        placeholder={"비밀번호"}
+                        value={password}
+                        onChange={passwordChange}
+                    />
+                    <br/><button onClick={handleAdminSigninSubmit}>로그인</button>
+                </div>            
             </div>
-            <AuthPageInput 
-                type={"text"}
-                name={"username"}
-                placeholder={"아이디"}
-                value={username}
-                onChange={usernameChange}
-            />
-            <AuthPageInput 
-                type={"password"}
-                name={"password"}
-                placeholder={"비밀번호"}
-                value={password}
-                onChange={passwordChange}
-            />
         </>
     );
 }
