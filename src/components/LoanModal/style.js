@@ -1,15 +1,13 @@
 import { css } from "@emotion/react";
 
-export const headerTop = css`
-    box-sizing: border-box;
-    width: 100%;
-    height: 35px;
-    background-color: #33AFE9;
-`;
+export const content = css`
+    background-color: white;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    border-radius: 8px;
+`
+export const box = css`
 
-export const button = css`
-    height: 100%;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
 `;
