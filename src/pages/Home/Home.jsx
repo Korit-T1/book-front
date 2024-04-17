@@ -8,6 +8,7 @@ import { getPrincipalRequest } from "../../apis/api/principal";
 import BookInfoPage from "../BookInfoPage/BookInfoPage";
 import MainPage from "../MainPage/MainPage";
 
+
 function Home(props) {
     const principalQuery = useQuery(["principalQuery"], getPrincipalRequest,
     {
@@ -21,14 +22,11 @@ function Home(props) {
         }
     });
 
-    // const userData = response.data;
-
     return (
         <div css={s.layout}>
             {!principalQuery.isLoading &&
                 <>
                     <Header />
-                    <Link to={"/mypage"} />
                     <Routes>
                         <Route path="/*" element={<MainPage /> } />
                         <Route path="/mypage/*" element={<Mypage />} />
