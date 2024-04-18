@@ -15,5 +15,6 @@ export const header = css`
     height: 200px;
     width: 1200px;
     background-color: #e6dea8;
+    flex-direction: column;
 `;
 

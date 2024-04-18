@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
-
 import Select from "react-select";
 import { useEffect, useState } from "react";
 import AuthPageInput from "../../components/AuthPageInput/AuthPageInput";
@@ -38,7 +37,7 @@ function SignupPage() {
         mutationFn: signupRequest,
         onSuccess: response => {
             alert("회원 가입이 완료되었습니다.")
-            navigate("/auth/signin");
+            navigate("/signin");
         },
         onError: error => {
             if(error.response.status === 400) {
@@ -155,10 +154,8 @@ function SignupPage() {
     }
 
     return (
-        <div>
-            <div>
-                <h1>BookDrop</h1>
-            </div>
+        <div css={s.layout}>
+            <h1>LOGO</h1>
             <AuthPageInput 
                 type={"text"}
                 name={"username"}

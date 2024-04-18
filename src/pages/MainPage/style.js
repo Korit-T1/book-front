@@ -2,10 +2,12 @@ import { css } from "@emotion/react";
 
 export const layout = css`
     display: flex;
-    width: 100%;
-    height: 100%;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    height: 100%;
+    background-color: #dbdbdb;
 `;
 
 export const container = css`

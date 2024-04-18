@@ -2,11 +2,8 @@
 import * as s from "./style";
 
 function MainPage(props) {
-
-
     return (
         <>
-    
             <div css={s.layout}>
                 <div css={s.container}>
                     <div css={s.bookContainer}>
@@ -27,7 +24,7 @@ function MainPage(props) {
                 </div>
             </div>
         </>
-        );
+    );
 }
 
 export default MainPage;
