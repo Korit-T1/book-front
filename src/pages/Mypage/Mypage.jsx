@@ -18,10 +18,6 @@ function Mypage() {
     const data = principalData?.data;
     console.log("Mypage:" + data.username);
     return (
-        // {
-        //     !principalData.is
-        // }
-
         <>
             <div css={s.bodyLayout}>
                 <div css={s.left}>

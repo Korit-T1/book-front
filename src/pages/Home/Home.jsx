@@ -10,17 +10,19 @@ import MainPage from "../MainPage/MainPage";
 
 
 function Home(props) {
-    const principalQuery = useQuery(["principalQuery"], getPrincipalRequest,
-    {
-        retry: 0,
-        refetchOnWindowFocus: false,
-        onSuccess: response => {
-            console.log(response);
-        },
-        onError: error => {
-            console.log("error");
+    const principalQuery = useQuery(
+        ["principalQuery"], getPrincipalRequest,
+        {
+            retry: 0,
+            refetchOnWindowFocus: false,
+            onSuccess: response => {
+                console.log(response);
+            },
+            onError: error => {
+                console.log("error");
+            }
         }
-    });
+    );
 
     return (
         <div css={s.layout}>

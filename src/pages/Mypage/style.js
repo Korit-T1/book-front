@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 export const bodyLayout = css`
     display: flex;
     margin: 0 auto;
-    background-color: #dbdbdb;
+    background-color: #d8d0d0;
     max-width: 1200px;
     height: 100%;
 `;
