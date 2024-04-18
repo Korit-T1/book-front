@@ -29,7 +29,6 @@ function SinginPage(props) {
             password
         });
     } 
-
     return (
         <>
             <div css={s.layout}>

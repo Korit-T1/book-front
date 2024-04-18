@@ -3,6 +3,9 @@ import { useState } from "react";
 import { loanStateRequest } from "../../apis/api/bookApi";
 import { useMutation, useQuery } from "react-query";
 import * as s from "./style";
+import ReactModal from "react-modal";
+import instance from "../../apis/utils/instance";
+import { loanRequest } from "../../apis/api/loanApi";
 
 
 function LoanModal(props) {
@@ -25,10 +28,49 @@ function LoanModal(props) {
           refetchOnWindowFocuss: false
         }
       );
+      if (loanStateQuery.isLoading) {
+        return <div>Loading...</div>;
+    }
+      
+    if (loanStateQuery.isError) {
+        return <div>Error: {loanStateQuery.error.message}</div>;
+    }
+    
+    const handleClick = async () => {
+      try{
+          // loanRequest
+      } catch (error) {
 
+      }
+    }
+  
+    
     return (
-        <div>
-            
+        <div css={s.content}>
+          <table>
+            <thead>
+              <tr>
+                <th>도서코드</th>
+                <th>대출/반납</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                loanState.map(
+                  loan =>
+                  <tr key={loan.bookStockId}>
+                    <td>{loan.stockId}</td>
+                    <td>{
+                    loan.loanStatus === 1 
+                    ? <button>대출</button> 
+                    : <button disabled={true}>대출중...</button>
+                    }</td>
+                  </tr>
+
+                )
+              }
+            </tbody>
+          </table>
         </div>
     );
 }

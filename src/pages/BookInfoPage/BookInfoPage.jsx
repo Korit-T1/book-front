@@ -10,7 +10,6 @@ import LoanModal from "../../components/LoanModal/LoanModal";
 
 function BookInfoPage(props) {
     const [ bookInfo, setBookInfo ] = useState([]);
-    const [ loanState, setLoanState ] = useState([]);
     const [ isOpen, setIsOpen ] = useState(false)
     
     const bookInfoQuery = useQuery(
@@ -33,17 +32,13 @@ function BookInfoPage(props) {
             refetchOnWindowFocuss: false
         }
     );
-
     if (bookInfoQuery.isLoading) {
         return <div>Loading...</div>;
-    }
-      
+    }     
     if (bookInfoQuery.isError) {
         return <div>Error: {bookInfoQuery.error.message}</div>;
     }
-    if (bookInfo.length > 0) {
-        const firstBookInfo = bookInfo[0]; // 첫 번째 책 정보 객체 가져오기
-    }
+    
     return (
         <div css={s.layout}>
             <div>
@@ -72,7 +67,7 @@ function BookInfoPage(props) {
                     </div>  
                     <button onClick={() => setIsOpen(true)}>대출</button>
                     <Modal isOpen={isOpen} onRequestClose={() => setIsOpen(false)}>
-                        {/* <LoanModal /> */}
+                        <LoanModal />
                         <button onClick={() => setIsOpen(false)}>닫기</button>
                     </Modal>
                 </span>
