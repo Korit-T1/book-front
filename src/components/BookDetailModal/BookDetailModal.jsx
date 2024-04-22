@@ -1,13 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style"
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { getBookStocksRequest } from '../../apis/api/bookApi';
 import ReactModal from 'react-modal';
 import { useState } from "react";
+import { loanRegister } from "../../apis/api/loanApi";
+import { principalState } from "../../atoms/principalAtom";
+import { useRecoilState } from "recoil";
 
 function BookDetailModal({book, isOpen, setIsOpen}) {
     const [ stockState, setStockState ] = useState([]);
-    
+    const [ principal, setPrincipal ] = useRecoilState(principalState);
+    const queryClient = useQueryClient();
+    const principalData = queryClient.getQueriesData("principalQuery");
+    const data = principalData?.data;
+
     const bookStocksQuery = useQuery(
         ["bookStocksQuery"],
         () => getBookStocksRequest(book.bookId),
@@ -24,7 +31,16 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
             retry: 0
         }
     )
+     const registerLoanMutation = useMutation({
+        mutationKey: "registerLoanMutation",
+        mutationFn: loanRegister,
+        onSuccess: response => {
+            alert("대출신청완료");
+        },
+        onError: error => {
 
+        }
+     });
 
     return (
         <>
@@ -70,7 +86,10 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                                                     <td>{stock.stockId}</td>
                                                     <td>{
                                                         stock.loanStatus === 1 
-                                                        ? <button>대출</button> 
+                                                        ? <button onClick={() => registerLoanMutation.mutate({
+                                                            userId: principal.userId,
+                                                            bookStockId: stock.stockId
+                                                        })}>대출</button> 
                                                         : <button disabled={true}>대출중...</button>
                                                     }</td>
                                                 </tr>

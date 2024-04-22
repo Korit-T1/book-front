@@ -28,7 +28,7 @@ function Mypage() {
                             </div>
                         </div>  
                         <div css={s.bottomBox}>
-                            <h3>안녕하세요. {principalData?.data.name}님</h3>
+                            {/* <h3>안녕하세요. {principalData?.data.name}님</h3> */}
                         </div>
                     </div>
                     <div css={s.sideMenu}>
