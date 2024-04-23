@@ -14,8 +14,8 @@ function BookSearchPage() {
 
     const [ searchData, setSearchData ] = useState({
         page: parseInt(searchParams.get("page")),
-                option: parseInt(searchParams.get("option")),
-                text: searchParams.get("text")
+        option: parseInt(searchParams.get("option")),
+        text: searchParams.get("text")
     });
 
     const inputRef = useRef();
