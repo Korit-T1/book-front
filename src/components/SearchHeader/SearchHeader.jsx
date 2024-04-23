@@ -2,8 +2,29 @@
 import { Link } from "react-router-dom";
 import MainContainer from "../MainContainer/MainContainer";
 import * as s from "./style"
+import { useQueryClient } from "react-query";
+import { useEffect, useState } from "react";
+import instance from "../../apis/utils/instance";
 
 function SearchHeader() {
+    const [ isLogin, setLogin ] = useState(false);
+    const queryClient = useQueryClient();
+    const principalQueryState = queryClient.getQueryState("principalQuery");
+
+    useEffect(() => {
+        setLogin(() => principalQueryState.status === "success");
+    }, [principalQueryState.status]);
+
+    const handleLogoutClick = () => {
+        localStorage.removeItem("AccessToken");
+        instance.interceptors.request.use((config) => {
+            config.headers.Authorization = null;
+            return config;
+        })
+        queryClient.removeQueries("principalQuery");
+        window.location.replace("/");
+    }
+
     return (
         <div css={s.headerLayout}>
             <MainContainer>
@@ -19,7 +40,10 @@ function SearchHeader() {
                             <Link><li>이용안내</li></Link>
                         </ul>
                     </div>
-                    <Link css={s.accountNav}>
+                    {
+                        isLogin && <button onClick={handleLogoutClick}>로그아웃</button>
+                    }
+                    <Link css={s.accountNav} to={isLogin ? "/mypage " : "/userlogin"}>
                         <div css={s.accountBox}></div>
                     </Link>
                 </header>

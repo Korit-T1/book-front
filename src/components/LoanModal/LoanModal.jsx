@@ -3,10 +3,6 @@ import { useState } from "react";
 import { loanStateRequest } from "../../apis/api/bookApi";
 import { useMutation, useQuery } from "react-query";
 import * as s from "./style";
-import ReactModal from "react-modal";
-import instance from "../../apis/utils/instance";
-import { loanRequest } from "../../apis/api/loanApi";
-
 
 function LoanModal(props) {
     const [ loanState, setLoanState ] = useState([]);

@@ -48,7 +48,7 @@ function SinginPage(props) {
                     onChange={passwordChange}
                 />
                 <button onClick={handleSigninSubmit}>로그인</button>
-                <button><Link to={"/signup"}>회원가입</Link></button>
+                <button><Link to={"/usersignup"}>회원가입</Link></button>
             </div>
         </>
         
