@@ -6,6 +6,8 @@ import { useQuery } from "react-query";
 
 function LoanAndReturn(data) {
     const id = data.data.data.userId;
+    const [ loanDataList , setLoanDataList ] = useState([]);
+
     const searchLoansQuery = useQuery(
         ["searchLoansQuery"],
         async () => await getLoanDataRequest(id),
@@ -13,50 +15,39 @@ function LoanAndReturn(data) {
             retry: 0,
             refetchOnWindowFocus: false,
             onSuccess: response => {
-                console.log(response.data)
+                console.log(response.data);
+                setLoanDataList(response.data);
             },
             onError: error => {
                 console.log(error);
             }
         }
     );
-    // const searchLoansQuery = useQuery(
-    //     ["searchLoansQuery", data?.data?.username],
-    //     async () => await getLoanDataRequest(data.data.username),
-    //     {
-    //         retry: 0,
-    //         refetchOnWindowFocus: false,
-    //         onSuccess: response => {
-    //             setLoanList(response.data);
-    //             console.log(response.data)
-    //         },
-    //         onError: error => {
-    //             console.log(error);
-    //         }
-    //     }
-    // );
-
 
     return (
         <>
             <div css={s.container}>
-                <div css={s.data}>
-                    <div css={s.bookData}>
-                        <div css={s.bookImage}>
-                            <img src=""></img>
+            {
+                loanDataList.map(loan => 
+                    <div css={s.data} key={loan.loanId}>
+                        <div css={s.bookData}>
+                            <div css={s.bookImage}>
+                                <img src={loan.imageUrl}></img>
+                            </div>
+                            <div css={s.bookInfo}>
+                                <div css={s.bookName}>{loan.bookName}</div>
+                                <div css={s.authorName}>{loan.authorName}</div>
+                                <div css={s.publisherName}>{loan.publisherName}</div>
+                                <button>대출</button>
+                                <button>반납</button>
+                            </div>
                         </div>
-                        <div css={s.bookInfo}>
+                        {/* <div css={s.buttons}>
 
-                        </div>
+                        </div> */}
                     </div>
-                    <div css={s.buttons}>
-
-                    </div>
-                </div>
-                <div css={s.data}>
-                    <div css={s.bookData}></div>
-                    <div css={s.buttons}></div>
-                </div>
+                )
+            }
             </div>
         </>    
     );
