@@ -1,97 +1,196 @@
 import { css } from "@emotion/react";
 
 // 바디
+
+export const back = css`
+    position: absolute;
+    top: 82px;
+    left: 0;
+    z-index: -10;
+    background-color: rebeccapurple;
+    height: 300px;
+    width: 100vw;
+`
+
 export const bodyLayout = css`
     display: flex;
-    margin: 0 auto;
-    background-color: #d8d0d0;
-    max-width: 1200px;
+    justify-content: center;
+    align-items: center;
+
+    margin: 10px;
+    display: flex;
+    margin: 40px auto 0px;
+    max-width: 1100px;
     height: 100%;
+    border: 1px solid black;
+    background-color: white;
+    height: 650px;
+`;
+
+export const body = css`
+    display: flex;
+    width: 95%;
+    height: 90%;
+    background-color: white;
+    border: 1px solid #dbdbdb;
 `;
 
 export const left = css`
     display: flex;
     flex-direction: column;
+    width: 25%;
     height: 100%;
-    width: 250px;
+    border-right: 1px solid #dbdbdb;
 `;
 
 export const profile = css`
     display: flex;
+    justify-content: center;
+    align-items: center;
+    
     flex-direction: column;
-    height: 350px;
-    width: 250px;
+    width: 100%;
+    height: 45%;
+    border-bottom: 1px solid #dbdbdb;
+    
 `;
 
-export const imageBox = css`
+export const menuBox = css`
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+    flex: 1;
+    /* background-color: #4f8ee7; */
+`;
+
+export const menus = css`
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 15%;
+    border-bottom: 1px solid #dbdbdb;
+`;
 
-    background-color: #d67c7c;
-    width: 250px;
-    height: 230px;
+export const menu = css`
+    text-decoration: none;
+    font-size: 20px;
 `;
 
 export const image = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #dbdbdb;
     border-radius: 50%;
     width: 180px;
     height: 180px;
-    border: 1px solid;
-`;
 
-export const bottomBox = css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
 
-    background-color: #d6b686ff;
-    width: 250px;
-    flex-grow: 1;
-`;
-
-export const sideMenu = css`
-    display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
-
-    flex-direction: column;
-    flex-grow: 1;
-
-    background-color: #a8ec5f;
-    width: 250px;
-    height: 600px;
-`;
-
-export const menuItem = css`
-    display: flex;
-    box-sizing: border-box;
-    justify-content: center;
-    align-items: center;
-
-    border-bottom: 1px solid black;
-    width: 100%;
-    height: 50px;
     cursor: pointer;
+    & > img {
+        /* width: 100%; */
+        height: 100%;
+    } 
+`;
 
-    color: black;
-    font-weight: 600;
-    text-decoration: none;
-    
-    &:nth-of-type(1) {
-        border-top: 1px solid black;
-    }
-    
-    &:hover {
-        background-color: #3ad53c
-    }
-    &:active {
-        background-color: #45cf77;
-    }
+export const role = css`
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const right = css`
-    /* display: flex; */
-    width: 950px;
+    /* background-color: #4de6bd; */
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 `;
+
+// export const profile = css`
+//     display: flex;
+//     flex-direction: column;
+//     height: 350px;
+//     width: 250px;
+// `;
+
+// export const imageBox = css`
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//     background-color: #d67c7c;
+//     width: 250px;
+//     height: 230px;
+// `;
+
+// export const image = css`
+//     border-radius: 50%;
+//     width: 180px;
+//     height: 180px;
+//     border: 1px solid;
+// `;
+
+// export const bottomBox = css`
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//     background-color: #d6b686ff;
+//     width: 250px;
+//     flex-grow: 1;
+// `;
+
+// export const sideMenu = css`
+//     display: flex;
+//     /* justify-content: center; */
+//     /* align-items: center; */
+
+//     flex-direction: column;
+//     flex-grow: 1;
+
+//     background-color: #a8ec5f;
+//     width: 250px;
+//     height: 600px;
+// `;
+
+// export const menuItem = css`
+//     display: flex;
+//     box-sizing: border-box;
+//     justify-content: center;
+//     align-items: center;
+
+//     border-bottom: 1px solid black;
+//     width: 100%;
+//     height: 50px;
+//     cursor: pointer;
+
+//     color: black;
+//     font-weight: 600;
+//     text-decoration: none;
+    
+//     &:nth-of-type(1) {
+//         border-top: 1px solid black;
+//     }
+    
+//     &:hover {
+//         background-color: #3ad53c
+//     }
+//     &:active {
+//         background-color: #45cf77;
+//     }
+// `;
+
+// export const right = css`
+//     /* display: flex; */
+//     width: 950px;
+//     height: 100%;
+// `;

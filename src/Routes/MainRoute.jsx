@@ -10,9 +10,9 @@ import Mypage from '../pages/Mypage/Mypage';
 import { useRecoilState } from 'recoil';
 import { principalState } from '../atoms/principalAtom';
 
-
 function MainRoute() {
     const [ principal, setPrincipal ] = useRecoilState(principalState);
+  
     const principalQuery = useQuery(
         ["principalQuery"], getPrincipalRequest,
         {
@@ -36,14 +36,20 @@ function MainRoute() {
    
     return (
         <>
-            <SearchHeader />
-            <MainContainer>
-                <Routes>
-                    <Route path='/' element={ <Home /> } />
-                    <Route path='/search' element={ <BookSearchPage /> } />
-                    <Route path='/mypage/*' element={ <Mypage />} />
-                </Routes>
-            </MainContainer>
+        {principalQuery.isLoading 
+            ? <></> 
+            : 
+            <>
+                <SearchHeader />
+                <MainContainer>
+                    <Routes>
+                        <Route path='/' element={ <Home /> } />
+                        <Route path='/search' element={ <BookSearchPage /> } />
+                        <Route path='/mypage/*' element={ <Mypage/>} />
+                    </Routes>
+                </MainContainer>
+            </>
+        }
         </>
     );
 }

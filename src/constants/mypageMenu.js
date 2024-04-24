@@ -1,4 +1,4 @@
-import LoanAndReturn from "../pages/LoanAndReturn/LoanAndReturn";
+import LoanAndReturn from "../pages/LoanAndReturn/LoanAndReturn2";
 import Overdue from "../pages/Overdue/Overdue";
 import UserInfoModification from "../pages/UserInfoModification/UserInfoModification";
 import WishList from "../pages/WishList/WishList";
