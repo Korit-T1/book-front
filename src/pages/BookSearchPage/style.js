@@ -142,7 +142,3 @@ export const publisherName = css`
     color: #a3a3a3;
     
 `
-
-export const pagination = css`
-
-`

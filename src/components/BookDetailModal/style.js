@@ -6,7 +6,10 @@ export const container = css`
     width: 100%;
     height: 100%;
 `
-
+export const boxButton = css`
+    position: absolute;
+    
+`
 export const imgBox = css`
     box-sizing: border-box;
     display: flex;
@@ -24,4 +27,30 @@ export const imgBox = css`
     & > img {
         width: 100%;
     }
+`
+export const infoBox = css`
+    border: 1px none;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    width: 55%;
+    height: 100%;
+    margin-left: 20px;
+`
+export const bookInfo = css`
+    border: 1px solid #dbdbdb;
+    padding: 0px 15px;
+    margin-bottom: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+`
+export const stockInfo = css`
+    border: 1px solid #dbdbdb;
+    margin-bottom: 10px;
+`
+export const reviewArea = css`
+    width: 100%;
+    height: 120px;
+    resize: none;
 `
