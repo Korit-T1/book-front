@@ -8,7 +8,7 @@ import { useQuery } from 'react-query';
 import { getPrincipalRequest } from '../apis/api/principal';
 import Mypage from '../pages/Mypage/Mypage';
 
-function MainRoute(props) {
+function MainRoute() {
     const principalQuery = useQuery(
         ["principalQuery"], getPrincipalRequest,
         {
@@ -25,14 +25,20 @@ function MainRoute(props) {
 
     return (
         <>
-            <SearchHeader />
-            <MainContainer>
-                <Routes>
-                    <Route path='/' element={ <Home /> } />
-                    <Route path='/search' element={ <BookSearchPage /> } />
-                    <Route path='/mypage/*' element={ <Mypage />} />
-                </Routes>
-            </MainContainer>
+        {principalQuery.isLoading 
+            ? <></> 
+            : 
+            <>
+                <SearchHeader />
+                <MainContainer>
+                    <Routes>
+                        <Route path='/' element={ <Home /> } />
+                        <Route path='/search' element={ <BookSearchPage /> } />
+                        <Route path='/mypage/*' element={ <Mypage/>} />
+                    </Routes>
+                </MainContainer>
+            </>
+        }
         </>
     );
 }
