@@ -6,7 +6,10 @@ export const container = css`
     width: 100%;
     height: 100%;
 `
-
+export const boxButton = css`
+    position: absolute;
+    
+`
 export const imgBox = css`
     box-sizing: border-box;
     display: flex;
@@ -26,7 +29,7 @@ export const imgBox = css`
     }
 `
 export const infoBox = css`
-    border: 1px solid #dbdbdb;
+    border: 1px none;
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
@@ -45,4 +48,9 @@ export const bookInfo = css`
 export const stockInfo = css`
     border: 1px solid #dbdbdb;
     margin-bottom: 10px;
+`
+export const reviewArea = css`
+    width: 100%;
+    height: 120px;
+    resize: none;
 `
