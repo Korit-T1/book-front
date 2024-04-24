@@ -87,13 +87,14 @@ function Mypage() {
                                 <Link css={s.menu} to={"/mypage/history"}>대출 및 반납</Link>
                             </div>
                             <div css={s.menus}>
-                                <Link css={s.menu}>위시리스트</Link>
+                                <Link css={s.menu} to={"/mypage/wish"}>위시리스트</Link>
                             </div>
                         </div>
                     </div>
                     <div css={s.right}>
                         <Routes>
                             <Route path='/history' element={ <LoanAndReturn2 data={principalData} /> } />
+                            <Route path='/wish' element={ <WishList data={principalData} /> } />
                         </Routes>
                     </div>
                 </div>

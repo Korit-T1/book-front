@@ -5,51 +5,47 @@ import * as s from "./style"
 import { useQuery } from "react-query";
 
 function WishList(data) {
+    const id = data.data.data.userId;
     const [ wishList, setWishList ] = useState([]);
 
     const searchWishQuery = useQuery(
-        ["searchWishQuery", data?.data?.userId],
-        async () => await getWishDataRequest(data.data.userId),
+        ["searchWishQuery"],
+        async () => await getWishDataRequest(id),
         {
             retry: 0,
             refetchOnWindowFocus: false,
             onSuccess: response => {
-                setWishList(response.data)
                 console.log(response.data);
+                setWishList(response.data)
             },
             onError: error => {
                 console.log("error");
             }
         }
     );
-
+    // !searchWishQuery.isLoading &&
     return (
         <>
-            {!searchWishQuery.isLoading &&
-                <table css={s.wishTable}>
-                    <thead>
-                        <tr>
-                            <th>위시번호</th>
-                            <th>제목</th>
-                            <th>저자</th>
-                            <th>출판사</th>
-                            <th>이미지 URL</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {wishList.map(
-                            wish => 
-                                <tr key={wish.wishId}>
-                                    <td>{wish.wishId}</td>
-                                    <td>{wish.book.bookName}</td>
-                                    <td>{wish.book.authorName}</td>
-                                    <td>{wish.book.publisherName}</td>
-                                    <td>{wish.book.coverImgUrl}</td>
-                                </tr>
-                        )}
-                    </tbody>
-                </table>
-            }
+            <div css={s.header}>헤더</div>
+            <div css={s.container}>
+                {
+                    wishList.map(wish => 
+                        <div css={s.data} key={wish.wishId}>
+                            <div css={s.bookData}>
+                                <div css={s.bookImage}>
+                                    <img src={wish.imageUrl}></img>
+                                </div>
+                                <div css={s.bookInfo}>
+                                    <div css={s.bookName}>{wish.bookName}</div>
+                                    <div css={s.authorName}>{wish.authorName}</div>
+                                    <div css={s.publisherName}>{wish.publisherName}</div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
+            </div>
+            <div css={s.page}>페이지</div>
         </>
     );
 }
