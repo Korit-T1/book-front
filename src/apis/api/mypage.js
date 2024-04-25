@@ -4,8 +4,12 @@ export const getLoanDataRequest = async (userid) => {
     return await instance.get(`/mypage/loan/${userid}`)
 }
 
-export const getWishDataRequest = async (userid) => {
-    return await instance.get(`/mypage/wish/${userid}`)
+export const getWishDataRequest = async (params) => {
+    return await instance.get(`/mypage/wish`, {params})
+}
+
+export const getWishCountRequest = async (params) => {
+    return await instance.get(`/mypage/wish/count`, {params})
 }
 
 export const updateProfileImageRequest = async (data) => {

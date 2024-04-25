@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
 
 // 바디
-
 export const back = css`
     position: absolute;
     top: 82px;
@@ -66,18 +65,22 @@ export const menuBox = css`
     /* background-color: #4f8ee7; */
 `;
 
-export const menus = css`
+export const menus = (activeMenu) => css`
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 15%;
     border-bottom: 1px solid #dbdbdb;
+    background-color: ${activeMenu ? "rebeccapurple" : "white"};
+    
+    cursor: pointer;
 `;
 
-export const menu = css`
+export const menu = (activeMenu) => css`
     text-decoration: none;
     font-size: 20px;
+    color: ${activeMenu ? "white" : ""};
 `;
 
 export const image = css`

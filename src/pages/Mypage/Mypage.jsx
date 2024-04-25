@@ -21,6 +21,12 @@ function Mypage() {
     const imgFileRef = useRef(); 
     const queryClient = useQueryClient();
     const principalData = queryClient.getQueryData("principalQuery");
+    const linkref = useRef();
+    const [ activeMenu, setActiveMenu ] = useState(null);
+    const handleMenuClick = (menuName) => {
+        setActiveMenu(menuName === activeMenu ? null : menuName);
+    };
+
 
     const updateProfileImageMutation = useMutation({
         mutationKey: "updateProfileImageMutation",
@@ -64,6 +70,8 @@ function Mypage() {
 
     }
 
+    
+
     return (
         <>
             <div css={s.back}></div>
@@ -80,20 +88,46 @@ function Mypage() {
                             </div>
                         </div>
                         <div css={s.menuBox}>
-                            <div css={s.menus}>
-                                <Link css={s.menu}>비밀번호 변경</Link>
+                            <div css={s.menus(activeMenu === 'a')} onClick={() => handleMenuClick('a')}>
+                                <Link
+                                    css={s.menu(activeMenu === 'a')}
+                                    to={"/mypage/password"}
+                                >비밀번호 변경</Link>
                             </div>
-                            <div css={s.menus}>
-                                <Link css={s.menu} to={"/mypage/history"}>대출 및 반납</Link>
+                            <div css={s.menus(activeMenu === 'b')} onClick={() => handleMenuClick('b')}>
+                                <Link 
+                                    css={s.menu(activeMenu === 'b')}
+                                    to={"/mypage/history"}
+                                >대출 도서</Link>
                             </div>
-                            <div css={s.menus}>
-                                <Link css={s.menu} to={"/mypage/wish"}>위시리스트</Link>
+                            <div css={s.menus(activeMenu === 'c')} onClick={() => {
+                                linkref.current.click();
+                                handleMenuClick('c');
+                            }}>
+                                <Link
+                                    css={s.menu(activeMenu === 'c')}
+                                    to={"/mypage/return"}
+                                    ref={linkref}
+                                >반납 도서</Link>
+                            </div>
+                            <div css={s.menus(activeMenu === 'd')} onClick={() => {
+                                linkref.current.click();    
+                                handleMenuClick('d');
+                            }}>
+                                <Link
+                                    css={s.menu(activeMenu === 'd')}
+                                    to={"/mypage/wish?page=1&option=0"}
+                                    ref={linkref}
+                                >위시리스트</Link>
                             </div>
                         </div>
                     </div>
+
                     <div css={s.right}>
                         <Routes>
+                            <Route path='/password'element={ <UserInfoModification data={principalData} /> } />
                             <Route path='/history' element={ <LoanAndReturn2 data={principalData} /> } />
+                            <Route path='/return' element={ <WishList data={principalData} /> } />
                             <Route path='/wish' element={ <WishList data={principalData} /> } />
                         </Routes>
                     </div>

@@ -38,8 +38,6 @@ function LoanAndReturn(data) {
                                 <div css={s.bookName}>{loan.bookName}</div>
                                 <div css={s.authorName}>{loan.authorName}</div>
                                 <div css={s.publisherName}>{loan.publisherName}</div>
-                                <button>대출</button>
-                                <button>반납</button>
                             </div>
                         </div>
                         {/* <div css={s.buttons}>
