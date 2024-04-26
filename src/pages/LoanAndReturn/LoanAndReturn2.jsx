@@ -8,7 +8,7 @@ import { bookReturn } from "../../apis/api/loanApi";
 function LoanAndReturn(data) {
     const id = data.data.data.userId;
     const [ loanDataList , setLoanDataList ] = useState([]);
-    const [checkedList, setCheckedList ] = useState([]);
+    const [ checkedList, setCheckedList ] = useState([]);
 
     const searchLoansQuery = useQuery(
         ["searchLoansQuery"],
@@ -30,7 +30,7 @@ function LoanAndReturn(data) {
         mutationFn: bookReturn,
         onSuccess: response => {
             searchLoansQuery.refetch();
-            alert("반납완료");
+            
         },
         onError: error => {
 
@@ -43,9 +43,16 @@ function LoanAndReturn(data) {
             setCheckedList(checkedList.filter(el => el !== item));
         }
     };
-    const logButton = () => {
+    const logButton = () => {   
         console.log(checkedList);
     };
+
+    const checkedReturns = () => {
+
+        checkedList.forEach(loanId => {
+            returnBookMutation.mutate(loanId);
+        });
+    }
     return (
         <>
             <div css={s.container}>
@@ -61,7 +68,7 @@ function LoanAndReturn(data) {
                                 <div css={s.authorName}>{loan.authorName}</div>
                                 <div css={s.publisherName}>{loan.publisherName}</div>
                                 <button onClick={() => returnBookMutation.mutate(loan.loanId)}>반납</button>
-                                <input type="checkbox" onChange={e => {onCheckedElement(e.target.checked, e.target.value);}}/>
+                                <input type="checkbox" onChange={e => {onCheckedElement(e.target.checked, loan.loanId);}}/>
                                 
                             </div>
                         </div>
@@ -71,6 +78,7 @@ function LoanAndReturn(data) {
                     </div>
                 )
             }
+            <button css={s.returnsButton} onClick={checkedReturns}>모두반납</button>
             </div>
         </>    
     );
