@@ -9,7 +9,7 @@ import { principalState } from "../../atoms/principalAtom";
 import { useRecoilState } from "recoil";
 import { getReview, registerReview } from "../../apis/api/reviewApi";
 
-function BookDetailModal({book, isOpen, setIsOpen, searchPage, option, text}) {
+function BookDetailModal({book, isOpen, setIsOpen}) {
     const [ stockState, setStockState ] = useState([]);
     const [ reviews, setReviews ] = useState([]);
     const [ principal ] = useRecoilState(principalState);
@@ -52,7 +52,6 @@ function BookDetailModal({book, isOpen, setIsOpen, searchPage, option, text}) {
         mutationFn: loanRegister,
         onSuccess: response => {
             bookStocksQuery.refetch()
-            alert("대출신청완료");
         },
         onError: error => {
 

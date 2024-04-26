@@ -24,13 +24,13 @@ export const bodyLayout = css`
     height: 100%;
     border: 1px solid black;
     background-color: white;
-    height: 650px;
+    height: 665px;
 `;
 
 export const body = css`
     display: flex;
-    width: 95%;
-    height: 90%;
+    width: 97%;
+    height: 95%;
     background-color: white;
     border: 1px solid #dbdbdb;
 `;
@@ -38,7 +38,7 @@ export const body = css`
 export const left = css`
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 23%;
     height: 100%;
     border-right: 1px solid #dbdbdb;
 `;
@@ -110,9 +110,10 @@ export const right = css`
     /* background-color: #4de6bd; */
     height: 100%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     flex: 1;
+    flex-direction: column;
 `;
 
 // export const profile = css`

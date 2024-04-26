@@ -24,12 +24,9 @@ function MainRoute() {
                 } else {
 
                 }
-                console.log(response);
-                console.log(principal);
-
             },
             onError: error => {
-                console.log("error");
+                console.log("비회원");
             }
         }
     );
