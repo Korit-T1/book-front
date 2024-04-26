@@ -2,11 +2,13 @@
 import { useState } from "react";
 import * as s from "./style2"
 import { getLoanDataRequest } from "../../apis/api/mypage";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
+import { bookReturn } from "../../apis/api/loanApi";
 
 function LoanAndReturn(data) {
     const id = data.data.data.userId;
     const [ loanDataList , setLoanDataList ] = useState([]);
+    const [checkedList, setCheckedList ] = useState([]);
 
     const searchLoansQuery = useQuery(
         ["searchLoansQuery"],
@@ -23,7 +25,27 @@ function LoanAndReturn(data) {
             }
         }
     );
+    const returnBookMutation = useMutation({
+        mutationKey: "returnBookMutation",
+        mutationFn: bookReturn,
+        onSuccess: response => {
+            searchLoansQuery.refetch();
+            alert("반납완료");
+        },
+        onError: error => {
 
+        }
+    });
+    const onCheckedElement = (checked, item) => {
+        if(checked) {
+            setCheckedList([...checkedList, item]);
+        } else if (!checked) {
+            setCheckedList(checkedList.filter(el => el !== item));
+        }
+    };
+    const logButton = () => {
+        console.log(checkedList);
+    };
     return (
         <>
             <div css={s.container}>
@@ -38,11 +60,12 @@ function LoanAndReturn(data) {
                                 <div css={s.bookName}>{loan.bookName}</div>
                                 <div css={s.authorName}>{loan.authorName}</div>
                                 <div css={s.publisherName}>{loan.publisherName}</div>
-                                <button>대출</button>
-                                <button>반납</button>
+                                <button onClick={() => returnBookMutation.mutate(loan.loanId)}>반납</button>
+                                <input type="checkbox" onChange={e => {onCheckedElement(e.target.checked, e.target.value);}}/>
+                                
                             </div>
                         </div>
-                        {/* <div css={s.buttons}>
+                        {/* <div css={s.buttons}>   
 
                         </div> */}
                     </div>
