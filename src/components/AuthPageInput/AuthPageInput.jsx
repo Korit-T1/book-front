@@ -5,8 +5,8 @@ import { CiSquareCheck, CiSquareInfo } from "react-icons/ci";
 
 function AuthPageInput({ type, name, placeholder, value, onChange, message }) {
     return (
-        <div>
-            <input 
+        <div css={s.inputBox}>
+            <input css={placeholder === '새 비밀번호 확인' ? s.input2 : s.input}
                 type={type} 
                 name={name} 
                 placeholder={placeholder} 
@@ -15,13 +15,13 @@ function AuthPageInput({ type, name, placeholder, value, onChange, message }) {
             />
             {
                 !!message &&
-                <div>
+                <div css={s.inputIcon(message.type)}>
                     {message.type === "error" ? <CiSquareInfo /> : <CiSquareCheck />}
                 </div>
             }
             {
                 !!message &&
-                <div>
+                <div css={s.messageBox(message.type)}>
                     {message.text}
                 </div>
             }

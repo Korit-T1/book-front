@@ -5,7 +5,6 @@ import { useInput } from "../../hooks/userInput"
 import { editPasswordRequest } from "../../apis/api/editPassword";
 
 function PasswordEditPage() {
-    useAuthCheck();
     const [ oldPassword, handleOldPassword, oldMessage, setOld, setOldMessage ] = useInput("oldPassword");
     const [ newPassword, handleNewPassword, newMessage, setNew, setNewMessage ] = useInput("newPassword");
     const [ newPasswordCheck, handleNewPasswordCheck, newCheckMessage, setNewCheck, setNewCheckMessage ] = useInput("newPasswordCheck");
@@ -17,7 +16,7 @@ function PasswordEditPage() {
             console.log(response);
             alert("비밀번호를 성공적으로 변경하였습니다\n다시 로그인 바랍니다");
             localStorage.removeItem("AccessToken");
-            window.location.replace("/signin");
+            window.location.replace("/userlogin");
         },
         onError: error => {
             if(error.response.status === 400) {

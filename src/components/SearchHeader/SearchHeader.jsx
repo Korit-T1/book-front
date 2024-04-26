@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
+import * as s from "./style"
 import { Link } from "react-router-dom";
 import MainContainer from "../MainContainer/MainContainer";
-import * as s from "./style"
 import { useQueryClient } from "react-query";
 import { useEffect, useState } from "react";
 import instance from "../../apis/utils/instance";
@@ -30,8 +30,8 @@ function SearchHeader() {
             <MainContainer>
                 <header css={s.header}>
                     <div css={s.headerLeft}>
-                        <Link css={s.brandLogo}>
-                            북드롭
+                        <Link css={s.brandLogo} to={"/"}>
+                            BookDrop
                         </Link>
                         <ul css={s.menuNav}>
                             <Link to={"/search?page=1&option=0&text="}><li>통합검색</li></Link>

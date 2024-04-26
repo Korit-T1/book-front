@@ -46,7 +46,7 @@ function BookSearchPage() {
             refetchOnWindowFocus: false,
             retry: 0
         }
-    )
+    )   
 
     const getBookCountQuery = useQuery(
         ["getBookCountQuery", searchQuery.data],

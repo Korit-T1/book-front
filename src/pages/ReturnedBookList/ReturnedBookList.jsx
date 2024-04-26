@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useState } from "react";
-import { getWishCountRequest, getWishDataRequest } from "../../apis/api/mypage";
+import { getReturnedCountRequest, getReturnedDataRequest } from "../../apis/api/mypage";
 import * as s from "./style"
 import { useQuery } from "react-query";
 import { BsCheckCircle } from "react-icons/bs";
@@ -8,24 +8,13 @@ import { IoMdClose } from "react-icons/io";
 import WishPageNumbers2 from "../WishPageNumbers/WishPageNumbers2";
 import { Link, useSearchParams } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import ReturnedPageNumbers from "../ReturnedPageNumbers/ReturnedPageNumbers";
 
-function WishList(data) {
+function ReturnedBookList(data) {
     const id = data.data.data.userId;
 
-    const [ wishList, setWishList ] = useState([]);
+    const [ returnedBookList, setReturnedBookList ] = useState([]);
     const [ searchParams, setSearchParams ] = useSearchParams();
-
-    const [ selectedItems, setSelectedItems ] = useState([]);
-
-    const toggleSelection = (wishid) => {
-        if (selectedItems.includes(wishid)) {
-            setSelectedItems(selectedItems.filter((id) => id !== wishid));
-        } else {
-            setSelectedItems([...selectedItems, wishid]);
-        }
-    };
-
-    
 
     const [ searchCondition, setSearchCondition ] = useState({
         userid: id,
@@ -43,15 +32,15 @@ function WishList(data) {
         })
     }, [searchParams])
 
-    const searchWishQuery = useQuery(
-        ["searchWishQuery", searchCondition],
-        async () => await getWishDataRequest(searchCondition),
+    const getReturnedBooksQuery = useQuery(
+        ["getReturnedBooksQuery", searchCondition],
+        async () => await getReturnedDataRequest(searchCondition),
         {
             retry: 0,
             refetchOnWindowFocus: false,
             onSuccess: response => {
                 console.log(response.data);
-                setWishList(response.data.wishList)
+                setReturnedBookList(response.data.returned)
             },
             onError: error => {
                 console.log("error");
@@ -59,9 +48,9 @@ function WishList(data) {
         }
     );
 
-    const getWishCountQuery = useQuery(
-        ["getWishCountQuery", wishList],
-        async () => await getWishCountRequest(searchCondition),
+    const getReturnedBooksCountQuery = useQuery(
+        ["getReturnedBooksCountQuery", returnedBookList],
+        async () => await getReturnedCountRequest(searchCondition),
         {
             retry: 0,
             refetchOnWindowFocus: false,
@@ -76,19 +65,19 @@ function WishList(data) {
     return (
         <>
             <div css={s.header}>
-                <Link css={s.filter} to={"/mypage/wish?page=1&option=0"}>전체(book_id)</Link>
-                <Link css={s.filter} to={"/mypage/wish?page=1&option=1"}>평점높은순</Link>
-                <Link css={s.filter} to={"/mypage/wish?page=1&option=2"}>평점낮은순</Link>
-                <Link css={s.filter} to={"/mypage/wish?page=1&option=3"}>리뷰많은순</Link>
-                <Link css={s.filter} to={"/mypage/wish?page=1&option=4"}>리뷰적은순</Link>
+                <Link css={s.filter} to={"/mypage/returned?page=1&option=0"}>전체(book_id)</Link>
+                <Link css={s.filter} to={"/mypage/returned?page=1&option=1"}>평점높은순</Link>
+                <Link css={s.filter} to={"/mypage/returned?page=1&option=2"}>평점낮은순</Link>
+                <Link css={s.filter} to={"/mypage/returned?page=1&option=3"}>리뷰많은순</Link>
+                <Link css={s.filter} to={"/mypage/returned?page=1&option=4"}>리뷰적은순</Link>
                     <button css={s.deleteBtn}>
                         <RiDeleteBin6Line />
                     </button>
             </div>
             <div css={s.container}>
-                {!searchWishQuery.isLoading &&
-                    wishList.map(wish => 
-                        <div css={s.data} key={wish.wishId}>
+                {!getReturnedBooksQuery.isLoading &&
+                    returnedBookList.map(loan => 
+                        <div css={s.data} key={loan.loanId}>
                             <div css={s.bookData}>
                                 <div css={s.checkBox}>
                                     <button css={s.checkBtn}>
@@ -96,12 +85,12 @@ function WishList(data) {
                                     </button>
                                 </div>
                                 <div css={s.bookImage}>
-                                    <img src={wish.imageUrl}></img>
+                                    <img src={loan.imageUrl}></img>
                                 </div>
                                 <div css={s.bookInfo}>
-                                    <div css={s.bookName}>{wish.bookName}</div>
-                                    <div css={s.authorName}>{wish.authorName}</div>
-                                    <div css={s.publisherName}>{wish.publisherName}</div>
+                                    <div css={s.bookName}>{loan.bookName}</div>
+                                    <div css={s.authorName}>{loan.authorName}</div>
+                                    <div css={s.publisherName}>{loan.publisherName}</div>
                                 </div>
                                 <div css={s.removeBox}>
                                     <IoMdClose size={"17"} color={"#adadad"}/>
@@ -111,13 +100,13 @@ function WishList(data) {
                     )
                 }
             </div>
-            {!getWishCountQuery.isLoading &&
+            {!getReturnedBooksCountQuery.isLoading &&
                 <div css={s.page}>
-                    <WishPageNumbers2 data={getWishCountQuery.data?.data}/>
+                    <ReturnedPageNumbers data={getReturnedBooksCountQuery.data?.data}/>
                 </div>
             }
         </>
     );
 }
 
-export default WishList;
+export default ReturnedBookList;
