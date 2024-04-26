@@ -1,7 +1,19 @@
 import instance from "../utils/instance"
 
-export const getLoanDataRequest = async (userid) => {
-    return await instance.get(`/mypage/loan/${userid}`)
+export const getReadingDataRequest = async (params) => {
+    return await instance.get(`/mypage/reading`, {params})
+}
+
+export const getReadingCountRequest = async (params) => {
+    return await instance.get(`/mypage/reading/count`, {params})
+}
+
+export const getReturnedDataRequest = async (params) => {
+    return await instance.get(`/mypage/returned`, {params})
+}
+
+export const getReturnedCountRequest = async (params) => {
+    return await instance.get(`/mypage/returned/count`, {params})
 }
 
 export const getWishDataRequest = async (params) => {

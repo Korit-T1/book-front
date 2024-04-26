@@ -17,8 +17,8 @@ export const headerLeft = css`
 
 export const brandLogo = css`
     font-size: 24px;
-    font-weight: 600;
     text-decoration: none;
+    font-weight: bold;
     color: #222222;
 `
 

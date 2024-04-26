@@ -10,8 +10,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
+input::placeholder {
+  font-family: 'Freesentation';
+  font-size: 15px;
+}
 
+button {
+  font-family: 'Freesentation';
+  font-size: 18px;
+}

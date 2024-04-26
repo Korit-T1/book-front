@@ -113,7 +113,7 @@ export const right = css`
     /* background-color: #4de6bd; */
     height: 100%;
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
     flex: 1;
     flex-direction: column;

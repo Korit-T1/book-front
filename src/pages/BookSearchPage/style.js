@@ -65,7 +65,7 @@ export const main = css`
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-top: 30px;
-    border: 1px solid;
+    /* border: 1px solid; */
 `
 
 export const card = css`
@@ -81,7 +81,7 @@ export const card = css`
     &:hover {
         box-shadow: 0px 0px 10px #00000044;
     }
-    border: 1px solid;
+    /* border: 1px solid; */
 `
 
 export const imgBox = css`

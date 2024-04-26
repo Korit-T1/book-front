@@ -1,8 +1,10 @@
 /** @jsxImportSource @emotion/react */
+import * as s from "./style"
 import AuthPageInput from '../../components/AuthPageInput/AuthPageInput';
 import { useMutation } from "react-query";
 import { useInput } from "../../hooks/userInput"
 import { editPasswordRequest } from "../../apis/api/editPassword";
+import { Link } from "react-router-dom";
 
 function UserInfoModification(data) {
     const [ oldPassword, handleOldPassword, oldMessage, setOld, setOldMessage ] = useInput("oldPassword");
@@ -54,12 +56,24 @@ function UserInfoModification(data) {
     }
 
     return (
-        <div>
+        <div css={s.center}>
             <h1>비밀번호 변경</h1>
-            <AuthPageInput type={"password"} value={oldPassword} onChange={handleOldPassword} placeholder={"현재 비밀번호 입력"} message={oldMessage} />
-            <AuthPageInput type={"password"} value={newPassword} onChange={handleNewPassword} placeholder={"새 비밀번호 입력"} message={newMessage}/>
-            <AuthPageInput type={"password"} value={newPasswordCheck} onChange={handleNewPasswordCheck} placeholder={"새 비밀번호 확인"} message={newCheckMessage}/>
-            <button onClick={handleEditSubmitClick}>비밀번호 변경하기</button>
+
+            <div css={s.ment}>
+                <p>다른 아이디/사이트에서 사용한 적 없는 비밀번호</p>
+                <p>이전에 사용한 적 없는 비밀번호가 안전합니다</p>
+            </div>
+            
+            <AuthPageInput type={"password"} value={oldPassword} onChange={handleOldPassword} placeholder={"현재 비밀번호"} message={oldMessage} /><br></br>
+            <AuthPageInput type={"password"} value={newPassword} onChange={handleNewPassword} placeholder={"새 비밀번호"} message={newMessage}/>
+            <AuthPageInput type={"password"} value={newPasswordCheck} onChange={handleNewPasswordCheck} placeholder={"새 비밀번호 확인"} message={newCheckMessage}/><br></br>
+            
+            <div css={s.buttons}>
+                <button css={s.submitBtn} onClick={handleEditSubmitClick}>확인</button>
+                <button css={s.cancelBtn}>
+                    <Link to={'/mypage'} style={{textDecoration: "none"}}>취소</Link>
+                </button>
+            </div>
         </div>
     );
 }
