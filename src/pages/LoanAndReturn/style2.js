@@ -4,6 +4,7 @@ export const container = css`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    position: relative;
 
     width: 97%;
     height: 96%;
@@ -80,4 +81,9 @@ export const publisherName = css`
     font-weight: 400;
     color: #a3a3a3;
     
+`
+export const returnsButton = css`
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
 `
