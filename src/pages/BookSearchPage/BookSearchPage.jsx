@@ -127,6 +127,7 @@ function BookSearchPage() {
                 !getBookCountQuery.isLoading &&
                 <BookSearchPageNumbers bookCount={getBookCountQuery.data?.data}   /> 
             }
+            
             </div>
             <BookDetailModal book={selectedBook} isOpen={isOpen} setIsOpen={setIsOpen}/>
         </>
