@@ -8,6 +8,10 @@ import { loanRegister } from "../../apis/api/loanApi";
 import { principalState } from "../../atoms/principalAtom";
 import { useRecoilState } from "recoil";
 import { getReview, registerReview } from "../../apis/api/reviewApi";
+import { FaStar, FaStarHalf } from "react-icons/fa";
+import Rate from "rc-rate";
+import "rc-rate/assets/index.css";
+import { registerRating } from "../../apis/api/ratingApi";
 
 function BookDetailModal({book, isOpen, setIsOpen}) {
     const [ stockState, setStockState ] = useState([]);
@@ -17,7 +21,8 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
     const queryClient = useQueryClient();
     const [ reviewValue, setReviewValue ] = useState('');
     const principalData = queryClient.getQueriesData("principalQuery");
-
+    const [ rating, setRating] = useState(0);
+    
     const bookStocksQuery = useQuery(
         ["bookStocksQuery"],
         () => getBookStocksRequest(book.bookId),
@@ -74,7 +79,7 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
      const handleTextChange = (e) => {
         setReviewValue(e.target.value);
      }
-     console.log(reviews);
+     console.log(book);
     return (
         <>
             { !book 
@@ -108,6 +113,16 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                                         <h3>출판사: {book.publisherName}</h3>
                                         <h3>출판일: {book.publishDate}</h3>
                                     </div>
+                                    <div>
+                                        <h3>평점</h3>
+                                        <Rate
+                                            count={5}
+                                            value={book.averageRating}
+                                            allowHalf={false}
+                                            style={{fontSize: 30}}
+                                        />
+                                        <span>{Math.floor(book.averageRating)}</span>
+                                    </div>  
                                     <div css={s.stockInfo}>
                                         <table>
                                             <thead>
@@ -138,6 +153,7 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                                             </tbody>
                                         </table>
                                     </div>
+                                    
                                     </>
                                     :
                                     <>  
@@ -146,26 +162,44 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                                             ? <></>
                                             : reviews.length === 0 ? <></> : reviews.map(
                                                 review =>
-                                                <div>
-                                                    <p>{review.content}</p>
+                                                <div css={s.reviewContent}>
+                                                   <span><p>{review.content}</p></span>
+                                                
+                                                   <span><p>평점{review.rating}</p></span>
                                                 </div>
                                             )
                                         }
-                                        <div>
-                                            <div>
-
-                                            </div>
+                                        <div>                                  
                                             <textarea 
                                                 value={reviewValue}
                                                 onChange={handleTextChange}
                                                 cols="30" 
                                                 rows="10" 
                                                 css={s.reviewArea}></textarea>
-                                            <button onClick={() => registerReviewMutation.mutate({
-                                                bookId: book.bookId,
-                                                userId: principal.userId,
-                                                content: reviewValue    
-                                            })}>작성</button>
+                                        </div>
+                                        <div>
+                                            <section css={s.Base}>
+                                                <h1 css={s.Name}>별점</h1>
+                                                <Rate 
+                                                    count={5}
+                                                    value={rating}
+                                                    allowHalf={true}
+                                                    style={{fontSize: 30}}
+                                                    onChange={value => setRating(() => value)}
+                                                />
+                                                <span css={s.RatingValue}>{rating}</span>
+                                                <button onClick={
+                                                    () => {
+                                                        registerReviewMutation.mutate({
+                                                            bookId: book.bookId,
+                                                            userId: principal.userId,
+                                                            content: reviewValue,
+                                                            rating: rating   
+                                                        });
+
+                                                    }
+                                                }>작성</button>
+                                            </section>
                                         </div>
                                     </>
                                 }
