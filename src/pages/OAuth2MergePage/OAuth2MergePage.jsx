@@ -17,7 +17,7 @@ function OAuth2MergePage(props) {
         mutationFn: oAuth2MergeRequest,
         onSuccess: response => {
             alert("계정 통합 완료.\n 다시 로그인 해주세요.")
-            wondow.location.replace("/auth/signin");
+            window.location.replace("/auth/signin");
         },
         onError: error => {
             alert(error.response.data);

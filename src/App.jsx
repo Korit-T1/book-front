@@ -4,6 +4,7 @@ import MainRoute from "./Routes/MainRoute";
 import SinginPage from "./pages/SigninPage/SigninPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import AdminSigninPage from "./pages/Admin/AdminSigninPage/AdminSigninPage";
+import NoticeBoardWritePage from "./pages/Admin/NoticeBoardWritePage/NoticeBoardWritePage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/usersignup" element={<SignupPage />} />
         <Route path="/admin/*" element={<AdminRoute />}/>
         <Route path="/adminlogin" element={<AdminSigninPage />}/>
+        <Route path="/boardWrite" element={<NoticeBoardWritePage />}/>
       </Routes>
     </>
   )
