@@ -6,7 +6,10 @@ export const back = css`
     top: 82px;
     left: 0;
     z-index: -10;
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
+    background-color: #21D4FD;
+    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+
     height: 300px;
     width: 100vw;
 `
@@ -27,11 +30,15 @@ export const bodyLayout = css`
 `;
 
 export const body = css`
+    box-sizing: border-box;
     display: flex;
     width: 97%;
     height: 95%;
     background-color: white;
     border: 1px solid #dbdbdb;
+    /* border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb; */
 `;
 
 export const left = css`
@@ -39,7 +46,7 @@ export const left = css`
     flex-direction: column;
     width: 23%;
     height: 100%;
-    border-right: 1px solid #dbdbdb;
+    /* border-right: 2px solid black; */
 `;
 
 export const profile = css`

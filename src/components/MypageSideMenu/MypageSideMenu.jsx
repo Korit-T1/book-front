@@ -1,23 +1,29 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style"
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { updateProfileImageRequest } from '../../apis/api/mypage';
 import { Link } from 'react-router-dom';
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 import { v4 as uuid } from "uuid"
 import { storage } from "../../apis/firebase/firebaseConfig"
+import { SIDE_MENU } from "../../constants/mypageSideMenu";
+import { GiWhiteBook } from "react-icons/gi";
+
 
 function MypageSideMenu() {
     const imgFileRef = useRef(); 
     const queryClient = useQueryClient();
     const principalData = queryClient.getQueryData("principalQuery");
-    const linkref = useRef();
 
-    const [ activeMenu, setActiveMenu ] = useState(null);
+    const linkRef = useRef();
 
-    const handleMenuClick = (menuName) => {
-        setActiveMenu(menuName === activeMenu ? null : menuName);
+    const [ activeMenu, setActiveMenu ] = useState(1);
+
+    const handleMenuClick = (menuID) => {
+        if(menuID !== activeMenu) {
+            setActiveMenu(menuID);
+        }
     };
 
     const updateProfileImageMutation = useMutation({
@@ -73,27 +79,19 @@ function MypageSideMenu() {
                     {principalData.data.name} 님
                 </div>
             </div>
-            <div css={s.menuBox}>
-                <div css={s.menus}>
-                    <Link css={s.menu} to={"/mypage/password"}>
-                        비밀번호 변경
-                    </Link>
-                </div>
-                <div css={s.menus}>
-                <Link css={s.menu} to={"/mypage/reading?page=1&option=0"}>
-                        대출 중인 도서
-                    </Link>
-                </div>
-                <div css={s.menus}>
-                    <Link css={s.menu} to={"/mypage/returned?page=1&option=0"}>
-                        반납한 도서
-                    </Link>
-                </div>
-                <div css={s.menus}>
-                    <Link css={s.menu} to={"/mypage/wish?page=1&option=0"}>
-                        위시리스트
-                    </Link>
-                </div>
+            <div css={s.menuBox(activeMenu)}>
+                {
+                    SIDE_MENU.map(menu => 
+                        <div css={s.menus} key={menu.id}>
+                            <Link 
+                                css={s.menu} 
+                                to={menu.path}
+                                onClick={() => handleMenuClick(menu.id)}>
+                                {menu.id === 1 ? <GiWhiteBook size={35}/> : menu.name}
+                            </Link>
+                        </div>  
+                    )
+                }
             </div>
         </>
     );

@@ -10,22 +10,48 @@ import AdminPreferenceManagement from '../pages/Admin/AdminPreferenceManagement/
 import AdminSideBar from '../pages/Admin/AdminSideBar/AdminSideBar';
 import AdminBookManagement from '../pages/Admin/AdminBookManagement/AdminBookManagement';
 import AdminBookRegisterInput from '../pages/Admin/AdminBookRegisterInput/AdminBookRegisterInput';
+import { useState } from "react";
+import { getAdminPrincipalRequest } from "../../src/apis/api/principal";
+import { useQuery } from "react-query";
 
 function AdminRoute(props) {
+    const [ isLogin, setLogin ] = useState(false);
+    const adminPrincipalQuery = useQuery(["adminPrincipalQuery"], getAdminPrincipalRequest,
+    {
+        retry: 0,
+        refetchOnWindowFocus: false,
+        onSuccess: response => {
+            console.log(response);
+            setLogin(true);
+        },
+        onError: error => {
+            console.log("error");
+            setLogin(false);
+        }
+    });
+
     return (
         <>
-            <AdminSideBar />
-            <Routes>             
-                <Route path='/signinpage' element={ <AdminSigninPage /> } /> {/* 관리자 로그인 */}
-                <Route path='/admin' element={ <AdminMainPage /> } />             {/* 원래는 mainpage */}
-                <Route path='/bookmanage' element={ <AdminBookManagement /> } /> {/* 도서관리 */}
-                <Route path='/usermanage' element={ <AdminUserManagement /> } />  {/* 유저관리 */}
-                <Route path='/noticemanage' element={ <AdminNoticemanagement /> } /> {/* 공지사항관리 */}
-                <Route path='/freeboardmanage' element={ <AdminFreeBoardManagemet /> } />   {/* 자유게시판관리 */}
-                <Route path='/eventmanage' element={ <AdminEventManagement /> } />   {/* 이벤트관리 */}
-                <Route path='/preference' element={ <AdminPreferenceManagement /> } />    {/* 환경설정 */}
-                <Route path='/bookregister' element={ <AdminBookRegisterInput    /> } />    {/* 책 등록 */}
-            </Routes>
+            {
+                adminPrincipalQuery.isLoading 
+                ? <></>
+                : !isLogin ? <AdminSigninPage /> 
+                : 
+                <>
+                <AdminSideBar />
+                <Routes>             
+                    <Route path='/signinpage' element={ <AdminSigninPage /> } /> {/* 관리자 로그인 */}
+                    <Route path='/admin' element={ <AdminMainPage /> } />             {/* 원래는 mainpage */}
+                    <Route path='/bookmanage' element={ <AdminBookManagement /> } /> {/* 도서관리 */}
+                    <Route path='/usermanage' element={ <AdminUserManagement /> } />  {/* 유저관리 */}
+                    <Route path='/noticemanage' element={ <AdminNoticemanagement /> } /> {/* 공지사항관리 */}
+                    <Route path='/freeboardmanage' element={ <AdminFreeBoardManagemet /> } />   {/* 자유게시판관리 */}
+                    <Route path='/eventmanage' element={ <AdminEventManagement /> } />   {/* 이벤트관리 */}
+                    <Route path='/preference' element={ <AdminPreferenceManagement /> } />    {/* 환경설정 */}
+                    <Route path='/bookregister' element={ <AdminBookRegisterInput    /> } />    {/* 책 등록 */}
+                </Routes>
+                </>
+            }
         </>
     );
 }

@@ -5,7 +5,7 @@ export const header = css`
     justify-content: space-evenly;
     align-items: center;
 
-    border-bottom: 1px solid #bfbfbf;
+    border-bottom: 1px solid #dbdbdb;
     width: 100%;
     height: 5%;
 `;
@@ -134,14 +134,14 @@ export const publisherName = css`
     font-size: 13px;
     font-weight: 400;
     color: #a3a3a3;
-    
 `
+
 export const page = css`
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    border-top: 1px solid #bfbfbf;
+    border-top: 1px solid #dbdbdb;
     width: 100%;
     height: 7%;
 `;
