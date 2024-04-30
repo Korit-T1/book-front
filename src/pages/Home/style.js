@@ -13,7 +13,7 @@ export const layout = css`
 
 export const navigationBar = css`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
     height: 100px;
@@ -21,14 +21,21 @@ export const navigationBar = css`
 `;
 
 export const category = css`
-
+    box-sizing: border-box;
+    border-radius: 30px;
+    /* border: 1px solid black; */
+    background-color: #f0f0f0;
+    width: 80px;
+    height: 80px;
 `;
 
 export const title = css`
     display: flex;
     align-items: center;
     margin-top: 10px;
+    margin-bottom: 10px;
     height: 70px;
+    border: 1px solid;
 `;
 
 export const graph = css`
@@ -41,6 +48,12 @@ export const ranking = css`
     margin-left: 15px;
 `;
 
+export const subContainer = css`
+    width: 50%;
+    height: 500px;
+    border: 1px solid;
+`;
+
 export const container = css`
     display: flex;
     box-sizing: border-box;
@@ -48,13 +61,40 @@ export const container = css`
     /* text-align: center; */
     width: 100%;
     height: 500px;
+    border: 1px solid;
+`;
+
+export const containerRank = css`
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    /* text-align: center; */
+    width: 100%;
+    height: 570px;
     /* border: 1px solid; */
+`;
+
+export const containerNew = css`
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* align-items: flex-end; */
+    /* text-align: center; */
+    width: 100%;
+    height: 1000px;
+    border: 1px solid;
 `;
 
 export const num = css`
     position: absolute;
     top: -25px;
     left: 0px;
+`;
+
+export const num1 = css`
+    margin-left: 3px;
+    margin-right: 20px;
 `;
 
 export const first = css`
@@ -75,6 +115,7 @@ export const item =  css`
     box-sizing: border-box;
     /* border: 1px solid black; */
     width: 190px;
+    height: 500px;
 `;
 
 export const bookImage =  css`
@@ -94,7 +135,7 @@ export const bookImage =  css`
 export const bookInfo =  css`
     display: flex;
     flex-direction: column;
-    height: 30%;
+    height: 40%;
 `;
 
 export const categoryName = css`
@@ -131,7 +172,7 @@ export const Rank = (index) => {
         flex-direction: column;
         justify-content: flex-end;
         /* padding: 0px 10px 50px; */
-        width: ${size - 30}px;
+        width: ${size - 40}px;
 
         height: 100%;
         /* border: 1px solid; */
@@ -142,14 +183,14 @@ export const Rank = (index) => {
             justify-content: space-between;
             align-items: flex-end;
             width: 100%;
-            height: 70%;
+            height: 80%;
             /* border: 1px solid black; */
             /* overflow: hidden; */
 
             & > div:nth-of-type(1) {    // first2
                 display: flex;
                 width: 100%;
-                height: ${size + 40}px;
+                height: ${size + 60}px;
                 /* overflow: hidden; */
 
                 & > img {
@@ -175,3 +216,22 @@ export const Rank = (index) => {
         }
     `;
 }
+
+export const aa = css`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100px;
+    height: 27px;
+    /* border: 1px solid; */
+    border-radius: 3px;
+    position: absolute;
+    top: -31px;
+    left: 0px;
+    background-color: #00DBDE;
+    background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+
+    & > h4 {
+        color: white;
+    }
+`;

@@ -20,10 +20,15 @@ export const getBookStocksRequest = async (bookId) => {
     return await instance.get(`/book/${bookId}/stocks`);
 }
 
+// 메인 홈페이지
 export const getPopularBooksRequest = async () => {
     return await instance.get(`/books/popular`);
 }
 
 export const getTopFiveBooksRequest = async () => {
     return await instance.get(`/books/top5`);
+}
+
+export const getNewBooksRequest = async () => {
+    return await instance.get(`/books/new`);
 }
