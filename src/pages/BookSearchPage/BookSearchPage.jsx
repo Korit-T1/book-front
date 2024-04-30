@@ -95,9 +95,9 @@ function BookSearchPage() {
                 {
                     searchQuery.isLoading 
                     ? <></>
-                    : searchQuery?.data?.data?.books.length === 0 
+                    : searchQuery?.data?.data?.length === 0 
                         ? <h1>검색 결과가 없습니다.</h1>
-                        : searchQuery?.data?.data?.books.map(book => {
+                        : searchQuery?.data?.data?.map(book => {
                             return <div css={s.card} key={book.bookId} onClick={
                                 () => {
                                     setIsOpen(() => true);
