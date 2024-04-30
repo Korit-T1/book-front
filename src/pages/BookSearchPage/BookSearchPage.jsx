@@ -44,7 +44,10 @@ function BookSearchPage() {
         async () => searchBooksRequest(searchData),
         {
             refetchOnWindowFocus: false,
-            retry: 0
+            retry: 0,
+            onSuccess: response => {
+                console.log(response.data);
+            }
         }
     )   
 
@@ -57,7 +60,7 @@ function BookSearchPage() {
         {  
             refetchOnWindowFocus: false,
             onSuccess: response => {
-                console.log(response);
+                console.log(response.data);
             }
         }
     )
@@ -95,9 +98,9 @@ function BookSearchPage() {
                 {
                     searchQuery.isLoading 
                     ? <></>
-                    : searchQuery?.data?.data?.length === 0 
+                    : searchQuery.data.data.length === 0 
                         ? <h1>검색 결과가 없습니다.</h1>
-                        : searchQuery?.data?.data?.map(book => {
+                        : searchQuery.data.data.map(book => {
                             return <div css={s.card} key={book.bookId} onClick={
                                 () => {
                                     setIsOpen(() => true);
