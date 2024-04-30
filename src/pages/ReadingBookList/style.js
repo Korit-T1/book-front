@@ -134,8 +134,8 @@ export const publisherName = css`
     font-size: 13px;
     font-weight: 400;
     color: #a3a3a3;
-    
 `
+
 export const page = css`
     display: flex;
     justify-content: center;
