@@ -8,19 +8,25 @@ import { useMaxSizeValidateInput } from "../../../hooks/inputHook";
 import { QUILL_MODULES } from "../../../constants/quillModules";
 import { useMutation } from "react-query";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 
 function NoticeBoardWritePage(props) {
 
+    const [ postLabels, setPostLabels ] = useState(null);
     const [ inputValue, handleInputChange ] = useMaxSizeValidateInput(45);
     const [ quillValue, handleQuillValueChange ] = useQuillInput();
-    const [ postLabels, setPostLabels ] = useState("");
 
     const labelsOptions = [
         { value: 1, label: "공지사항"},
         { vlaue: 2, label: "이벤트"}
     ]
+
+    const titleChange = (selectedOption) => {
+        setPostLabels(selectedOption);
+    }
+
 
     const registerNoticeMustation = useMutation({
         mutationKey: "registerNoticeMustation",
@@ -35,10 +41,12 @@ function NoticeBoardWritePage(props) {
     })
 
     const handleNoticeSubmit = () => {
-        registerNoticeMustation.mutate({
-            inputValue,
-            quillValue
-        })
+        const postData = {
+            title: inputValue,
+            noticeBoardCategoryId: postLabels?.value,
+            content: quillValue
+        };
+        registerNoticeMustation.mutate(postData);
     }
 
     return (
@@ -49,7 +57,9 @@ function NoticeBoardWritePage(props) {
                     css={postLabels}
                     name={"postLabels"}
                     placeholder="말머리"
+                    onChange={titleChange}
                     options={labelsOptions}
+                    value={postLabels}
                 />
                 <input 
                     css= {s.boardTitle} 
@@ -66,8 +76,12 @@ function NoticeBoardWritePage(props) {
                 }} 
                 modules={QUILL_MODULES}
                 onChange={handleQuillValueChange}
+                value={quillValue}
             />
             <button css={s.submitButton} onClick={handleNoticeSubmit}>작성하기</button>
+            <Link to={'/boardList'}>
+                <button>목록</button>
+            </Link>
         </div>
     );
 }

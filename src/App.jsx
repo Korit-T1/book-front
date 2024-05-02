@@ -5,6 +5,7 @@ import SinginPage from "./pages/SigninPage/SigninPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import AdminSigninPage from "./pages/Admin/AdminSigninPage/AdminSigninPage";
 import NoticeBoardWritePage from "./pages/Admin/NoticeBoardWritePage/NoticeBoardWritePage";
+import BoardListPage from "./pages/BoardListPage/BoardListPage";
 
 function App() {
   return (
