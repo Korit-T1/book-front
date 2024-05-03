@@ -22,11 +22,10 @@ export const bodyLayout = css`
     margin: 10px;
     display: flex;
     margin: 40px auto 0px;
-    max-width: 1100px;
-    height: 100%;
+    max-width: 1300px;
     border: 1px solid black;
     background-color: white;
-    height: 665px;
+    height: 780px;
 `;
 
 export const body = css`
