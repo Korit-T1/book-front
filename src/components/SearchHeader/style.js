@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
 export const headerLayout = css`
+    background-color: white;
     border-bottom: 1px solid #dbdbdb;
 `;
 

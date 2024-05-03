@@ -54,3 +54,37 @@ export const reviewArea = css`
     height: 120px;
     resize: none;
 `
+export const Base = css`                            //styled.section
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const Name = css`                             //styled.span
+  font-size: 1.4rem;
+  line-height: 100%;
+`;
+
+export const RatingValue = css`                          //styled.span
+  font-size: 1.2rem;
+  line-height: 100%;
+`;
+
+export const RatingField = css`                 //styled.fieldset
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+
+  input:checked ~ label,
+  labeL:hover,
+  labeL:hover ~ label {
+    transition: 0.2s;
+    color: orange;
+  }
+`;
+export const reviewContent = css`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`

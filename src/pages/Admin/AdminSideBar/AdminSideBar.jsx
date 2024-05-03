@@ -3,7 +3,7 @@ import { FaCaretRight, FaCaretLeft} from "react-icons/fa";
 import * as s from "./style";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MENUS } from "../../../constants/mypageMenu";
+import { SIDE_MENU } from "../../../constants/mypageSideMenu";
 
 
 function AdminSideBar() {
@@ -17,7 +17,7 @@ function AdminSideBar() {
                 {show ? < FaCaretLeft /> : < FaCaretRight />}
             </button>
             <ul css={s.menuList}>
-                {MENUS.map(menu => 
+                {SIDE_MENU.map(menu => 
                     <Link css={s.menuItem} to={`${menu.path}${!menu.params ? "" : "?" + Object.entries(menu.params).map(([key, value]) => key + "=" + value).join("&")}`} key={menu.id} onClick={() => setShow(false)}>
                         <li>{menu.name}</li>
                     </Link>)
