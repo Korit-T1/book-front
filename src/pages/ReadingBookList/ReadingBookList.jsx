@@ -2,25 +2,23 @@
 import { useEffect, useState } from "react";
 import { getReadingCountRequest, getReadingDataRequest } from "../../apis/api/mypage";
 import * as s from "./style"
-import { useQuery } from "react-query";
-import { BsCheckCircle } from "react-icons/bs";
+import { useMutation, useQuery } from "react-query";
 import { IoMdClose } from "react-icons/io";
 import WishPageNumbers2 from "../WishPageNumbers/WishPageNumbers2";
 import { Link, useSearchParams } from "react-router-dom";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import ReadingPageNumbers from "../ReadingPageNumbers/ReadingPageNumbers";
+import { bookReturn } from "../../apis/api/loanApi";
 
 function ReadingBookList(data) {
     const id = data.data.data.userId;
 
     const [ readingBookList, setReadingBookList ] = useState([]);
     const [ searchParams, setSearchParams ] = useSearchParams();
-
+    const [ checkedList, setCheckedList ] = useState([]);
     const [ searchCondition, setSearchCondition ] = useState({
         userid: id,
         page: parseInt(searchParams.get("page")),
-        // count: searchCount,
-        // option: parseInt(searchParams.get("option")),
+
     });
 
     useEffect(() => {
@@ -58,10 +56,33 @@ function ReadingBookList(data) {
                 console.log(response.data);
             }
         }
-    )
+    );
+    const returnBookMutation = useMutation({
+        mutationKey: "returnBookMutation",
+        mutationFn: bookReturn,
+        onSuccess: response => {
+            getReadingBooksQuery.refetch();
+            
+        },
+        onError: error => {
 
-    // !searchWishQuery.isLoading &&
-    // console.log(searchWishQuery.data);
+        }
+    });
+    const onCheckedElement = (checked, item) => {
+        if(checked) {
+            setCheckedList([...checkedList, item]);
+        } else if (!checked) {
+            setCheckedList(checkedList.filter(el => el !== item));
+        }
+    };
+   
+    const checkedReturns = () => {
+
+        checkedList.forEach(loanId => {
+            returnBookMutation.mutate(loanId);
+        });
+    }
+
     return (
         <>
             <div css={s.header}>
@@ -70,9 +91,9 @@ function ReadingBookList(data) {
                 <Link css={s.filter} to={"/mypage/reading?page=1&option=2"}>평점낮은순</Link>
                 <Link css={s.filter} to={"/mypage/reading?page=1&option=3"}>리뷰많은순</Link>
                 <Link css={s.filter} to={"/mypage/reading?page=1&option=4"}>리뷰적은순</Link>
-                    <button css={s.deleteBtn}>
-                        <RiDeleteBin6Line />
-                    </button>
+                <button onClick={() => checkedReturns(checkedList)}>반납</button>
+                
+                
             </div>
             <div css={s.container}>
                 {!getReadingBooksQuery.isLoading &&
@@ -82,9 +103,7 @@ function ReadingBookList(data) {
                         <div css={s.data} key={loan.loanId}>
                             <div css={s.bookData}>
                                 <div css={s.checkBox}>
-                                    <button css={s.checkBtn}>
-                                        <BsCheckCircle size={"20"} color="#adadad" />
-                                    </button>
+                                    <input type="checkbox" onChange={e => {onCheckedElement(e.target.checked, loan.loanId);}}/>
                                 </div>
                                 <div css={s.bookImage}>
                                     <img src={loan.imageUrl}></img>
@@ -101,6 +120,7 @@ function ReadingBookList(data) {
                         </div>
                     )
                 }
+              
             </div>
             {!getReadingBooksCountQuery.isLoading &&
                 <div css={s.page}>

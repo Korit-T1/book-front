@@ -1,4 +1,16 @@
-import { css } from "@emotion/react"
+import { css } from "@emotion/react";
+
+export const maxPageNumber = css`
+
+`;
+
+export const count = css`
+
+`;
+
+export const book = css`
+
+`;
 
 export const layout = css`
     display: flex;

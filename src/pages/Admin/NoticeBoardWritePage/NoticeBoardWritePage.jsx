@@ -8,23 +8,30 @@ import { useMaxSizeValidateInput } from "../../../hooks/inputHook";
 import { QUILL_MODULES } from "../../../constants/quillModules";
 import { useMutation } from "react-query";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { registerNoticeRequest } from "../../../apis/api/notice";
 
 
 
 function NoticeBoardWritePage(props) {
 
+    const [ postLabels, setPostLabels ] = useState(null);
     const [ inputValue, handleInputChange ] = useMaxSizeValidateInput(45);
     const [ quillValue, handleQuillValueChange ] = useQuillInput();
-    const [ postLabels, setPostLabels ] = useState("");
 
     const labelsOptions = [
         { value: 1, label: "공지사항"},
-        { vlaue: 2, label: "이벤트"}
+        { value: 2, label: "이벤트"}
     ]
+
+    const titleChange = (selectedOption) => {
+        setPostLabels(selectedOption);
+    }
+
 
     const registerNoticeMustation = useMutation({
         mutationKey: "registerNoticeMustation",
-        mutationFn: "registerNoticeRequest",
+        mutationFn: registerNoticeRequest,
         onSuccess: response => {
             alert("작성완료")
             window.location.replace("/boardList");
@@ -35,12 +42,14 @@ function NoticeBoardWritePage(props) {
     })
 
     const handleNoticeSubmit = () => {
-        registerNoticeMustation.mutate({
-            inputValue,
-            quillValue
-        })
+        const postData = {
+            title: inputValue,
+            noticeBoardCategoryId: postLabels?.value,
+            content: quillValue
+        };
+        console.log(postData);
+        registerNoticeMustation.mutate(postData);
     }
-
     return (
         <div css={s.layout}>
             <h1 css={s.headerTitle}>글 작성하기</h1>
@@ -49,11 +58,13 @@ function NoticeBoardWritePage(props) {
                     css={postLabels}
                     name={"postLabels"}
                     placeholder="말머리"
+                    onChange={titleChange}
                     options={labelsOptions}
+                    value={postLabels}
                 />
                 <input 
                     css= {s.boardTitle} 
-                    type="text" 
+                    name={"title"}
                     placeholder="제목을 입력하세요."
                     onChange={handleInputChange} 
                     value={inputValue} 
@@ -66,8 +77,12 @@ function NoticeBoardWritePage(props) {
                 }} 
                 modules={QUILL_MODULES}
                 onChange={handleQuillValueChange}
+                value={quillValue}
             />
             <button css={s.submitButton} onClick={handleNoticeSubmit}>작성하기</button>
+            <Link to={'/boardList'}>
+                <button>목록</button>
+            </Link>
         </div>
     );
 }

@@ -10,7 +10,7 @@ export const layout = css`
 
 export const pageNumbers = css`
     display: flex;
-`
+`;
 
 export const pageButton = (isSelected) => css`
     box-sizing: border-box;
@@ -22,7 +22,7 @@ export const pageButton = (isSelected) => css`
     border-radius: 2px;
     min-width: 25px;
     height: 25px;
-    background-color: ${isSelected ? "#dbdbdb" : "white"};
+    background-color: ${isSelected ? "#100d0d" : "white"};
     text-decoration: none;
     font-size: 10px;
     color: ${isSelected ? "white" : "#777777"};

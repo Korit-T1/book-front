@@ -10,6 +10,9 @@ function AdminBookSearchPageNumbers({ bookCount }) {
     const [ numbers, setNumbers ] = useState([]);
     const maxPageNumber = bookCount.maxPageNumber;
 
+    
+    
+
     useEffect(() => {
         const startPageNumber = page % 10 === 0 ? page - 9 : (page - (page % 10)) + 1;
         const endPageNumber = startPageNumber + 9 > maxPageNumber ? maxPageNumber : startPageNumber + 9;
@@ -48,6 +51,7 @@ function AdminBookSearchPageNumbers({ bookCount }) {
             <div css={[s.pageCount, {textAlign: 'center'}]}>
                 <div css={s.page}>Page {page} of {maxPageNumber}</div>
                 <div css={s.count}>Count: {bookCount.totalCount}</div>
+                
             </div>
         </div>
     );

@@ -25,11 +25,9 @@ export const container = css`
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
-
     padding: 2px 4px 4px;
     width: 100%;
     height: 100%;
-
     /* border: 1px solid; */
 
     & > h1 {
@@ -70,7 +68,6 @@ export const checkBtn = css`
     justify-content: center;
     border: none;
     background-color: white;
-
     cursor: pointer;
 `;
 

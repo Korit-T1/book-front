@@ -1,10 +1,26 @@
 import { css } from "@emotion/react";
 
+export const pageCount = css`
+
+`;
+
+export const page = css`
+
+`;
+
+export const count = css`
+
+`;
+
+export const maxPageNumber = css`
+
+`;
+
 export const layout = css`
     position: absolute;
     display: flex;
     flex-direction: column;
-    background-color: w ;
+    background-color: white;
     height: 100%;
     width: 100%;
 `;

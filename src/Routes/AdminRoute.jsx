@@ -14,6 +14,7 @@ import { useState } from "react";
 import { getAdminPrincipalRequest } from "../../src/apis/api/principal";
 import { useQuery } from "react-query";
 
+
 function AdminRoute(props) {
     const [ isLogin, setLogin ] = useState(false);
     const adminPrincipalQuery = useQuery(["adminPrincipalQuery"], getAdminPrincipalRequest,
@@ -38,10 +39,9 @@ function AdminRoute(props) {
                 : !isLogin ? <AdminSigninPage /> 
                 : 
                 <>
-                <AdminSideBar />
                 <Routes>             
+                    <Route path='/' element={ <AdminMainPage /> } />             {/* 원래는 mainpage */}
                     <Route path='/signinpage' element={ <AdminSigninPage /> } /> {/* 관리자 로그인 */}
-                    <Route path='/admin' element={ <AdminMainPage /> } />             {/* 원래는 mainpage */}
                     <Route path='/bookmanage' element={ <AdminBookManagement /> } /> {/* 도서관리 */}
                     <Route path='/usermanage' element={ <AdminUserManagement /> } />  {/* 유저관리 */}
                     <Route path='/noticemanage' element={ <AdminNoticemanagement /> } /> {/* 공지사항관리 */}
@@ -50,6 +50,7 @@ function AdminRoute(props) {
                     <Route path='/preference' element={ <AdminPreferenceManagement /> } />    {/* 환경설정 */}
                     <Route path='/bookregister' element={ <AdminBookRegisterInput    /> } />    {/* 책 등록 */}
                 </Routes>
+                <AdminSideBar />
                 </>
             }
         </>
