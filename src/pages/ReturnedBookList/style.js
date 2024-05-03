@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 
 export const header = css`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
 
     border-bottom: 1px solid #dbdbdb;
@@ -46,6 +46,7 @@ export const data = css`
     width: 49%;
     height: 32%;
     border: 1px solid #dbdbdb;
+    /* border: 1px solid black; */
     /* border-radius: 20px; */
 `;
 
@@ -56,11 +57,11 @@ export const bookData = css`
     /* border: 1px solid; */
 `;
 
-export const checkBox = css`
+export const statusBox = css`
     display: flex;
     justify-content: center;
     width: 10%;
-    height: 10%;
+    height: 50%;
 `;
 
 export const checkBtn = css`
@@ -90,7 +91,7 @@ export const bookImage = css`
 export const bookInfo = css`
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     flex-direction: column;
     margin-left: 10px;
     /* background-color: gray; */
@@ -110,7 +111,7 @@ export const bookName = css`
     /* overflow:hidden; */
     /* text-overflow:ellipsis; */
     /* white-space:nowrap; */
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
 `
 
@@ -120,7 +121,7 @@ export const authorName = css`
     /* overflow:hidden; */
     /* text-overflow:ellipsis; */
     /* white-space:nowrap; */
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
     color: #a3a3a3;
 `
@@ -131,11 +132,48 @@ export const publisherName = css`
     /* overflow:hidden; */
     /* text-overflow:ellipsis; */
     /* white-space:nowrap; */
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
-    color: #a3a3a3;
-    
+    color: #a3a3a3;   
+`;
+
+export const top = css`
+    box-sizing: border-box;
+    /* border: 1px solid; */
+    height: 70%;
+`;
+
+export const bot = css`
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    /* border: 1px solid; */
+    flex: 1;
+`;
+
+
+export const period = css`
+    box-sizing: border-box;
+    width: 100%;
+    /* margin-top: 60px; */
+    /* overflow:hidden; */
+    /* text-overflow:ellipsis; */
+    /* white-space:nowrap; */
+    font-size: 18px;
+    font-weight: 400;
 `
+
+export const finish = css`
+    box-sizing: border-box;
+    width: 100%;
+    /* overflow:hidden; */
+    /* text-overflow:ellipsis; */
+    /* white-space:nowrap; */
+    font-size: 18px;
+    font-weight: 400;
+`
+
 export const page = css`
     display: flex;
     justify-content: center;

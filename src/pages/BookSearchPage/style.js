@@ -8,6 +8,7 @@ export const header = css`
     flex-direction: column;
     align-items: center;
     padding: 20px 100px;
+    border: 1px solid;
 `
 
 export const searchBoxContainer = css`
@@ -61,13 +62,18 @@ export const searchButton = css`
     cursor: pointer;
 `
 
+export const filter = css`
+    border: 1px solid;
+    height: 50px;
+`;
+
 export const main = css`
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-top: 30px;
-    /* border: 1px solid; */
+    border: 1px solid;
 `
 
 export const card = css`
@@ -75,7 +81,7 @@ export const card = css`
     border-radius: 10px;
     margin: 10px 1%;
     width: 23%;
-    height: 400px;
+    height: 500px;
     cursor: pointer;
     transition: all 0.1s ease-in-out;
     overflow: hidden;
@@ -98,6 +104,7 @@ export const imgBox = css`
 
     & > img {
         width: 100%;
+        /* height: 100%; */
     }
 `
 
@@ -117,6 +124,7 @@ export const bookName = css`
     padding: 5px 10px;
     overflow:hidden;
     text-overflow:ellipsis;
+    font-size: 20px;
     white-space:nowrap;
 `
 
@@ -127,10 +135,10 @@ export const authorName = css`
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     color: #a3a3a3;
-`
+`;
 
 export const publisherName = css`
     box-sizing: border-box;
@@ -139,8 +147,8 @@ export const publisherName = css`
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     color: #a3a3a3;
     
-`
+`;

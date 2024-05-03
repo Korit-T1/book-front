@@ -27,3 +27,7 @@ export const getWishCountRequest = async (params) => {
 export const updateProfileImageRequest = async (data) => {
     return await instance.put(`/mypage/profile`, data)
 }
+
+export const getSummaryCountRequest = async (userid) => {
+    return await instance.get(`/mypage/summary?userid=${userid}`)
+} 

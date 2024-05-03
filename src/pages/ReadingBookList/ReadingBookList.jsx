@@ -97,7 +97,9 @@ function ReadingBookList(data) {
             </div>
             <div css={s.container}>
                 {!getReadingBooksQuery.isLoading &&
-                    readingBookList.map(loan => 
+                    readingBookList.length === 0 
+                    ? <h1>대출 중인 도서가 없습니다.</h1>
+                    : readingBookList.map(loan => 
                         <div css={s.data} key={loan.loanId}>
                             <div css={s.bookData}>
                                 <div css={s.checkBox}>

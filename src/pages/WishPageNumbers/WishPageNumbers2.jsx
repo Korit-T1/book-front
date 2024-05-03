@@ -6,7 +6,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 function WishPageNumbers(data) {
     const [ searchParams ] = useSearchParams();
     const page = parseInt(searchParams.get("page"));
-    const option = parseInt(searchParams.get("option"));
+    const filter = parseInt(searchParams.get("filter"));
 
     const [ numbers, setNumbers ] = useState([]);
 
@@ -32,7 +32,7 @@ function WishPageNumbers(data) {
                     {page !== 1 && totalCount !== 0 && (
                         <Link
                             css={s.pageButton(false)}
-                            to={`/mypage/wish?page=${page - 1}&option=${option}`}
+                            to={`/mypage/wish?page=${page - 1}&filter=${filter}`}
                         >
                             &#60;
                         </Link>
@@ -41,7 +41,7 @@ function WishPageNumbers(data) {
                         <Link
                             key={number}
                             css={s.pageButton(number === page)}
-                            to={`/mypage/wish?page=${number}&option=${option}`}
+                            to={`/mypage/wish?page=${number}&filter=${filter}`}
                         >
                             {number}
                         </Link>
@@ -49,7 +49,7 @@ function WishPageNumbers(data) {
                     {page !== maxPageNumber && totalCount !== 0 && (
                         <Link
                             css={s.pageButton(false)}
-                            to={`/mypage/wish?page=${page + 1}&option=${option}`}
+                            to={`/mypage/wish?page=${page + 1}&filter=${filter}`}
                         >
                             &#62;
                         </Link>
