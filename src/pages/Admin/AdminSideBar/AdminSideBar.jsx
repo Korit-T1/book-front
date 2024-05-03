@@ -5,13 +5,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SIDE_MENU } from "../../../constants/mypageSideMenu";
 
+
 function AdminSideBar() {
     const [ show, setShow ] = useState(false);
 
     return (
-        
+
         <aside css={s.layout(show)}>
             <button css={s.toggleButton} onClick={() => setShow(prevValue => !prevValue)}>
+                <background />
                 {show ? < FaCaretLeft /> : < FaCaretRight />}
             </button>
             <ul css={s.menuList}>
@@ -26,3 +28,12 @@ function AdminSideBar() {
 }
 
 export default AdminSideBar;
+
+
+
+// 1100 * 57
+// 1100 * 19
+// role generic
+// keyboard : focusble
+
+

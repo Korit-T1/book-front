@@ -18,9 +18,9 @@ export const layout = css`
     width: 1200px;
     height: 100%;
     overflow: hidden;
-`
+`;
 export const visitantBox = css`
     border: 1px solid #dbdbdb;
     width: 600px;
     height: 600px;
-`
+`;

@@ -14,6 +14,7 @@ import { useState } from "react";
 import { getAdminPrincipalRequest } from "../../src/apis/api/principal";
 import { useQuery } from "react-query";
 
+
 function AdminRoute(props) {
     const [ isLogin, setLogin ] = useState(false);
     const adminPrincipalQuery = useQuery(["adminPrincipalQuery"], getAdminPrincipalRequest,

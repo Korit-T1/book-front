@@ -31,9 +31,6 @@ export const toggleButton = css`
     height: 50px;
     background-color: white;
     cursor: pointer;
-    &:hover {
-        background-color: #eee;
-    }
     &:active {
         background-color: #ccc;
     }
@@ -61,7 +58,7 @@ export const menuItem = css`
     cursor: pointer;
     &:nth-of-type(1) {
         border-top: 1px solid #dbdbdb;
-    }
+    }s
     &:hover {
         background-color: #eee;
     }
@@ -69,6 +66,3 @@ export const menuItem = css`
         background-color: #dbdbdb;
     }
 `;
-
-
-
