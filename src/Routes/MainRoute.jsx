@@ -10,6 +10,7 @@ import Mypage from '../pages/Mypage/Mypage';
 import { useRecoilState } from 'recoil';
 import { principalState } from '../atoms/principalAtom';
 import BoardListPage from '../pages/BoardListPage/BoardListPage';
+import BoardDetailPage from '../pages/BoardDetailPage/BoardDetailPage';
 
 function MainRoute() {
     const [ principal, setPrincipal ] = useRecoilState(principalState);
@@ -45,6 +46,7 @@ function MainRoute() {
                         <Route path='/search' element={ <BookSearchPage /> } />
                         <Route path='/mypage/*' element={ <Mypage/>} />
                         <Route path="/boardList" element={<BoardListPage />}/>
+                        <Route path="/boardDetail/:noticeBoardId" element={<BoardDetailPage />} />
                     </Routes>
                 </MainContainer>
             </>

@@ -9,6 +9,7 @@ import { QUILL_MODULES } from "../../../constants/quillModules";
 import { useMutation } from "react-query";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { registerNoticeRequest } from "../../../apis/api/notice";
 
 
 
@@ -20,7 +21,7 @@ function NoticeBoardWritePage(props) {
 
     const labelsOptions = [
         { value: 1, label: "공지사항"},
-        { vlaue: 2, label: "이벤트"}
+        { value: 2, label: "이벤트"}
     ]
 
     const titleChange = (selectedOption) => {
@@ -30,7 +31,7 @@ function NoticeBoardWritePage(props) {
 
     const registerNoticeMustation = useMutation({
         mutationKey: "registerNoticeMustation",
-        mutationFn: "registerNoticeRequest",
+        mutationFn: registerNoticeRequest,
         onSuccess: response => {
             alert("작성완료")
             window.location.replace("/boardList");
@@ -46,9 +47,9 @@ function NoticeBoardWritePage(props) {
             noticeBoardCategoryId: postLabels?.value,
             content: quillValue
         };
+        console.log(postData);
         registerNoticeMustation.mutate(postData);
     }
-
     return (
         <div css={s.layout}>
             <h1 css={s.headerTitle}>글 작성하기</h1>
@@ -63,7 +64,7 @@ function NoticeBoardWritePage(props) {
                 />
                 <input 
                     css= {s.boardTitle} 
-                    type="text" 
+                    name={"title"}
                     placeholder="제목을 입력하세요."
                     onChange={handleInputChange} 
                     value={inputValue} 

@@ -10,6 +10,7 @@ function BoardListPage(props) {
                 <li css={s.boardListHeader}>
                     <div>번호</div>
                     <div>제목</div>
+                    
                 </li>
             </ul> 
             <div>
