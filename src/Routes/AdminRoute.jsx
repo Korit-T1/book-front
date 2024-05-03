@@ -11,11 +11,15 @@ import AdminSideBar from '../pages/Admin/AdminSideBar/AdminSideBar';
 import AdminBookManagement from '../pages/Admin/AdminBookManagement/AdminBookManagement';
 import AdminBookRegisterInput from '../pages/Admin/AdminBookRegisterInput/AdminBookRegisterInput';
 
+
 function AdminRoute(props) {
     return (
         <>
+
+
             <AdminSideBar />
-            <Routes>             
+            <Routes>   
+                         
                 <Route path='/signinpage' element={ <AdminSigninPage /> } /> {/* 관리자 로그인 */}
                 <Route path='/admin' element={ <AdminMainPage /> } />             {/* 원래는 mainpage */}
                 <Route path='/bookmanage' element={ <AdminBookManagement /> } /> {/* 도서관리 */}
@@ -25,7 +29,11 @@ function AdminRoute(props) {
                 <Route path='/eventmanage' element={ <AdminEventManagement /> } />   {/* 이벤트관리 */}
                 <Route path='/preference' element={ <AdminPreferenceManagement /> } />    {/* 환경설정 */}
                 <Route path='/bookregister' element={ <AdminBookRegisterInput    /> } />    {/* 책 등록 */}
+                <Route path='/sidebar' element={ <AdminSideBar /> } />    {/* 사이드바 */}
+                
             </Routes>
+
+
         </>
     );
 }

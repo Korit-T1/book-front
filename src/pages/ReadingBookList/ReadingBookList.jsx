@@ -19,8 +19,7 @@ function ReadingBookList(data) {
     const [ searchCondition, setSearchCondition ] = useState({
         userid: id,
         page: parseInt(searchParams.get("page")),
-        // count: searchCount,
-        // option: parseInt(searchParams.get("option")),
+
     });
 
     useEffect(() => {
@@ -60,8 +59,6 @@ function ReadingBookList(data) {
         }
     )
 
-    // !searchWishQuery.isLoading &&
-    // console.log(searchWishQuery.data);
     return (
         <>
             <div css={s.header}>

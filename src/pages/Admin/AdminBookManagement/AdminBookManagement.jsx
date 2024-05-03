@@ -8,14 +8,16 @@ import { getBookCountRequest, searchBooksRequest } from "../../../apis/api/bookA
 import { useReactSelect } from "../../../hooks/useReactSelect";
 import { useProductOnKeyUpInput } from "../../../hooks/useBookOnKeyUpInput";
 import AdminBookSearchPageNumbers from "../AdminBookSearchPageNumbers/AdminBookSearchPageNumbers";
+//import bookCount from "";
 
 function AdminBookManagement() {
     const [ searchParams, setSearchParams ] = useSearchParams();
+
     const searchCount = 20;
     const [ bookList, setBookList ] = useState([]);
     const selectedBookType = useReactSelect({value: 0, label: "전체"});
     const inputRef = useRef();
-
+    
     const bookListQuery = useQuery(
         ["bookListQuery", searchParams.get("page")],
         async () => await searchBooksRequest({
@@ -149,13 +151,21 @@ function AdminBookManagement() {
                     </table>
                 </div>
                 {
-               !getBookCountQuery.isLoading &&
-               <AdminBookSearchPageNumbers bookCount={getBookCountQuery.data?.data}/>
-                 }
-        </div>
-    </div>
-    );
-}
+                    !getBookCountQuery.isLoading && (
+                <>
+                <AdminBookSearchPageNumbers bookCount={getBookCountQuery.data?.data}/>
+                <div css={[s.pageCount, {textAlign: 'center'}]}>
+                    <div css={s.page}>Page {s.page} of {s.maxPageNumber}</div>
+                    {/* <div css={s.count}>Count: {bookCount.totalCount}</div> */}
+                </div>
+                </>
+                    )
+                }
+
+                </div>
+                </div>
+                );
+                    }
 
 export default AdminBookManagement;
 

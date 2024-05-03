@@ -2,15 +2,15 @@
 import { useEffect, useRef, useState } from "react";
 import * as s from "./style"
 import { FaSearch } from "react-icons/fa";
-import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getBookCountRequest, searchBooksRequest } from "../../apis/api/bookApi";
 import ReactModal from "react-modal";
 import BookDetailModal from "../../components/BookDetailModal/BookDetailModal";
-import BookSearchPageNumbers from "../BookSearchPageNumbers/BookSearchPageNumbers";
+import BookSearchPageNumbers from "../../pages/BookSearchPageNumbers/BookSearchPageNumbers";
+import { useSearchParams } from "react-router-dom";
 ReactModal.setAppElement("#root");
 
-function BookSearchPage() {
+const BookSearchPage = () => {
     const [ searchParams, setSearchParams ] = useSearchParams();
     const [ searchData, setSearchData ] = useState({
         page: parseInt(searchParams.get("page")),
@@ -44,7 +44,10 @@ function BookSearchPage() {
         async () => searchBooksRequest(searchData),
         {
             refetchOnWindowFocus: false,
-            retry: 0
+            retry: 0,
+            onSuccess: response => {
+                console.log(response.data);
+            }
         }
     )   
 
@@ -57,12 +60,12 @@ function BookSearchPage() {
         {  
             refetchOnWindowFocus: false,
             onSuccess: response => {
-                console.log(response);
+                console.log(response.data);
             }
         }
     )
 
-    const searchSubmit = () => { //페이지네이션
+    const searchSubmit = () => {
         window.location.replace(`/search?page=1&option=${searchData.option}&text=${searchData.text}`);
     }
 
@@ -95,9 +98,9 @@ function BookSearchPage() {
                 {
                     searchQuery.isLoading 
                     ? <></>
-                    : searchQuery?.data?.data?.books.length === 0 
+                    : searchQuery.data.data.length === 0 
                         ? <h1>검색 결과가 없습니다.</h1>
-                        : searchQuery?.data?.data?.books.map(book => {
+                        : searchQuery.data.data.map(book => {
                             return <div css={s.card} key={book.bookId} onClick={
                                 () => {
                                     setIsOpen(() => true);
@@ -126,6 +129,8 @@ function BookSearchPage() {
             {
                 !getBookCountQuery.isLoading &&
                 <BookSearchPageNumbers bookCount={getBookCountQuery.data?.data}   /> 
+
+                
             }
             
             </div>
