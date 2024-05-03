@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as s from "./style"
 import { FaSearch } from "react-icons/fa";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Button, useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getBookCountRequest, searchBooksRequest } from "../../apis/api/bookApi";
 import ReactModal from "react-modal";
@@ -15,6 +15,7 @@ function BookSearchPage() {
     const [ searchData, setSearchData ] = useState({
         page: parseInt(searchParams.get("page")),
         option: parseInt(searchParams.get("option")),
+        filter: parseInt(searchParams.get("filter")),
         text: searchParams.get("text")
     });
 
@@ -65,8 +66,11 @@ function BookSearchPage() {
         }
     )
 
-    const searchSubmit = () => { //페이지네이션
-        window.location.replace(`/search?page=1&option=${searchData.option}&text=${searchData.text}`);
+    const searchSubmit = (filter) => {
+        if(filter === undefined) {
+            filter = 0;
+        }
+        window.location.replace(`/search?page=1&option=${searchData.option}&filter=${filter}&text=${searchData.text}`);
     }
 
     return (
@@ -92,6 +96,14 @@ function BookSearchPage() {
                         <FaSearch />
                     </div>
                 </div>
+            </div>
+
+            <div css={s.filter}>
+                <button onClick={() => searchSubmit(0)}>전체</button>
+                <button onClick={() => searchSubmit(1)}>평점높은순</button>
+                <button onClick={() => searchSubmit(2)}>평점낮은순</button>
+                <button onClick={() => searchSubmit(3)}>리뷰많은순</button>
+                <button onClick={() => searchSubmit(4)}>리뷰적은순</button>
             </div>
 
             <div css={s.main}>

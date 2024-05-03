@@ -18,8 +18,6 @@ export const deleteBtn = css`
     text-decoration: none;
 `;
 
-
-
 export const container = css`
     box-sizing: border-box;
     display: flex;
@@ -90,12 +88,26 @@ export const bookImage = css`
 export const bookInfo = css`
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     flex-direction: column;
     margin-left: 10px;
     /* background-color: gray; */
     width: 51.5%;
 `
+
+export const top = css`
+    box-sizing: border-box;
+    /* border: 1px solid; */
+    height: 80%;
+`;
+
+export const bot = css`
+    display: flex;
+    box-sizing: border-box;
+    /* border: 1px solid; */
+    flex: 1;
+`;
+
 export const removeBox = css`
     display: flex;
     justify-content: center;
@@ -110,7 +122,7 @@ export const bookName = css`
     /* overflow:hidden; */
     /* text-overflow:ellipsis; */
     /* white-space:nowrap; */
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
 `
 
@@ -120,7 +132,7 @@ export const authorName = css`
     /* overflow:hidden; */
     /* text-overflow:ellipsis; */
     /* white-space:nowrap; */
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
     color: #a3a3a3;
 `
@@ -131,11 +143,52 @@ export const publisherName = css`
     /* overflow:hidden; */
     /* text-overflow:ellipsis; */
     /* white-space:nowrap; */
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
     color: #a3a3a3;
-    
 `
+
+export const rating = css`
+    display: flex;
+    /* justify-content: center; */
+    align-items: flex-end;
+    box-sizing: border-box;
+    width: 60%;
+    /* margin-top: 40px; */
+    /* overflow:hidden; */
+    /* text-overflow:ellipsis; */
+    /* white-space:nowrap; */
+    font-size: 18px;
+    /* color: #a3a3a3; */
+    /* border: 1px solid; */
+
+    & > span {
+        font-weight: bold;
+        font-size: 22px;
+        margin-left: 5px;
+    }
+`
+
+export const review = css`
+    display: flex;
+    align-items: flex-end;
+    box-sizing: border-box;
+   flex: 1;
+    
+    /* overflow:hidden; */
+    /* text-overflow:ellipsis; */
+    /* white-space:nowrap; */
+    font-size: 18px;
+    font-weight: 400;
+    /* color: #a3a3a3; */
+
+    & > span {
+        font-weight: bold;
+        font-size: 20px;
+        margin-left: 5px;
+    }
+`
+
 export const page = css`
     display: flex;
     justify-content: center;

@@ -7,6 +7,7 @@ function BookSearchPageNumbers({ bookCount }) {
     const [searchParams] = useSearchParams();
     const page = parseInt(searchParams.get("page"));
     const option = parseInt(searchParams.get("option"));
+    const filter = parseInt(searchParams.get("filter"));
     const text = searchParams.get("text");
     const totalCount = bookCount.totalCount; // 전체 책의 수
     const itemsPerPage = 20; // 페이지당 보여줄 책의 수
@@ -26,7 +27,7 @@ function BookSearchPageNumbers({ bookCount }) {
                 {page !== 1 && totalCount !== 0 && (
                     <a
                         css={s.pageButton(false)}
-                        href={`/search?page=${page - 1}&option=${option}&text=${text}`}
+                        href={`/search?page=${page - 1}&option=${option}&filter=${filter}&text=${text}`}
                     >
                         &#60;
                     </a>
@@ -35,7 +36,7 @@ function BookSearchPageNumbers({ bookCount }) {
                     <a
                         key={number}
                         css={s.pageButton(number === page)}
-                        href={`/search?page=${number}&option=${option}&text=${text}`}
+                        href={`/search?page=${number}&option=${option}&filter=${filter}&text=${text}`}
                     >
                         {number}
                     </a>
@@ -43,7 +44,7 @@ function BookSearchPageNumbers({ bookCount }) {
                 {page !== maxPageNumber && totalCount !== 0 && (
                     <a
                         css={s.pageButton(false)}
-                        href={`/search?page=${page + 1}&option=${option}&text=${text}`}
+                        href={`/search?page=${page + 1}&option=${option}&filter=${filter}&text=${text}`}
                     >
                         &#62;
                     </a>

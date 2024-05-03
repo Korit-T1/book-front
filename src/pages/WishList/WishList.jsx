@@ -8,6 +8,12 @@ import { IoMdClose } from "react-icons/io";
 import WishPageNumbers2 from "../WishPageNumbers/WishPageNumbers2";
 import { Link, useSearchParams } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdStarRate } from "react-icons/md";
+import { BiCommentDetail } from "react-icons/bi";
+
+
+
+
 
 function WishList(data) {
     const id = data.data.data.userId;
@@ -15,30 +21,28 @@ function WishList(data) {
     const [ wishList, setWishList ] = useState([]);
     const [ searchParams, setSearchParams ] = useSearchParams();
 
-    const [ selectedItems, setSelectedItems ] = useState([]);
+    // const [ selectedItems, setSelectedItems ] = useState([]);
 
-    const toggleSelection = (wishid) => {
-        if (selectedItems.includes(wishid)) {
-            setSelectedItems(selectedItems.filter((id) => id !== wishid));
-        } else {
-            setSelectedItems([...selectedItems, wishid]);
-        }
-    };
-
-    
+    // const toggleSelection = (wishid) => {
+    //     if (selectedItems.includes(wishid)) {
+    //         setSelectedItems(selectedItems.filter((id) => id !== wishid));
+    //     } else {
+    //         setSelectedItems([...selectedItems, wishid]);
+    //     }
+    // };
 
     const [ searchCondition, setSearchCondition ] = useState({
         userid: id,
         page: parseInt(searchParams.get("page")),
-        // count: searchCount,
-        // option: parseInt(searchParams.get("option")),
+        filter: parseInt(searchParams.get("filter"))
     });
 
     useEffect(() => {
         setSearchCondition(searchCondition => {
             return {
                 ...searchCondition,
-                page: parseInt(searchParams.get("page"))
+                page: parseInt(searchParams.get("page")),
+                filter: parseInt(searchParams.get("filter"))
             }
         })
     }, [searchParams])
@@ -71,23 +75,21 @@ function WishList(data) {
         }
     )
 
-    // !searchWishQuery.isLoading &&
-    // console.log(searchWishQuery.data);
     return (
         <>
             <div css={s.header}>
-                <Link css={s.filter} to={"/mypage/wish?page=1&option=0"}>전체(book_id)</Link>
-                <Link css={s.filter} to={"/mypage/wish?page=1&option=1"}>평점높은순</Link>
-                <Link css={s.filter} to={"/mypage/wish?page=1&option=2"}>평점낮은순</Link>
-                <Link css={s.filter} to={"/mypage/wish?page=1&option=3"}>리뷰많은순</Link>
-                <Link css={s.filter} to={"/mypage/wish?page=1&option=4"}>리뷰적은순</Link>
+                <Link css={s.filter} to={"/mypage/wish?page=1&filter=0"}>전체(wish_id)</Link>
+                <Link css={s.filter} to={"/mypage/wish?page=1&filter=1"}>평점높은순</Link>
+                <Link css={s.filter} to={"/mypage/wish?page=1&filter=2"}>평점낮은순</Link>
+                <Link css={s.filter} to={"/mypage/wish?page=1&filter=3"}>리뷰많은순</Link>
+                <Link css={s.filter} to={"/mypage/wish?page=1&filter=4"}>리뷰적은순</Link>
                     <button css={s.deleteBtn}>
                         <RiDeleteBin6Line />
                     </button>
             </div>
             <div css={s.container}>
-                {!searchWishQuery.isLoading &&
-                    wishList.map(wish => 
+                {getWishCountQuery.isLoading ? <></>
+                    : wishList.map(wish => 
                         <div css={s.data} key={wish.wishId}>
                             <div css={s.bookData}>
                                 <div css={s.checkBox}>
@@ -99,9 +101,21 @@ function WishList(data) {
                                     <img src={wish.imageUrl}></img>
                                 </div>
                                 <div css={s.bookInfo}>
-                                    <div css={s.bookName}>{wish.bookName}</div>
-                                    <div css={s.authorName}>{wish.authorName}</div>
-                                    <div css={s.publisherName}>{wish.publisherName}</div>
+                                    <div css={s.top}>
+                                        <div css={s.bookName}>{wish.bookName}</div>
+                                        <div css={s.authorName}>{wish.authorName}</div>
+                                        <div css={s.publisherName}>{wish.publisherName}</div>
+                                    </div>
+                                    <div css={s.bot}>
+                                        <div css={s.rating}>
+                                            <MdStarRate color="red" size={25}/>
+                                            <span>{Math.round(wish.avgRating * 100) / 100}</span>
+                                        </div>
+                                        <div css={s.review}>
+                                            <BiCommentDetail color="#607fe4" size={22}/>
+                                            <span>{wish.reviewCount}</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div css={s.removeBox}>
                                     <IoMdClose size={"17"} color={"#adadad"}/>

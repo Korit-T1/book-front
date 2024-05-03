@@ -27,7 +27,7 @@ export const menuBox = (id) => css`
         border-bottom: 1px solid #dbdbdb;
     }
 
-    & > div:nth-child(${id}) {
+    & > div:nth-of-type(${id}) {
         border-right: 1px solid white;
         font-weight: bold;
     }

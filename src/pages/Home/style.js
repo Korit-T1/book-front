@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+    import { css } from "@emotion/react";
 
 export const layout = css`
     display: flex;
@@ -50,7 +50,7 @@ export const ranking = css`
 
 export const subContainer = css`
     width: 50%;
-    height: 500px;
+    height: 300px;
     border: 1px solid;
 `;
 
@@ -93,7 +93,7 @@ export const num = css`
 `;
 
 export const num1 = css`
-    margin-left: 3px;
+    margin-left: 1.5px;
     margin-right: 20px;
 `;
 
@@ -114,7 +114,14 @@ export const medal = css`
 export const item =  css`
     box-sizing: border-box;
     /* border: 1px solid black; */
-    width: 190px;
+    width: 200px;
+    height: 500px;
+`;
+
+export const itemNew =  css`
+    box-sizing: border-box;
+    /* border: 1px solid black; */
+    width: 220px;
     height: 500px;
 `;
 
@@ -201,7 +208,6 @@ export const Rank = (index) => {
                 }   
             }
         }
-
 
         & > div:nth-of-type(2) {
             & > div:nth-of-type(1) {

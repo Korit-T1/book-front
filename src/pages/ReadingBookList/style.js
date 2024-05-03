@@ -18,8 +18,6 @@ export const deleteBtn = css`
     text-decoration: none;
 `;
 
-
-
 export const container = css`
     box-sizing: border-box;
     display: flex;
@@ -33,6 +31,10 @@ export const container = css`
     height: 100%;
 
     /* border: 1px solid; */
+
+    & > h1 {
+        color: #606060;
+    }   
 `;
 
 export const data = css`

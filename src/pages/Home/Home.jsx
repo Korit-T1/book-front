@@ -5,12 +5,9 @@ import { useQuery } from "react-query";
 import { getNewBooksRequest, getPopularBooksRequest, getTopFiveBooksRequest } from "../../apis/api/bookApi";
 import { FaRankingStar } from "react-icons/fa6";
 import { FcBullish } from "react-icons/fc";
-import { CiMedal } from "react-icons/ci";
 import { Bs1Square } from "react-icons/bs";
 import { GiImperialCrown } from "react-icons/gi";
 import { MdFiberNew } from "react-icons/md";
-
-
 import { Bs2SquareFill } from "react-icons/bs";
 import { Bs3SquareFill } from "react-icons/bs";
 import { Bs4SquareFill } from "react-icons/bs";
@@ -163,7 +160,7 @@ function Home() {
             <div css={s.containerNew}>
                 {
                     newBooks.map(book => 
-                        <div css={s.item} key={book.bookId}>
+                        <div css={s.itemNew} key={book.bookId}>
                             <div css={s.bookImage}>
                                 <img src={book.coverImgUrl} alt="" />
                             </div>
