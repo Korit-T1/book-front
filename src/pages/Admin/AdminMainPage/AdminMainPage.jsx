@@ -1,11 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style"
 
-function AdminMainPage(props) {
+function AdminMainPage({children}) {
+    console.log("aaa")
     return (
         <>
-            <div></div>
-            <div></div>
+           <div css={s.background}>
+                <div css={s.layout}>
+                    <div css={s.visitantBox}>
+                        방문자수
+                    </div>
+                </div>
+           </div>
         </>
     );
 }
