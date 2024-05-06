@@ -6,5 +6,5 @@ export const registerNoticeRequest = async (data) => {
 }
 
 export const getNotice = async (boardId) => {
-    return await instance.get(`/admin/notice/${boardId}`);
+    return await instance.get(`/admin/getNotice/${boardId}`);
 }

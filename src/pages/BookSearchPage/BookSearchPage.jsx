@@ -2,13 +2,12 @@
 import { useEffect, useRef, useState } from "react";
 import * as s from "./style"
 import { FaSearch } from "react-icons/fa";
-import { Button, useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getBookCountRequest, searchBooksRequest } from "../../apis/api/bookApi";
 import ReactModal from "react-modal";
 import BookDetailModal from "../../components/BookDetailModal/BookDetailModal";
 import BookSearchPageNumbers from "../../pages/BookSearchPageNumbers/BookSearchPageNumbers";
-import { useSearchParams } from "react-router-dom";
 ReactModal.setAppElement("#root");
 
 const BookSearchPage = () => {
@@ -142,10 +141,7 @@ const BookSearchPage = () => {
             {
                 !getBookCountQuery.isLoading &&
                 <BookSearchPageNumbers bookCount={getBookCountQuery.data?.data}   /> 
-
-                
             }
-            
             </div>
             <BookDetailModal book={selectedBook} isOpen={isOpen} setIsOpen={setIsOpen}/>
         </>

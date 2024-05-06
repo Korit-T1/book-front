@@ -8,10 +8,11 @@ import { getNotice } from "../../apis/api/notice";
 
 function BoardDetailPage(props) {
     const [ notice, setNotice ] = useState([]);
+    const noticeBoardID = props.noticeBoardID;
     
     const noticeQuery = useQuery(
-        ["noticeQuery"],
-        () => getNotice(),
+        ["noticeQuery", noticeBoardID],
+        () => getNotice(noticeBoardID),
         {
             refetchOnWindowFocus: false,
             retry: 0,

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 import Home from '../pages/Home/Home';
 import MainContainer from '../components/MainContainer/MainContainer';
 import SearchHeader from '../components/SearchHeader/SearchHeader';
@@ -53,6 +53,11 @@ function MainRoute() {
         }
         </>
     );
+}
+
+function BoardDetailPageWrapper() {
+    const { noticeBoardId } = useParams();
+    return <BoardDetailPage noticeBoardId={noticeBoardId} />;
 }
 
 export default MainRoute;
