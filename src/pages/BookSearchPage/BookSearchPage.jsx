@@ -8,6 +8,7 @@ import { getBookCountRequest, searchBooksRequest } from "../../apis/api/bookApi"
 import ReactModal from "react-modal";
 import BookDetailModal from "../../components/BookDetailModal/BookDetailModal";
 import BookSearchPageNumbers from "../../pages/BookSearchPageNumbers/BookSearchPageNumbers";
+
 ReactModal.setAppElement("#root");
 
 function BookSearchPage() {

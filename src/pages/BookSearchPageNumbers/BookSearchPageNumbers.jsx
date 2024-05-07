@@ -4,16 +4,16 @@ import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
 function BookSearchPageNumber({ bookCount }) {
-
+    const [ numbers, setNumbers ] = useState([]);
     const [ searchParams ] = useSearchParams();
     const page = parseInt(searchParams.get("page"));
     const option = parseInt(searchParams.get("option"));
     const filter = parseInt(searchParams.get("filter"));
     const text = searchParams.get("text");
-    const totalCount = bookCount.totalCount; // 전체 책의 수
-    const itemsPerPage = 20; // 페이지당 보여줄 책의 수
-    const maxPageNumber = Math.ceil(totalCount / itemsPerPage); // 총 페이지 수 계산
-    const [ numbers, setNumbers ] = useState([]);
+
+    const totalCount = bookCount.totalCount; 
+    const itemsPerPage = 20;
+    const maxPageNumber = Math.ceil(totalCount / itemsPerPage);
 
     useEffect(() => {
         const startPageNumber = page % 10 === 0 ? page - 9 : (page - (page % 10)) + 1;
@@ -26,6 +26,7 @@ function BookSearchPageNumber({ bookCount }) {
 
         setNumbers(() => pageNumbers);
         }, [page, bookCount])
+
 
     return (
         <div css={[s.layout, { display: 'flex', flexDirection: 'column', alignItems: 'center' }]}>
@@ -56,6 +57,7 @@ function BookSearchPageNumber({ bookCount }) {
                     &#62;
                 </a>
             )}
+
             </div>
             <div css={[s.pageCount, {textAlign: 'center'}]}>
                 <div css={s.page}>Page {page} of {maxPageNumber}</div>

@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
-
 import { Link } from 'react-router-dom';
 
     function ReadingPageNumbers ({ page, maxPageNumber, totalCount, option, getBookCountQuery }) {

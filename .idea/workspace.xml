@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="26e96ce2-724c-48bd-a222-8a944ed84e3c" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Routes/AdminRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Routes/AdminRoute.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/mypageMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/mypageMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin/AdminMainPage/AdminMainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin/AdminMainPage/AdminMainPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin/AdminMainPage/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin/AdminMainPage/style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/BookSearchPage/BookSearchPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/BookSearchPage/BookSearchPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/BookSearchPageNumbers/BookSearchPageNumbers.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/BookSearchPageNumbers/BookSearchPageNumbers.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +16,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2fisNoh8covTjzK5mIgby2VOdYf" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -27,7 +30,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "39----어드민--예홍렬",
+    "git-widget-placeholder": "54-book-front--예홍렬",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/aws/projecct_book_2024.04.26/book-front"
   }
