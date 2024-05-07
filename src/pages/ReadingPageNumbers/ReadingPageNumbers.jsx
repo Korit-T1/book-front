@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import BookSearchPage from '../BookSearchPage/BookSearchPage';
 
     const ReadingPageNumbers = ({ page, maxPageNumber, totalCount, option, getBookCountQuery, s }) => {
 
