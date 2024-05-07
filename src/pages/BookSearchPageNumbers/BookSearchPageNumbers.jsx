@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 function BookSearchPageNumber({ bookCount }) {
     const [ searchParams ] = useSearchParams();
+    const [ numbers, setNumbers ] = useState([]);
     const page = parseInt(searchParams.get("page"));
     const option = parseInt(searchParams.get("option"));
     const filter = parseInt(searchParams.get("filter"));
@@ -23,7 +24,7 @@ function BookSearchPageNumber({ bookCount }) {
         }
 
         setNumbers(() => pageNumbers);
-    }, [page, bookCount])
+    }, [page, totalCount, maxPageNumber])
 
     return (
         <div css={[s.layout, { display: 'flex', flexDirection: 'column', alignItems: 'center' }]}>

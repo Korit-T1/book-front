@@ -15,7 +15,7 @@ function ReadingPageNumbers(data) {
     const maxPageNumber = Math.ceil(totalCount / itemsPerPage); // 총 페이지 수 계산
 
     useEffect(() => {
-        const startPageNumber = (page % 10 == 0) ? (page - 9) : (page - (page % 10) + 1);
+        const startPageNumber = (page % 10 === 0) ? (page - 9) : (page - (page % 10) + 1);
         const endPageNumber = (startPageNumber + 9 > maxPageNumber) ? (maxPageNumber) : (startPageNumber + 9);
         let pageNumbers = []; 
 
@@ -23,7 +23,7 @@ function ReadingPageNumbers(data) {
             pageNumbers = [...pageNumbers, i];
         }
         setNumbers(() => pageNumbers);
-    }, [page, totalCount])
+    }, [page, totalCount, maxPageNumber])
 
     return (
         <div css={s.layout}>

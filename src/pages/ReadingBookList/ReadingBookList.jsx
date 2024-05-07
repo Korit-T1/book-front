@@ -12,7 +12,7 @@ function ReadingBookList(data) {
     const id = data.data.data.userId;
 
     const [ readingBookList, setReadingBookList ] = useState([]);
-    const [ searchParams, setSearchParams ] = useSearchParams();
+    const [ searchParams ] = useSearchParams();
     const [ checkedList, setCheckedList ] = useState([]);
     const [ searchCondition, setSearchCondition ] = useState({
         userid: id,
@@ -104,7 +104,7 @@ function ReadingBookList(data) {
                                     <input type="checkbox" onChange={e => {onCheckedElement(e.target.checked, loan.loanId);}}/>
                                 </div>
                                 <div css={s.bookImage}>
-                                    <img src={loan.imageUrl}></img>
+                                    <img src={loan.imageUrl} alt=""></img>
                                 </div>
                                 <div css={s.bookInfo}>
                                     <div css={s.bookName}>{loan.bookName}</div>

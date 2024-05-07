@@ -3,28 +3,18 @@ import { useEffect, useState } from "react";
 import { getReturnedCountRequest, getReturnedDataRequest } from "../../apis/api/mypage";
 import * as s from "./style"
 import { useQuery } from "react-query";
-import { BsCheckCircle } from "react-icons/bs";
-import { IoMdClose } from "react-icons/io";
-import WishPageNumbers2 from "../WishPageNumbers/WishPageNumbers2";
 import { Link, useSearchParams } from "react-router-dom";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import ReturnedPageNumbers from "../ReturnedPageNumbers/ReturnedPageNumbers";
-import { FcOk } from "react-icons/fc";
 import { IoWarning } from "react-icons/io5";
 import { HiMiniCheckCircle } from "react-icons/hi2";
 import { FcCalendar } from "react-icons/fc";
 import { TbClockCheck } from "react-icons/tb";
 
-
-
-
-
-
 function ReturnedBookList(data) {
     const id = data.data.data.userId;
 
     const [ returnedBookList, setReturnedBookList ] = useState([]);
-    const [ searchParams, setSearchParams ] = useSearchParams();
+    const [ searchParams ] = useSearchParams();
 
     const [ searchCondition, setSearchCondition ] = useState({
         userid: id,
@@ -95,7 +85,7 @@ function ReturnedBookList(data) {
                                     }
                                 </div>
                                 <div css={s.bookImage}>
-                                    <img src={loan.imageUrl}></img>
+                                    <img src={loan.imageUrl} alt=""></img>
                                 </div>
                                 <div css={s.bookInfo}>
                                     <div css={s.top}>
