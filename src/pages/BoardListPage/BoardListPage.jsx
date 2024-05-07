@@ -14,7 +14,7 @@ function BoardListPage(props) {
                 </li>
             </ul> 
             <div>
-                <Link to={'/boardWrite'}>
+                <Link to={'/admin/boardWrite'}>
                     <button>글 쓰기</button>
                 </Link>
             </div>

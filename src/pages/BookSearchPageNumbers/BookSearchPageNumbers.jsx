@@ -10,9 +10,10 @@ function BookSearchPageNumber({ bookCount }) {
     const option = parseInt(searchParams.get("option"));
     const filter = parseInt(searchParams.get("filter"));
     const text = searchParams.get("text");
-    const totalCount = bookCount.totalCount; // 전체 책의 수
-    const itemsPerPage = 20; // 페이지당 보여줄 책의 수
-    const maxPageNumber = Math.ceil(totalCount / itemsPerPage); // 총 페이지 수 계산
+
+    const totalCount = bookCount.totalCount; 
+    const itemsPerPage = 20;
+    const maxPageNumber = Math.ceil(totalCount / itemsPerPage);
 
     useEffect(() => {
         const startPageNumber = page % 10 === 0 ? page - 9 : (page - (page % 10)) + 1;

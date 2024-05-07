@@ -8,10 +8,8 @@ import { loanRegister } from "../../apis/api/loanApi";
 import { principalState } from "../../atoms/principalAtom";
 import { useRecoilState } from "recoil";
 import { getReview, registerReview } from "../../apis/api/reviewApi";
-import { FaStar, FaStarHalf } from "react-icons/fa";
 import Rate from "rc-rate";
 import "rc-rate/assets/index.css";
-import { registerRating } from "../../apis/api/ratingApi";
 
 function BookDetailModal({book, isOpen, setIsOpen}) {
     const [ stockState, setStockState ] = useState([]);
@@ -89,9 +87,9 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                         onRequestClose={() => setIsOpen(() => false)}
                         style={{
                             content: {
-                                margin: "150px auto",
-                                width: "800px",
-                                height: "500px"
+                                margin: "80px auto",
+                                width: "1000px",
+                                height: "625px"
                             }
                         }}
                     >

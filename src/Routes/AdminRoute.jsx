@@ -13,6 +13,7 @@ import AdminBookRegisterInput from '../pages/Admin/AdminBookRegisterInput/AdminB
 import { useState } from "react";
 import { getAdminPrincipalRequest } from "../../src/apis/api/principal";
 import { useQuery } from "react-query";
+import NoticeBoardWritePage from '../pages/NoticeBoardWritePage/NoticeBoardWritePage';
 
 
 function AdminRoute(props) {
@@ -48,7 +49,8 @@ function AdminRoute(props) {
                     <Route path='/freeboardmanage' element={ <AdminFreeBoardManagemet /> } />   {/* 자유게시판관리 */}
                     <Route path='/eventmanage' element={ <AdminEventManagement /> } />   {/* 이벤트관리 */}
                     <Route path='/preference' element={ <AdminPreferenceManagement /> } />    {/* 환경설정 */}
-                    <Route path='/bookregister' element={ <AdminBookRegisterInput    /> } />    {/* 책 등록 */}
+                    <Route path='/bookregister' element={ <AdminBookRegisterInput /> } />    {/* 책 등록 */}
+                    <Route path='/boardWrite' element={ <NoticeBoardWritePage /> } />
                 </Routes>
                 <AdminSideBar />
                 </>

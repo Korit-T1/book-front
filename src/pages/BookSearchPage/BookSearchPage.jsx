@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as s from "./style"
 import { FaSearch } from "react-icons/fa";
-import { Button, useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getBookCountRequest, searchBooksRequest } from "../../apis/api/bookApi";
 import ReactModal from "react-modal";
