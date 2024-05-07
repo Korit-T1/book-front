@@ -2,7 +2,6 @@
 import * as s from "./style";
 
 import { Link } from 'react-router-dom';
-import BookSearchPage from '../BookSearchPage/BookSearchPage';
 
     function ReadingPageNumbers ({ page, maxPageNumber, totalCount, option, getBookCountQuery }) {
 
