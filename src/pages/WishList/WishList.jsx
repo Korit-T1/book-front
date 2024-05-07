@@ -11,25 +11,19 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdStarRate } from "react-icons/md";
 import { BiCommentDetail } from "react-icons/bi";
 
-
-
-
-
 function WishList(data) {
     const id = data.data.data.userId;
 
+    const [ searchParams ] = useSearchParams();
     const [ wishList, setWishList ] = useState([]);
-    const [ searchParams, setSearchParams ] = useSearchParams();
 
-    // const [ selectedItems, setSelectedItems ] = useState([]);
+    const [ activeFilter, setActiveFilter ] = useState(1);
 
-    // const toggleSelection = (wishid) => {
-    //     if (selectedItems.includes(wishid)) {
-    //         setSelectedItems(selectedItems.filter((id) => id !== wishid));
-    //     } else {
-    //         setSelectedItems([...selectedItems, wishid]);
-    //     }
-    // };
+    const handleFilterClick = (filterID) => {
+        if(filterID !== activeFilter) {
+            setActiveFilter(filterID);
+        }
+    };
 
     const [ searchCondition, setSearchCondition ] = useState({
         userid: id,
@@ -77,18 +71,33 @@ function WishList(data) {
 
     return (
         <>
-            <div css={s.header}>
-                <Link css={s.filter} to={"/mypage/wish?page=1&filter=0"}>전체(wish_id)</Link>
-                <Link css={s.filter} to={"/mypage/wish?page=1&filter=1"}>평점높은순</Link>
-                <Link css={s.filter} to={"/mypage/wish?page=1&filter=2"}>평점낮은순</Link>
-                <Link css={s.filter} to={"/mypage/wish?page=1&filter=3"}>리뷰많은순</Link>
-                <Link css={s.filter} to={"/mypage/wish?page=1&filter=4"}>리뷰적은순</Link>
-                    <button css={s.deleteBtn}>
-                        <RiDeleteBin6Line />
-                    </button>
+            <div css={s.header(activeFilter)}>
+                <div>
+                    <Link css={s.filter} to={"/mypage/wish?page=1&filter=1"}
+                    onClick={() => handleFilterClick(1)}>전체(wish_id)</Link>
+                </div>
+                <div>
+                    <Link css={s.filter} to={"/mypage/wish?page=1&filter=2"}
+                    onClick={() => handleFilterClick(2)}>평점높은순</Link>
+                </div>
+                <div>
+                    <Link css={s.filter} to={"/mypage/wish?page=1&filter=3"}
+                    onClick={() => handleFilterClick(3)}>평점낮은순</Link>
+                </div>
+                <div>
+                    <Link css={s.filter} to={"/mypage/wish?page=1&filter=4"}
+                    onClick={() => handleFilterClick(4)}>리뷰많은순</Link>
+                </div>
+                <div>
+                    <Link css={s.filter} to={"/mypage/wish?page=1&filter=5"}
+                    onClick={() => handleFilterClick(5)}>리뷰적은순</Link>
+                </div>
             </div>
+                    {/* <button css={s.deleteBtn}>
+                        <RiDeleteBin6Line />
+                    </button> */}
             <div css={s.container}>
-                {getWishCountQuery.isLoading ? <></>
+                {searchWishQuery.isLoading && getWishCountQuery.isLoading? <></>
                     : wishList.map(wish => 
                         <div css={s.data} key={wish.wishId}>
                             <div css={s.bookData}>
@@ -98,7 +107,7 @@ function WishList(data) {
                                     </button>
                                 </div>
                                 <div css={s.bookImage}>
-                                    <img src={wish.imageUrl}></img>
+                                    <img src={wish.imageUrl} alt=""></img>
                                 </div>
                                 <div css={s.bookInfo}>
                                     <div css={s.top}>
@@ -108,8 +117,8 @@ function WishList(data) {
                                     </div>
                                     <div css={s.bot}>
                                         <div css={s.rating}>
-                                            <MdStarRate color="red" size={25}/>
-                                            <span>{Math.round(wish.avgRating * 100) / 100}</span>
+                                            <div css={s.starBox}><MdStarRate color="red" size={25}/></div>
+                                            <span css={s.rateBox}>{Math.round(wish.avgRating * 100) / 100}</span>
                                         </div>
                                         <div css={s.review}>
                                             <BiCommentDetail color="#607fe4" size={22}/>

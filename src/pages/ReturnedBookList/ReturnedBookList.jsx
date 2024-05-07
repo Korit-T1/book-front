@@ -12,10 +12,17 @@ import { TbClockCheck } from "react-icons/tb";
 
 function ReturnedBookList(data) {
     const id = data.data.data.userId;
-
-    const [ returnedBookList, setReturnedBookList ] = useState([]);
     const [ searchParams ] = useSearchParams();
+    const [ returnedBookList, setReturnedBookList ] = useState([]);
+    
+    const [ activeFilter, setActiveFilter ] = useState(1);
 
+    const handleFilterClick = (filterID) => {
+        if(filterID !== activeFilter) {
+            setActiveFilter(filterID);
+        }
+    };
+    
     const [ searchCondition, setSearchCondition ] = useState({
         userid: id,
         page: parseInt(searchParams.get("page")),
@@ -62,16 +69,27 @@ function ReturnedBookList(data) {
 
     return (
         <>
-            <div css={s.header}>
-                <Link css={s.filter} to={"/mypage/returned?page=1&filter=0"}>전체(loan_id)</Link>
-                <Link css={s.filter} to={"/mypage/returned?page=1&filter=1"}>최근 날짜순(미완)</Link>
-                <Link css={s.filter} to={"/mypage/returned?page=1&filter=2"}>오래된 날짜순(미완)</Link>
-                <Link css={s.filter} to={"/mypage/returned?page=1&filter=3"}>연체되지 않음</Link>
-                <Link css={s.filter} to={"/mypage/returned?page=1&filter=4"}>연체됨</Link>
+            <div css={s.header(activeFilter)}>
+                <div>
+                    <Link css={s.filter} to={"/mypage/returned?page=1&filter=1"}
+                    onClick={() => handleFilterClick(1)}>최신 반납순(전체)</Link>
+                </div>
+                <div>
+                    <Link css={s.filter} to={"/mypage/returned?page=1&filter=2"}
+                    onClick={() => handleFilterClick(2)}>이전 반납순</Link>
+                </div>
+                <div>
+                    <Link css={s.filter} to={"/mypage/returned?page=1&filter=3"}
+                    onClick={() => handleFilterClick(3)}>연체되지 않음</Link>
+                </div>
+                <div>
+                    <Link css={s.filter} to={"/mypage/returned?page=1&filter=4"}
+                    onClick={() => handleFilterClick(4)}>연체됨</Link>
+                </div>
+            </div>
                     {/* <button css={s.deleteBtn}>
                         <RiDeleteBin6Line />
                     </button> */}
-            </div>
             <div css={s.container}>
                 {!getReturnedBooksQuery.isLoading &&
                     returnedBookList.map(loan => 
@@ -81,7 +99,7 @@ function ReturnedBookList(data) {
                                     {
                                         loan.returnDate < loan.dueDate
                                         ? <HiMiniCheckCircle size={36} color="#4fd44d"/>
-                                        : <IoWarning size={35} color="red"/>
+                                        : <IoWarning size={35} color="orange"/>
                                     }
                                 </div>
                                 <div css={s.bookImage}>
@@ -93,14 +111,14 @@ function ReturnedBookList(data) {
                                         <div css={s.authorName}>{loan.authorName}</div>
                                         <div css={s.publisherName}>{loan.publisherName}</div>
                                     </div>
-                                    <div css={s.bot}>
-                                        <div css={s.period}>
-                                            <FcCalendar size={25}/>
-                                            {loan.loanDate.substring(0, 10)} ~ {loan.dueDate.substring(0, 10)}
-                                        </div>
+                                    <div css={s.bot(activeFilter)}>
                                         <div css={s.finish}>
                                             <TbClockCheck size={25} color="#3fcee1"/>
-                                            {loan.returnDate.substring(0, 10)}
+                                            <p>{loan.returnDate.substring(0, 10)}</p>
+                                        </div>
+                                        <div css={s.period}>
+                                            <FcCalendar size={25}/>
+                                            <p>{loan.loanDate.substring(0, 10)} ~ {loan.dueDate.substring(0, 10)}</p>
                                         </div>
                                     </div>
                                 </div>

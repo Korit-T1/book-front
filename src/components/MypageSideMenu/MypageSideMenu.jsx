@@ -16,8 +16,6 @@ function MypageSideMenu() {
     const queryClient = useQueryClient();
     const principalData = queryClient.getQueryData("principalQuery");
 
-    const linkRef = useRef();
-
     const [ activeMenu, setActiveMenu ] = useState(1);
 
     const handleMenuClick = (menuID) => {

@@ -1,13 +1,47 @@
 import { css } from "@emotion/react";
 
-export const header = css`
+export const header = (id) => css`
     display: flex;
     justify-content: space-around;
     align-items: center;
-
-    border-bottom: 1px solid #dbdbdb;
+    box-sizing: border-box;
+    /* border-bottom: 1px solid #dbdbdb; */
     width: 100%;
     height: 5%;
+
+    & > div {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25%;
+        height: 100%;
+        border-bottom: 1px solid #dbdbdb;
+        border-right: 1px solid #dbdbdb;
+
+        & > a {
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+        }
+
+        & > a:hover {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    }
+
+    & > div:nth-of-type(${id}) {
+        border-bottom: none;
+        font-weight: bold;
+
+        & > a {
+            font-size: 18px;
+        }
+    }
+
+    & > div:nth-of-type(4) {
+        border-right: none;
+    }
 `;
 
 export const filter = css`
@@ -18,8 +52,6 @@ export const deleteBtn = css`
     text-decoration: none;
 `;
 
-
-
 export const container = css`
     box-sizing: border-box;
     display: flex;
@@ -28,7 +60,7 @@ export const container = css`
     justify-content: flex-start;
     align-content: flex-start;
 
-    padding: 2px 4px 4px;
+    padding: 5.5px 4px 4px;
     width: 100%;
     height: 100%;
 
@@ -112,7 +144,7 @@ export const bookName = css`
     /* text-overflow:ellipsis; */
     /* white-space:nowrap; */
     font-size: 18px;
-    font-weight: 600;
+    font-weight: bold;
 `
 
 export const authorName = css`
@@ -121,8 +153,7 @@ export const authorName = css`
     /* overflow:hidden; */
     /* text-overflow:ellipsis; */
     /* white-space:nowrap; */
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 16px;
     color: #a3a3a3;
 `
 
@@ -132,8 +163,7 @@ export const publisherName = css`
     /* overflow:hidden; */
     /* text-overflow:ellipsis; */
     /* white-space:nowrap; */
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 16px;
     color: #a3a3a3;   
 `;
 
@@ -143,35 +173,49 @@ export const top = css`
     height: 70%;
 `;
 
-export const bot = css`
+export const bot = (id) => css`
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     /* border: 1px solid; */
     flex: 1;
+
+    & > div:nth-of-type(1) {
+        & > p {
+            margin: 0px 0px 0px 5px;
+            padding-top: 7px;
+            /* font-weight: bold; */
+        }
+    }
+
+    & > div:nth-of-type(2) {
+        & > p {
+            margin: 0px 0px 0px 5px;
+            padding-top: 6px;
+            /* font-weight: bold; */
+        }
+    }
 `;
 
 
 export const period = css`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     box-sizing: border-box;
     width: 100%;
-    /* margin-top: 60px; */
-    /* overflow:hidden; */
-    /* text-overflow:ellipsis; */
-    /* white-space:nowrap; */
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 16px;
 `
 
 export const finish = css`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     box-sizing: border-box;
     width: 100%;
-    /* overflow:hidden; */
-    /* text-overflow:ellipsis; */
-    /* white-space:nowrap; */
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 16px;
+    padding-bottom: 5px;
 `
 
 export const page = css`
