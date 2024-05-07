@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
+import * as s from "./style"
 import { useEffect, useState } from "react";
 import { getReadingCountRequest, getReadingDataRequest } from "../../apis/api/mypage";
-import * as s from "./style"
 import { useMutation, useQuery } from "react-query";
 import { IoMdClose } from "react-icons/io";
-import WishPageNumbers2 from "../WishPageNumbers/WishPageNumbers2";
 import { Link, useSearchParams } from "react-router-dom";
 import ReadingPageNumbers from "../ReadingPageNumbers/ReadingPageNumbers";
 import { bookReturn } from "../../apis/api/loanApi";
@@ -17,8 +16,7 @@ function ReadingBookList(data) {
     const [ checkedList, setCheckedList ] = useState([]);
     const [ searchCondition, setSearchCondition ] = useState({
         userid: id,
-        page: parseInt(searchParams.get("page")),
-
+        page: parseInt(searchParams.get("page"))
     });
 
     useEffect(() => {
@@ -57,17 +55,18 @@ function ReadingBookList(data) {
             }
         }
     );
+
     const returnBookMutation = useMutation({
         mutationKey: "returnBookMutation",
         mutationFn: bookReturn,
         onSuccess: response => {
             getReadingBooksQuery.refetch();
-            
         },
         onError: error => {
 
         }
     });
+
     const onCheckedElement = (checked, item) => {
         if(checked) {
             setCheckedList([...checkedList, item]);
@@ -77,7 +76,6 @@ function ReadingBookList(data) {
     };
    
     const checkedReturns = () => {
-
         checkedList.forEach(loanId => {
             returnBookMutation.mutate(loanId);
         });

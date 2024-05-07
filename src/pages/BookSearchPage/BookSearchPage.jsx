@@ -8,10 +8,9 @@ import { getBookCountRequest, searchBooksRequest } from "../../apis/api/bookApi"
 import ReactModal from "react-modal";
 import BookDetailModal from "../../components/BookDetailModal/BookDetailModal";
 import BookSearchPageNumbers from "../../pages/BookSearchPageNumbers/BookSearchPageNumbers";
-import { useSearchParams } from "react-router-dom";
 ReactModal.setAppElement("#root");
 
-const BookSearchPage = () => {
+function BookSearchPage() {
     const [ searchParams, setSearchParams ] = useSearchParams();
     const [ searchData, setSearchData ] = useState({
         page: parseInt(searchParams.get("page")),
@@ -138,15 +137,11 @@ const BookSearchPage = () => {
                     })
                 }
             </div>
-            <div>
-            {
-                !getBookCountQuery.isLoading &&
-                <BookSearchPageNumbers bookCount={getBookCountQuery.data?.data}   /> 
 
-                
-            }
-            
+            <div>
+                {!getBookCountQuery.isLoading && <BookSearchPageNumbers bookCount={getBookCountQuery.data?.data}/>}
             </div>
+
             <BookDetailModal book={selectedBook} isOpen={isOpen} setIsOpen={setIsOpen}/>
         </>
     );
