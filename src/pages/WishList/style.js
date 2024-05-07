@@ -1,13 +1,47 @@
 import { css } from "@emotion/react";
 
-export const header = css`
+export const header = (id) => css`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-
-    border-bottom: 1px solid #dbdbdb;
+    box-sizing: border-box;
+    /* border-bottom: 1px solid #dbdbdb; */
     width: 100%;
     height: 5%;
+
+    & > div {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20%;
+        height: 100%;
+        border-bottom: 1px solid #dbdbdb;
+        border-right: 1px solid #dbdbdb;
+
+        & > a {
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+        }
+
+        & > a:hover {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    }
+
+    & > div:nth-of-type(${id}) {
+        border-bottom: none;
+        font-weight: bold;
+
+        & > a {
+            font-size: 18px;
+        }
+    }
+
+    & > div:nth-of-type(5) {
+        border-right: none;
+    }
 `;
 
 export const filter = css`
@@ -26,7 +60,7 @@ export const container = css`
     justify-content: flex-start;
     align-content: flex-start;
 
-    padding: 2px 4px 4px;
+    padding: 5.5px 4px 4px;
     width: 100%;
     height: 100%;
 
@@ -98,13 +132,15 @@ export const bookInfo = css`
 export const top = css`
     box-sizing: border-box;
     /* border: 1px solid; */
-    height: 80%;
+    height: 70%;
 `;
 
 export const bot = css`
     display: flex;
     box-sizing: border-box;
     /* border: 1px solid; */
+    align-items: flex-end;
+
     flex: 1;
 `;
 
@@ -114,66 +150,66 @@ export const removeBox = css`
     width: 8.5%;
 `;
 
-
 export const bookName = css`
     box-sizing: border-box;
     width: 100%;
     padding-bottom: 10px;
-    /* overflow:hidden; */
-    /* text-overflow:ellipsis; */
-    /* white-space:nowrap; */
     font-size: 18px;
-    font-weight: 600;
+    font-weight: bold;
 `
 
 export const authorName = css`
     box-sizing: border-box;
     width: 100%;
-    /* overflow:hidden; */
-    /* text-overflow:ellipsis; */
-    /* white-space:nowrap; */
     font-size: 14px;
-    font-weight: 400;
     color: #a3a3a3;
 `
 
 export const publisherName = css`
     box-sizing: border-box;
     width: 100%;
-    /* overflow:hidden; */
-    /* text-overflow:ellipsis; */
-    /* white-space:nowrap; */
     font-size: 14px;
-    font-weight: 400;
     color: #a3a3a3;
 `
 
 export const rating = css`
     display: flex;
-    /* justify-content: center; */
     align-items: flex-end;
     box-sizing: border-box;
-    width: 60%;
-    /* margin-top: 40px; */
-    /* overflow:hidden; */
-    /* text-overflow:ellipsis; */
-    /* white-space:nowrap; */
-    font-size: 18px;
-    /* color: #a3a3a3; */
     /* border: 1px solid; */
+    width: 60%;
+    font-size: 18px;
 
-    & > span {
-        font-weight: bold;
-        font-size: 22px;
-        margin-left: 5px;
-    }
 `
+
+export const starBox = css`
+    display: flex;
+    /* border: 1px solid; */
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+
+    & > :nth-of-type(1){
+        padding-top: 1px;
+        padding-right: 3px;
+    }
+`;
+
+export const rateBox = css`
+    /* border: 1px solid; */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 20px;
+    font-weight: bold;
+`;
 
 export const review = css`
     display: flex;
     align-items: flex-end;
     box-sizing: border-box;
-   flex: 1;
+    flex: 1;
     
     /* overflow:hidden; */
     /* text-overflow:ellipsis; */

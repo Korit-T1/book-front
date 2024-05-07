@@ -30,6 +30,10 @@ export const menuBox = (id) => css`
     & > div:nth-of-type(${id}) {
         border-right: 1px solid white;
         font-weight: bold;
+
+        & > a {
+            font-size: 22px;
+        }
     }
 
     & > div:nth-of-type(6) {

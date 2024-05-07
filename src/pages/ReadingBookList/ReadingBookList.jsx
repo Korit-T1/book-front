@@ -1,25 +1,48 @@
 /** @jsxImportSource @emotion/react */
+import * as s from "./style"
 import { useEffect, useState } from "react";
 import { getReadingCountRequest, getReadingDataRequest } from "../../apis/api/mypage";
-import * as s from "./style"
 import { useMutation, useQuery } from "react-query";
 import { IoMdClose } from "react-icons/io";
-import WishPageNumbers2 from "../WishPageNumbers/WishPageNumbers2";
 import { Link, useSearchParams } from "react-router-dom";
 import ReadingPageNumbers from "../ReadingPageNumbers/ReadingPageNumbers";
 import { bookReturn } from "../../apis/api/loanApi";
+import { BsCheckCircle } from "react-icons/bs";
+import { Line } from "rc-progress";
+
 
 function ReadingBookList(data) {
     const id = data.data.data.userId;
 
     const [ readingBookList, setReadingBookList ] = useState([]);
-    const [ searchParams, setSearchParams ] = useSearchParams();
+    const [ searchParams ] = useSearchParams();
     const [ checkedList, setCheckedList ] = useState([]);
     const [ searchCondition, setSearchCondition ] = useState({
         userid: id,
-        page: parseInt(searchParams.get("page")),
-
+        page: parseInt(searchParams.get("page"))
     });
+
+    const [ progressPercent, setProgressPercent ] = useState(0);
+
+    const [ buttonStates, setButtonStates ] = useState(Array(readingBookList.length).fill(false));
+    const handleButtonClick = (index) => {
+        const newButtonStates = [...buttonStates];
+        newButtonStates[index] = !newButtonStates[index];
+        setButtonStates(newButtonStates);
+    };
+    
+    const [ activeFilter, setActiveFilter ] = useState(1);
+    const handleFilterClick = (filterID) => {
+        if(filterID !== activeFilter) {
+            setActiveFilter(filterID);
+        }
+    };
+
+    useEffect(() => {
+        buttonStates.forEach((value, index) => {
+            console.log(`Index: ${index}, Value: ${value}`);
+        })
+    }, [buttonStates])
 
     useEffect(() => {
         setSearchCondition(searchCondition => {
@@ -57,17 +80,18 @@ function ReadingBookList(data) {
             }
         }
     );
+
     const returnBookMutation = useMutation({
         mutationKey: "returnBookMutation",
         mutationFn: bookReturn,
         onSuccess: response => {
             getReadingBooksQuery.refetch();
-            
         },
         onError: error => {
 
         }
     });
+
     const onCheckedElement = (checked, item) => {
         if(checked) {
             setCheckedList([...checkedList, item]);
@@ -77,7 +101,6 @@ function ReadingBookList(data) {
     };
    
     const checkedReturns = () => {
-
         checkedList.forEach(loanId => {
             returnBookMutation.mutate(loanId);
         });
@@ -85,46 +108,76 @@ function ReadingBookList(data) {
 
     return (
         <>
-            <div css={s.header}>
-                <Link css={s.filter} to={"/mypage/reading?page=1&option=0"}>전체(book_id)</Link>
-                <Link css={s.filter} to={"/mypage/reading?page=1&option=1"}>평점높은순</Link>
-                <Link css={s.filter} to={"/mypage/reading?page=1&option=2"}>평점낮은순</Link>
-                <Link css={s.filter} to={"/mypage/reading?page=1&option=3"}>리뷰많은순</Link>
-                <Link css={s.filter} to={"/mypage/reading?page=1&option=4"}>리뷰적은순</Link>
-                <button onClick={() => checkedReturns(checkedList)}>반납</button>
-                
-                
+            <div css={s.header(activeFilter)}>
+                <div>
+                    <Link css={s.filter} to={"/mypage/reading?page=1&filter=1"}
+                    onClick={() => handleFilterClick(1)}>전체(남은시간순)</Link>
+                </div>
+                <div>
+                    <Link css={s.filter} to={"/mypage/reading?page=1&filter=2"}
+                    onClick={() => handleFilterClick(2)}>평점높은순</Link>
+                </div>
+                <div>
+                    <Link css={s.filter} to={"/mypage/reading?page=1&filter=3"}
+                    onClick={() => handleFilterClick(3)}>평점낮은순</Link>
+                </div>
+                <div>
+                    <Link css={s.filter} to={"/mypage/reading?page=1&filter=4"}
+                    onClick={() => handleFilterClick(4)}>리뷰많은순</Link>
+                </div>
+                <div>
+                    <Link css={s.filter} to={"/mypage/reading?page=1&filter=5"}
+                    onClick={() => handleFilterClick(5)}>리뷰적은순</Link>
+                </div>
             </div>
             <div css={s.container}>
                 {!getReadingBooksQuery.isLoading &&
                     readingBookList.length === 0 
                     ? <h1>대출 중인 도서가 없습니다.</h1>
-                    : readingBookList.map(loan => 
-                        <div css={s.data} key={loan.loanId}>
-                            <div css={s.bookData}>
-                                <div css={s.checkBox}>
-                                    <input type="checkbox" onChange={e => {onCheckedElement(e.target.checked, loan.loanId);}}/>
-                                </div>
-                                <div css={s.bookImage}>
-                                    <img src={loan.imageUrl}></img>
-                                </div>
-                                <div css={s.bookInfo}>
-                                    <div css={s.bookName}>{loan.bookName}</div>
-                                    <div css={s.authorName}>{loan.authorName}</div>
-                                    <div css={s.publisherName}>{loan.publisherName}</div>
-                                </div>
-                                <div css={s.removeBox}>
-                                    <IoMdClose size={"17"} color={"#adadad"}/>
+                    : readingBookList.map((loan, index) => {
+                        const currentDate = new Date();
+                        const endDate = new Date(loan.dueDate); 
+
+                        const timeDiff = endDate.getTime() - currentDate.getTime();
+
+                        const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                        const hoursDiff = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutesDiff = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                        
+                        return (
+                            <div css={s.data(buttonStates[index])} key={loan.loanId}>
+                                <div css={s.bookData}>
+                                    <div css={s.checkBox}>
+                                        {/* <input type="checkbox" onChange={e => {onCheckedElement(e.target.checked, loan.loanId);}}/> */}
+                                            <BsCheckCircle 
+                                                css={s.checkBtn(buttonStates[index])} size={"25"} onClick={() => handleButtonClick(index)} />
+                                    </div>
+                                    <div css={s.bookImage}>
+                                        <img src={loan.imageUrl} alt=""></img>
+                                    </div>
+                                    <div css={s.bookInfo}>
+                                        <div css={s.bookName}>{loan.bookName}</div>
+                                        <div css={s.authorName}>{loan.authorName}</div>
+                                        <div css={s.publisherName}>{loan.publisherName}</div>
+                                        <div>
+                                            <p>기간 :{loan.loanDate.substring(0, 10)} ~ {loan.dueDate.substring(0, 10)}</p>
+                                            <p>{daysDiff}일&nbsp;{hoursDiff}시간&nbsp;{minutesDiff}분&nbsp;남음</p>
+                                            <Line></Line>
+                                        </div>
+                                    </div>
+                                    {/* <div css={s.removeBox}>
+                                        <IoMdClose size={"17"} color={"#adadad"}/>
+                                    </div> */}
                                 </div>
                             </div>
-                        </div>
-                    )
+                        )
+                    })
                 }
-              
             </div>
             {!getReadingBooksCountQuery.isLoading &&
                 <div css={s.page}>
                     <ReadingPageNumbers data={getReadingBooksCountQuery.data?.data}/>
+                    <button onClick={() => checkedReturns(checkedList)}>반납</button>
                 </div>
             }
         </>
