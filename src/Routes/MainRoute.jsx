@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Route, Routes, useParams } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home/Home';
 import MainContainer from '../components/MainContainer/MainContainer';
 import SearchHeader from '../components/SearchHeader/SearchHeader';
@@ -35,29 +35,24 @@ function MainRoute() {
    
     return (
         <>
-        {principalQuery.isLoading 
-            ? <></> 
-            : 
-            <>
-                <SearchHeader />
-                <MainContainer>
-                    <Routes>
-                        <Route path='/' element={ <Home /> } />
-                        <Route path='/search' element={ <BookSearchPage /> } />
-                        <Route path='/mypage/*' element={ <Mypage/>} />
-                        <Route path="/boardList" element={<BoardListPage />}/>
-                        <Route path="/boardDetail/:noticeBoardId" element={<BoardDetailPage />} />
-                    </Routes>
-                </MainContainer>
-            </>
-        }
+            {principalQuery.isLoading 
+                ? <></> 
+                : 
+                <>
+                    <SearchHeader />
+                    <MainContainer>
+                        <Routes>
+                            <Route path='/' element={<Home />} />
+                            <Route path='/search' element={<BookSearchPage />} />
+                            <Route path='/mypage/*' element={<Mypage />} />
+                            <Route path='/boardList' element={<BoardListPage />} />
+                            <Route path='/boardDetail/:noticeBoardId' element={<BoardDetailPage />} />
+                        </Routes>
+                    </MainContainer>
+                </>
+            }
         </>
     );
-}
-
-function BoardDetailPageWrapper() {
-    const { noticeBoardId } = useParams();
-    return <BoardDetailPage noticeBoardId={noticeBoardId} />;
 }
 
 export default MainRoute;

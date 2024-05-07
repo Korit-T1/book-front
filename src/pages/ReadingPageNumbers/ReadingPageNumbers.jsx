@@ -1,8 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-// import BookSearchPage from '../BookSearchPage/BookSearchPage';
+/** @jsxImportSource @emotion/react */
+import * as s from "./style";
 
-    const ReadingPageNumbers = ({ page, maxPageNumber, totalCount, option, getBookCountQuery, s }) => {
+import { Link } from 'react-router-dom';
+import BookSearchPage from '../BookSearchPage/BookSearchPage';
+
+    function ReadingPageNumbers ({ page, maxPageNumber, totalCount, option, getBookCountQuery }) {
 
         const numbers = [];
         for (let i = 1; i <= maxPageNumber; i++) {
@@ -50,13 +52,13 @@ import { Link } from 'react-router-dom';
                         </>
                     )}
                 </div>
-                
-                    <div css={[s.pageCount,     {textAlign: 'center'}]}>
+                    <div css={[s.pageCount,{textAlign: 'center'}]}>
                         <div css={s.page}>Page {page} of {maxPageNumber}</div>
                         <div css={s.count}>Count: {getBookCountQuery.data?.data.totalCount}</div>
                     </div>
             </div>
         );
     }    
+
 
     export default ReadingPageNumbers;

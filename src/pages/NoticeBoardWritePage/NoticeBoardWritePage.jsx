@@ -3,13 +3,15 @@ import * as s from "./style";
 
 import Select from "react-select";
 import ReactQuill from 'react-quill';
-import { useQuillInput } from "../../../hooks/quillHook";
-import { useMaxSizeValidateInput } from "../../../hooks/inputHook";
-import { QUILL_MODULES } from "../../../constants/quillModules";
 import { useMutation } from "react-query";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { registerNoticeRequest } from "../../../apis/api/notice";
+import { useQuillInput } from "../../hooks/quillHook";
+import { useMaxSizeValidateInput } from "../../hooks/inputHook";
+import { QUILL_MODULES } from "../../constants/quillModules";
+import { registerNoticeRequest } from "../../apis/api/notice";
+
+
 
 
 

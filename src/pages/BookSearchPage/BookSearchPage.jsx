@@ -10,7 +10,8 @@ import BookDetailModal from "../../components/BookDetailModal/BookDetailModal";
 import BookSearchPageNumbers from "../../pages/BookSearchPageNumbers/BookSearchPageNumbers";
 ReactModal.setAppElement("#root");
 
-const BookSearchPage = () => {
+function BookSearchPage() {
+    
     const [ searchParams, setSearchParams ] = useSearchParams();
     const [ searchData, setSearchData ] = useState({
         page: parseInt(searchParams.get("page")),
