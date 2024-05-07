@@ -6,6 +6,8 @@ export const inputBox = css`
     /* border-radius: 5px; */
     width: 300px;
     height: 50px;
+    color: black;
+    
 `;
 
 export const input = css`

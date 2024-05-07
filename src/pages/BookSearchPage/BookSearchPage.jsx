@@ -8,7 +8,7 @@ import { getBookCountRequest, searchBooksRequest } from "../../apis/api/bookApi"
 import ReactModal from "react-modal";
 import BookDetailModal from "../../components/BookDetailModal/BookDetailModal";
 import BookSearchPageNumbers from "../../pages/BookSearchPageNumbers/BookSearchPageNumbers";
-import { useSearchParams } from "react-router-dom";
+
 ReactModal.setAppElement("#root");
 
 const BookSearchPage = () => {
