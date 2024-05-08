@@ -53,4 +53,11 @@ export const loanBox = css`
     width: 95%;
     height: 400px;
     background-color: white;
+    margin-bottom: 15px;
+`
+export const returnBox = css`
+    border: 1px solid #dbdbdb;
+    width: 95%;
+    height: 400px;
+    background-color: white;
 `

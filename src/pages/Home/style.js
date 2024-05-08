@@ -116,6 +116,10 @@ export const item =  css`
     /* border: 1px solid black; */
     width: 200px;
     height: 500px;
+    cursor: pointer;
+    &:hover {
+        box-shadow: 0px 0px 10px #00000044;
+    }
 `;
 
 export const itemNew =  css`
@@ -123,6 +127,10 @@ export const itemNew =  css`
     /* border: 1px solid black; */
     width: 220px;
     height: 500px;
+    cursor: pointer;
+    &:hover {
+    box-shadow: 0px 0px 10px #00000044;
+    }
 `;
 
 export const bookImage =  css`
@@ -180,7 +188,10 @@ export const Rank = (index) => {
         justify-content: flex-end;
         /* padding: 0px 10px 50px; */
         width: ${size - 40}px;
-
+        cursor: pointer;
+        &:hover {
+        box-shadow: 0px 0px 10px #00000044;
+        }
         height: 100%;
         /* border: 1px solid; */
 

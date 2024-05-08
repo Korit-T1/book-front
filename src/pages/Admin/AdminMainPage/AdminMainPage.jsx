@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useState } from "react";
 import * as s from "./style"
-import { useQuery } from "react-query";
-import { getAdminLoanList } from "../../../apis/api/adminApi";
+import { useMutation, useQuery } from "react-query";
+import { getAdminLoanList, getAdminReturnList, putAdminReturnOrNot } from "../../../apis/api/adminApi";
 
 function AdminMainPage({children}) {
     const [ adminLoanList, setAdminLoanList ] = useState([]);
+    const [ adminReturnList, setAdminReturnList ] = useState([]);
 
     const getAdminLoanListQuery = useQuery(
         ["getAdminLoanListQuery"],
@@ -21,10 +22,34 @@ function AdminMainPage({children}) {
             }
         }
     )
+    const getAdminRetunrListQuery = useQuery(
+        ["getAdminRetunrListQuery"],
+        async () => await getAdminReturnList(),
+        {
+            retry: 0,
+            refetchOnWindowFocus: false,
+            onSuccess: response => {
+                setAdminReturnList(response?.data)
+            },
+            onError: error => {
+                console.log("error");
+            }
+        }
+    )
+    const returnOrNotMutation = useMutation({
+        mutationKey: "returnOrNotMutation",
+        mutationFn: putAdminReturnOrNot,
+        onSuccess: response => {
+            getAdminRetunrListQuery.refetch();
+        },
+        onError: error => {
+
+        }
+    });
     //유즈이펙트 사용 예시
     useEffect(() => {
-        console.log(adminLoanList)
-    }, [adminLoanList])
+        console.log(adminReturnList)
+    }, [adminReturnList])
 
 
     return (
@@ -77,8 +102,53 @@ function AdminMainPage({children}) {
                             </tbody>
                         </table>
                     </div>
-                    <div>
-
+                    <div css={s.returnBox}>
+                    반납신청
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>아이디</th>
+                                    <th>이름</th>
+                                    <th>책제목</th>
+                                    <th>도서코드</th>
+                                    <th>이메일</th>
+                                    <th>주소</th>
+                                    <th>전화번호</th>
+                                    <th>반납예정일자</th>
+                                    <th>반납신청일자</th>
+                                    <th>반납여부</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                   adminReturnList.length == 0
+                                   ?<></>
+                                   : adminReturnList.map(
+                                        adminReturn =>
+                                        <tr key={adminReturn.loanId}>
+                                            <td>{adminReturn.userName}</td>
+                                            <td>{adminReturn.name}</td>
+                                            <td>{adminReturn.bookName}</td>
+                                            <td>{adminReturn.bookStockId}</td>
+                                            <td>{adminReturn.email}</td>
+                                            <td>{adminReturn.address}</td>
+                                            <td>{adminReturn.phone}</td>
+                                            <td>{adminReturn.dueDate}</td>
+                                            <td>{adminReturn.returnDate}</td>
+                                            <td>
+                                                
+                                                {
+                                                    adminReturn.returnOrNot === 1 ? 
+                                                    <button onClick={() => returnOrNotMutation.mutate(
+                                                        adminReturn.loanId
+                                                    )}>확인</button> : <button disabled={true}>완료</button>
+                                                }
+                                            </td>
+                                        </tr>
+                                   )
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
            </div>
