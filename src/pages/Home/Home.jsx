@@ -12,12 +12,15 @@ import { Bs2SquareFill } from "react-icons/bs";
 import { Bs3SquareFill } from "react-icons/bs";
 import { Bs4SquareFill } from "react-icons/bs";
 import { Bs5SquareFill } from "react-icons/bs";
+import BookDetailModal from "../../components/BookDetailModal/BookDetailModal";
 
 
 function Home() {
     const [ popularBooks, setPopularBooks ] = useState([]);
     const [ topFiveBooks, setTopFiveBooks ] = useState([]);
     const [ newBooks , setNewBooks ] = useState([]);
+    const [ isOpen, setIsOpen ] = useState(false);
+    const [ selectedBook, setSelectedBook ] = useState(null);
 
     const getPopularBooksQuery = useQuery(
         ["getPopularBooksQuery"],
@@ -59,133 +62,149 @@ function Home() {
     );
 
     return (
-        <div css={s.layout}>
-            <div css={s.navigationBar}>
-                <div css={s.category}>
-                    
+        <>
+            <div css={s.layout}>
+                <div css={s.navigationBar}>
+                    <div css={s.category}>
+                        
+                    </div>
+                    <div css={s.category}>
+                        
+                    </div>
+                    <div css={s.category}>
+                        
+                    </div>
+                    <div css={s.category}>
+                        
+                    </div>
+                    <div css={s.category}>
+                        
+                    </div>
+                    <div css={s.category}>
+                        
+                    </div>
+                    <div css={s.category}>
+                        
+                    </div>
+                    <div css={s.category}>
+                        
+                    </div>
+                    <div css={s.category}>
+                        
+                    </div>
+                    <div css={s.category}>
+                        
+                    </div>
+                    <div css={s.category}>
+                        
+                    </div>
+                    <div css={s.category}>
+                        
+                    </div>
                 </div>
-                <div css={s.category}>
-                    
+                <div css={s.title}>
+                    <h1>인기 급상승! 많이 보고 있는 작품</h1>
+                    <FcBullish size={50} color="yellow" css={s.graph}/>
                 </div>
-                <div css={s.category}>
-                    
-                </div>
-                <div css={s.category}>
-                    
-                </div>
-                <div css={s.category}>
-                    
-                </div>
-                <div css={s.category}>
-                    
-                </div>
-                <div css={s.category}>
-                    
-                </div>
-                <div css={s.category}>
-                    
-                </div>
-                <div css={s.category}>
-                    
-                </div>
-                <div css={s.category}>
-                    
-                </div>
-                <div css={s.category}>
-                    
-                </div>
-                <div css={s.category}>
-                    
-                </div>
-            </div>
-            <div css={s.title}>
-                <h1>인기 급상승! 많이 보고 있는 작품</h1>
-                <FcBullish size={50} color="yellow" css={s.graph}/>
-            </div>
-            <div css={s.container}>
-                {
-                    popularBooks.map(book => 
-                        <div css={s.item} key={book.bookId}>
-                            <div css={s.bookImage}>
-                                <img src={book.coverImgUrl} alt="" />
-                            </div>
-                            <div css={s.bookInfo}>
-                                <div css={s.categoryName}>{book.categoryName}</div>
-                                <div css={s.bookName}>{book.bookName}</div>
-                                <div css={s.authorAndPublisher}>{book.authorName} - {book.publisherName}</div>
-                            </div>
-                        </div>
-                    )
-                }
-            </div>
-            <div css={s.title}>
-                <h1>금주의 Top 5</h1>
-                <FaRankingStar size={50} color="yellow" css={s.ranking}/>
-            </div>
-            <div css={s.containerRank}>
-                {
-                    topFiveBooks.map((book, index) => 
-                        <div css={s.Rank(index)} key={book.bookId}>
-                            <div css={s.first}>
-                                <div css={s.first2}>
-                                    <img src={book.coverImgUrl} alt=""/>
-                                    {
-                                        index === 0 ? 
-                                        <>
-                                            <div css={s.aa}>
-                                                <Bs1Square css={s.num1} size={21} color="white"/>
-                                                <GiImperialCrown size={24} color="white" />
-                                            </div>
-                                        </>
-                                        : index === 1 ? <Bs2SquareFill css={s.num} color="gray" size={21}/>
-                                        : index === 2 ? <Bs3SquareFill css={s.num} color="gray" size={21}/>
-                                        : index === 3 ? <Bs4SquareFill css={s.num} color="gray" size={21}/>
-                                        : <Bs5SquareFill css={s.num} size={21} color="gray"/>
-                                    }
+                <div css={s.container}>
+                    {
+                        popularBooks.map(book => 
+                            <div css={s.item} key={book.bookId} onClick={() => {
+                                setIsOpen(() => true);
+                                setSelectedBook(() => book);
+                                            }
+                                        }>
+                                <div css={s.bookImage}>
+                                    <img src={book.coverImgUrl} alt="" />
+                                </div>
+                                <div css={s.bookInfo}>
+                                    <div css={s.categoryName}>{book.categoryName}</div>
+                                    <div css={s.bookName}>{book.bookName}</div>
+                                    <div css={s.authorAndPublisher}>{book.authorName} - {book.publisherName}</div>
                                 </div>
                             </div>
-                            <div css={s.bookInfo}>
-                                <div css={s.categoryName}>{book.categoryName}</div>
-                                <div css={s.bookName}>{book.bookName}</div>
-                                <div css={s.authorAndPublisher}>{book.authorName} - {book.publisherName}</div>
-                            </div>
-                        </div>)
-                }
-            </div>
-            <div css={s.title}>
-                <h1>화제의 신상</h1>
-                <MdFiberNew size={50} color="#ee4242"/>
-                <button>게임</button>
-            </div>
-            <div css={s.containerNew}>
-                {
-                    newBooks.map(book => 
-                        <div css={s.itemNew} key={book.bookId}>
-                            <div css={s.bookImage}>
-                                <img src={book.coverImgUrl} alt="" />
-                            </div>
-                            <div css={s.bookInfo}>
-                                <div css={s.categoryName}>{book.categoryName}</div>
-                                <div css={s.bookName}>{book.bookName}</div>
-                                <div css={s.authorAndPublisher}>{book.authorName} - {book.publisherName}</div>
-                            </div>
-                        </div>
-                    )
-                }
-            </div>
-
-            <div css={s.container}>
-                <div css={s.subContainer}>
-                    <h1>공지사항</h1>
+                        )
+                    }
                 </div>
-                <div css={s.subContainer}>
+                <div css={s.title}>
+                    <h1>금주의 Top 5</h1>
+                    <FaRankingStar size={50} color="yellow" css={s.ranking}/>
+                </div>
+                <div css={s.containerRank}>
+                    {
+                        topFiveBooks.map((book, index) => 
+                            <div css={s.Rank(index)} key={book.bookId} onClick={() => {
+                                setIsOpen(() => true);
+                                setSelectedBook(() => book);
+                                            }
+                                        }
+                            >
+                                <div css={s.first}>
+                                    <div css={s.first2}>
+                                        <img src={book.coverImgUrl} alt=""/>
+                                        {
+                                            index === 0 ? 
+                                            <>
+                                                <div css={s.aa}>
+                                                    <Bs1Square css={s.num1} size={21} color="white"/>
+                                                    <GiImperialCrown size={24} color="white" />
+                                                </div>
+                                            </>
+                                            : index === 1 ? <Bs2SquareFill css={s.num} color="gray" size={21}/>
+                                            : index === 2 ? <Bs3SquareFill css={s.num} color="gray" size={21}/>
+                                            : index === 3 ? <Bs4SquareFill css={s.num} color="gray" size={21}/>
+                                            : <Bs5SquareFill css={s.num} size={21} color="gray"/>
+                                        }
+                                    </div>
+                                </div>
+                                <div css={s.bookInfo}>
+                                    <div css={s.categoryName}>{book.categoryName}</div>
+                                    <div css={s.bookName}>{book.bookName}</div>
+                                    <div css={s.authorAndPublisher}>{book.authorName} - {book.publisherName}</div>
+                                </div>
+                            </div>)
+                    }
+                </div>
+                <div css={s.title}>
+                    <h1>화제의 신상</h1>
+                    <MdFiberNew size={50} color="#ee4242"/>
+                    <button>게임</button>
+                </div>
+                <div css={s.containerNew}>
+                    {
+                        newBooks.map(book => 
+                            <div css={s.itemNew} key={book.bookId} onClick={() => {
+                                setIsOpen(() => true);
+                                setSelectedBook(() => book);
+                                            }
+                                        }>
+                                <div css={s.bookImage}>
+                                    <img src={book.coverImgUrl} alt="" />
+                                </div>
+                                <div css={s.bookInfo}>
+                                    <div css={s.categoryName}>{book.categoryName}</div>
+                                    <div css={s.bookName}>{book.bookName}</div>
+                                    <div css={s.authorAndPublisher}>{book.authorName} - {book.publisherName}</div>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+
+                <div css={s.container}>
+                    <div css={s.subContainer}>
+                        <h1>공지사항</h1>
+                    </div>
+                    <div css={s.subContainer}>
+
+                    </div>
+                </div>
+                <div css={s.container}>
 
                 </div>
             </div>
-            <div css={s.container}>
-
-            </div>
-        </div>
+            <BookDetailModal book={selectedBook} isOpen={isOpen} setIsOpen={setIsOpen}/>
+        </>
     );
 }
 

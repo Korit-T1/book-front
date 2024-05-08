@@ -194,7 +194,6 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                                                             content: reviewValue,
                                                             rating: rating   
                                                         });
-
                                                     }
                                                 }>작성</button>
                                             </section>
