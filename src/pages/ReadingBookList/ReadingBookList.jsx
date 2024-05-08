@@ -3,12 +3,18 @@ import * as s from "./style"
 import { useEffect, useState } from "react";
 import { getReadingCountRequest, getReadingDataRequest } from "../../apis/api/mypage";
 import { useMutation, useQuery } from "react-query";
-import { IoMdClose } from "react-icons/io";
 import { Link, useSearchParams } from "react-router-dom";
 import ReadingPageNumbers from "../ReadingPageNumbers/ReadingPageNumbers";
 import { bookReturn } from "../../apis/api/loanApi";
 import { BsCheckCircle } from "react-icons/bs";
-import { Line } from "rc-progress";
+import { FcHighPriority } from "react-icons/fc";
+import { FcCalendar } from "react-icons/fc";
+import { FcClock } from "react-icons/fc";
+// import { FaCheckCircle } from "react-icons/fa";
+// import { FaCheck } from "react-icons/fa";
+
+
+
 
 
 function ReadingBookList(data) {
@@ -136,39 +142,59 @@ function ReadingBookList(data) {
                     ? <h1>대출 중인 도서가 없습니다.</h1>
                     : readingBookList.map((loan, index) => {
                         const currentDate = new Date();
-                        const endDate = new Date(loan.dueDate); 
+                        const endDate = new Date(loan.dueDate);
+                        const startDate = new Date(loan.loanDate);
 
                         const timeDiff = endDate.getTime() - currentDate.getTime();
+                        const totalTime = endDate.getTime() - startDate.getTime();
 
                         const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
                         const hoursDiff = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         const minutesDiff = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
                         
+                        // console.log((totalTime - timeDiff) / totalTime * 100)
+                        const per = (timeDiff / totalTime) * 100
+                        console.log(per.toFixed(1))
                         return (
+                            <div css={s.datas(buttonStates[index])}>
                             <div css={s.data(buttonStates[index])} key={loan.loanId}>
                                 <div css={s.bookData}>
                                     <div css={s.checkBox}>
                                         {/* <input type="checkbox" onChange={e => {onCheckedElement(e.target.checked, loan.loanId);}}/> */}
                                             <BsCheckCircle 
-                                                css={s.checkBtn(buttonStates[index])} size={"25"} onClick={() => handleButtonClick(index)} />
+                                                css={s.checkBtn(buttonStates[index])} size={25} onClick={() => handleButtonClick(index)} />
                                     </div>
                                     <div css={s.bookImage}>
                                         <img src={loan.imageUrl} alt=""></img>
                                     </div>
                                     <div css={s.bookInfo}>
-                                        <div css={s.bookName}>{loan.bookName}</div>
-                                        <div css={s.authorName}>{loan.authorName}</div>
-                                        <div css={s.publisherName}>{loan.publisherName}</div>
-                                        <div>
-                                            <p>기간 :{loan.loanDate.substring(0, 10)} ~ {loan.dueDate.substring(0, 10)}</p>
-                                            <p>{daysDiff}일&nbsp;{hoursDiff}시간&nbsp;{minutesDiff}분&nbsp;남음</p>
-                                            <Line></Line>
+                                        <div css={s.top}>
+                                            <div css={s.bookName}>{loan.bookName}</div>
+                                            <div css={s.authorName}>{loan.authorName}</div>
+                                            <div css={s.publisherName}>{loan.publisherName}</div>
+                                        </div>
+                                        <div css={s.bot(per)}>
+                                            <div css={s.time}>
+                                                <FcClock size={22}/>
+                                                {per > 0
+                                                    ? <p>{daysDiff > 0 && `${daysDiff}일 `}{hoursDiff > 0 && `${hoursDiff}시간 `}{minutesDiff > 0 && `${minutesDiff}분 `}</p>
+                                                    : <p>연체됨</p>
+                                                }
+                                            </div>
+                                            <div css={s.period}>
+                                                <FcCalendar size={22}/>
+                                                <p>{loan.loanDate.replace("T", " ").substring(0, 10)} ~ {loan.dueDate.replace("T", " ").substring(0, 10)}</p>
+                                            </div>
+                                            <div>
+                                                <progress value={per} max={100}/>
+                                            </div>
                                         </div>
                                     </div>
-                                    {/* <div css={s.removeBox}>
-                                        <IoMdClose size={"17"} color={"#adadad"}/>
-                                    </div> */}
+                                    <div css={s.status}>
+                                        {per < 7.1424 ? <FcHighPriority css={s.warn} size={30}/> : <></>}
+                                    </div>
                                 </div>
+                            </div>
                             </div>
                         )
                     })

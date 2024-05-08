@@ -140,9 +140,6 @@ export const bookName = css`
     box-sizing: border-box;
     width: 100%;
     padding-bottom: 10px;
-    /* overflow:hidden; */
-    /* text-overflow:ellipsis; */
-    /* white-space:nowrap; */
     font-size: 18px;
     font-weight: bold;
 `
@@ -150,20 +147,14 @@ export const bookName = css`
 export const authorName = css`
     box-sizing: border-box;
     width: 100%;
-    /* overflow:hidden; */
-    /* text-overflow:ellipsis; */
-    /* white-space:nowrap; */
-    font-size: 16px;
+    font-size: 14px;
     color: #a3a3a3;
 `
 
 export const publisherName = css`
     box-sizing: border-box;
     width: 100%;
-    /* overflow:hidden; */
-    /* text-overflow:ellipsis; */
-    /* white-space:nowrap; */
-    font-size: 16px;
+    font-size: 14px;
     color: #a3a3a3;   
 `;
 
