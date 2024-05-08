@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style"
+
 import { Route, Routes } from "react-router-dom";
 import UserInfoModification from "../UserInfoModification/UserInfoModification";
 import WishList from "../WishList/WishList";
