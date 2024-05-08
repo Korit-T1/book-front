@@ -5,6 +5,7 @@ import AuthPageInput from "../../components/AuthPageInput/AuthPageInput";
 import { useInput } from "../../hooks/userInput";
 import { useMutation } from "react-query";
 import { signinRequest } from "../../apis/api/signin";
+import GradientColor from "../../components/GradientColor/GradientColor";
 // import { gradientColor } from "../../pages/GradientColor/GradientColor";
 
 
@@ -32,7 +33,8 @@ function SinginPage(props) {
         });
     } 
     return (
-        <>
+        <>      
+        <GradientColor/>
                 <div css={s.layout}>
                 <h1>Book Drop</h1>
                 <AuthPageInput
@@ -67,42 +69,9 @@ function SinginPage(props) {
             <div css={s.footer1}>
                 <p>© Book Drop Centre</p>
             </div>
+            
         </>
         
     );
 }
-
 export default SinginPage;
-
-
-
-
-
-/*
-<HTML 코드#2>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Login #2 | AsmrProg</title>
-</head>
-<body>
-
-    <div class="login">
-        <img src="bg.jpg" alt="">
-        <h3>Welcome Back!</h3>
-        <h2>AsmrProg</h2>
-        <form class="login-form">
-            <input type="password" placeholder="Enter your passcode">
-            <button type="submit">LOGIN</button>
-            <a href="#">Forget your passcode?</a>
-        </form>
-    </div>
-    
-</body>
-</html>
-*/

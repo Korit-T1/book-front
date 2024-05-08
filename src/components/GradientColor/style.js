@@ -1,11 +1,85 @@
-export const customBackground = css`
-    border-color: #da99ff;
-    background-image:
-        ${backgroundGradient({ x: 88, y: 0, hue: 327, saturation: 67, lightness: 64 })},
-        ${backgroundGradient({ x: 63, y: 46, hue: 307, saturation: 76, lightness: 61 })},
-        ${backgroundGradient({ x: 95, y: 53, hue: 89, saturation: 91, lightness: 67 })},
-        ${backgroundGradient({ x: 79, y: 83, hue: 170, saturation: 86, lightness: 65 })},
-        ${backgroundGradient({ x: 74, y: 93, hue: 71, saturation: 93, lightness: 75 })},
-        ${backgroundGradient({ x: 52, y: 13, hue: 110, saturation: 83, lightness: 72 })},
-        ${backgroundGradient({ x: 30, y: 80, hue: 263, saturation: 79, lightness: 66 })};
-`;
+// import { css } from "@emotion/react";
+// //import { css } from "styled-components";
+// import { backgroundGradient } from "./GradientColor";
+// import React from 'react';
+// import styled, { keyframes } from 'styled-components';
+
+
+// const rotate = keyframes`
+//   100% {
+//     transform: rotate(1turn);
+//   }
+// `;
+
+// const blink = keyframes`
+//   40% {
+//     opacity: 0.5;
+//   }
+//   80% {
+//     opacity: 1;
+//   }
+// `;
+
+
+// const RotatedBox = styled.div`
+//   position: relative;
+//   width: 200px;
+//   height: 200px;
+//   overflow: hidden;
+
+//   &::after {
+//     content: "";
+//     position: absolute;
+//     top: 6px;
+//     left: 6px;
+//     right: 6px;
+//     bottom: 6px;
+//     background: #fff;
+//   }
+// `;
+
+
+// const RotatedBoxDemo = styled.div`
+//   position: relative;
+//   width: 200px;
+//   height: 200px;
+//   overflow: hidden;
+
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     left: -50%;
+//     top: -50%;
+//     width: 200%;
+//     height: 200%;
+//     background-repeat: no-repeat;
+//     background-size: 50% 50%;
+//     background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+//     background-color: #da99ff;
+//   } // ?
+
+//     /* export default gradients;
+//         animation: ${rotate} 3s linear infinite;
+//     } */
+
+//   &::after {
+//     content: "";
+//     position: absolute;
+//     top: 6px;
+//     left: 6px;
+//     right: 6px;
+//     bottom: 6px;
+//     background: #fff;
+//     animation: ${blink} 5s linear infinite;
+//   } // ?
+
+// const MyComponent = () => {
+//   return (
+//     <div>
+//       <RotatedBox className="rotated_box" />
+//       <RotatedBoxDemo className="rotated_box_demo" />
+//     </div>
+//   );
+// };
+
+// export default MyComponent;
