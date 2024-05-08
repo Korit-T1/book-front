@@ -8,7 +8,7 @@ import ReturnedPageNumbers from "../ReturnedPageNumbers/ReturnedPageNumbers";
 import { IoWarning } from "react-icons/io5";
 import { HiMiniCheckCircle } from "react-icons/hi2";
 import { FcCalendar } from "react-icons/fc";
-import { TbClockCheck } from "react-icons/tb";
+import { FcClock } from "react-icons/fc";
 
 function ReturnedBookList(data) {
     const id = data.data.data.userId;
@@ -98,8 +98,8 @@ function ReturnedBookList(data) {
                                 <div css={s.statusBox}>
                                     {
                                         loan.returnDate < loan.dueDate
-                                        ? <HiMiniCheckCircle size={36} color="#4fd44d"/>
-                                        : <IoWarning size={35} color="orange"/>
+                                        ? <HiMiniCheckCircle size={33} color="#4fd44d"/>
+                                        : <IoWarning size={32} color="orange"/>
                                     }
                                 </div>
                                 <div css={s.bookImage}>
@@ -113,11 +113,11 @@ function ReturnedBookList(data) {
                                     </div>
                                     <div css={s.bot(activeFilter)}>
                                         <div css={s.finish}>
-                                            <TbClockCheck size={25} color="#3fcee1"/>
+                                            <FcClock size={22}/>
                                             <p>{loan.returnDate.substring(0, 10)}</p>
                                         </div>
                                         <div css={s.period}>
-                                            <FcCalendar size={25}/>
+                                            <FcCalendar size={22}/>
                                             <p>{loan.loanDate.substring(0, 10)} ~ {loan.dueDate.substring(0, 10)}</p>
                                         </div>
                                     </div>

@@ -126,7 +126,7 @@ export const bookInfo = css`
     flex-direction: column;
     margin-left: 10px;
     /* background-color: gray; */
-    width: 51.5%;
+    width: 48%;
 `
 
 export const top = css`
