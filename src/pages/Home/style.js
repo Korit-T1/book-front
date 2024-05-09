@@ -11,13 +11,23 @@ export const layout = css`
     }
 `;
 
+export const slideBackground = css`
+    box-sizing: border-box;
+    border: 1px solid black;
+    height: 600px;
+
+    & > img {
+        
+    }
+`;
+
 export const navigationBar = css`
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
     height: 100px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 `;
 
 export const category = css`
@@ -32,10 +42,24 @@ export const category = css`
 export const title = css`
     display: flex;
     align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
     height: 70px;
-    border: 1px solid;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    & > h1 {
+        font-size: 50px
+    }
+`;
+
+export const title2 = css`
+    display: flex;
+    align-items: center;
+    height: 70px;
+    margin-top: 35px;
+
+    & > h1 {
+        font-size: 50px
+    }
 `;
 
 export const graph = css`
@@ -51,7 +75,7 @@ export const ranking = css`
 export const subContainer = css`
     width: 50%;
     height: 300px;
-    border: 1px solid;
+    /* border: 1px solid; */
 `;
 
 export const container = css`
@@ -60,8 +84,8 @@ export const container = css`
     justify-content: space-between;
     /* text-align: center; */
     width: 100%;
-    height: 500px;
-    border: 1px solid;
+    height: 400px;
+    /* border: 1px solid; */
 `;
 
 export const containerRank = css`
@@ -70,7 +94,7 @@ export const containerRank = css`
     justify-content: space-between;
     /* text-align: center; */
     width: 100%;
-    height: 570px;
+    height: 540px;
     /* border: 1px solid; */
 `;
 
@@ -82,8 +106,8 @@ export const containerNew = css`
     /* align-items: flex-end; */
     /* text-align: center; */
     width: 100%;
-    height: 1000px;
-    border: 1px solid;
+    height: 1100px;
+    /* border: 1px solid; */
 `;
 
 export const num = css`
@@ -115,11 +139,9 @@ export const item =  css`
     box-sizing: border-box;
     /* border: 1px solid black; */
     width: 200px;
-    height: 500px;
-    cursor: pointer;
-    &:hover {
-        box-shadow: 0px 0px 10px #00000044;
-    }
+    height: 400px;
+
+
 `;
 
 export const itemNew =  css`
@@ -127,21 +149,25 @@ export const itemNew =  css`
     /* border: 1px solid black; */
     width: 220px;
     height: 500px;
-    cursor: pointer;
-    &:hover {
-    box-shadow: 0px 0px 10px #00000044;
-    }
+
+
 `;
 
 export const bookImage =  css`
     display: flex;
     /* justify-content: center; */
     align-items: center;
-    height: 60%;
-    overflow: hidden;
+    height: 75%;
+    /* overflow: hidden; */
 
+    &:hover {
+        box-shadow: 0px 0px 10px #00000044;
+    }
+    cursor: pointer;
+    
     & > img {
         width: 100%;
+        height: 100%;
         border: 1px solid #dbdbdb;
         box-sizing: border-box;
     }
@@ -150,15 +176,15 @@ export const bookImage =  css`
 export const bookInfo =  css`
     display: flex;
     flex-direction: column;
-    height: 40%;
+    height: 25%;
 `;
 
 export const categoryName = css`
+    margin-top: 10px;
     box-sizing: border-box;
     width: 100%;
     font-size: 17px;
     color: #a3a3a3;
-    padding-top: 20px;
 `
 
 export const bookName = css`
@@ -179,21 +205,13 @@ export const authorAndPublisher = css`
 export const Rank = (index) => {
     const size = 1100 * ((5 - (index * 0.6)) * 5 / 100);
     const font = (index - 24) * (-1);
-    console.log(font);
 
     return css`
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        /* padding: 0px 10px 50px; */
-        width: ${size - 40}px;
-        cursor: pointer;
-        &:hover {
-        box-shadow: 0px 0px 10px #00000044;
-        }
-        height: 100%;
-        /* border: 1px solid; */
+        width: ${size}px;
 
         & > div:nth-of-type(1) {    // first
             box-sizing: border-box;
@@ -201,15 +219,17 @@ export const Rank = (index) => {
             justify-content: space-between;
             align-items: flex-end;
             width: 100%;
-            height: 80%;
-            /* border: 1px solid black; */
-            /* overflow: hidden; */
-
+            height: 75%;
+            
             & > div:nth-of-type(1) {    // first2
                 display: flex;
                 width: 100%;
-                height: ${size + 60}px;
-                /* overflow: hidden; */
+                height: ${size + 90}px;
+                cursor: pointer;
+
+                &:hover {
+                    box-shadow: 0px 0px 10px #00000044;
+                }
 
                 & > img {
                     box-sizing: border-box;
@@ -221,7 +241,9 @@ export const Rank = (index) => {
         }
 
         & > div:nth-of-type(2) {
+            height: 25%;
             & > div:nth-of-type(1) {
+                margin-top: 10px;
                 font-size: ${font - 6}px;
             }
             & > div:nth-of-type(2) {

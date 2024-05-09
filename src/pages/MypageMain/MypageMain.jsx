@@ -3,7 +3,7 @@ import { useState } from "react";
 import * as s from "./style"
 import { getSummaryCountRequest } from "../../apis/api/mypage";
 import { useQuery } from "react-query";
-import example from "../../free-icon-feeder-1725449.png"
+import example from "../../assets/free-icon-feeder-1725449.png";
 
 function MypageMain(data) {
     const id = data.data.data.userId;
