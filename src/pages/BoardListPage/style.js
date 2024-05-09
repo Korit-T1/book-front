@@ -26,7 +26,8 @@ export const boardListHeader = css`
     display: flex;
     border-bottom: 2px solid #dbdbdb;
     width: 100%;
-    & > div{
+
+    & > div {
         box-sizing: border-box;
         display: flex;
         justify-content: center;
@@ -35,13 +36,16 @@ export const boardListHeader = css`
         height: 40px;
         font-weight: 700;
         cursor: default;
+        padding: 0 10px; /* 내부 여백 추가 */
     }
     & > div:nth-of-type(1) {
         flex-grow: 0;
         border-right: 1px solid #dbdbdb;
         width: 80px;
+        padding: 0; /* 내부 여백 제거 */
     }
 `;
+
 
 export const boardListItem = css`
     color: #222;
