@@ -14,6 +14,7 @@ import { useState } from "react";
 import { getAdminPrincipalRequest } from "../../src/apis/api/principal";
 import { useQuery } from "react-query";
 import NoticeBoardWritePage from '../pages/NoticeBoardWritePage/NoticeBoardWritePage';
+import AdminLoanManagement from '../pages/Admin/AdminLoanManagement/AdminLoanManagement';
 
 
 function AdminRoute(props) {
@@ -50,6 +51,7 @@ function AdminRoute(props) {
                     <Route path='/eventmanage' element={ <AdminEventManagement /> } />   {/* 이벤트관리 */}
                     <Route path='/preference' element={ <AdminPreferenceManagement /> } />    {/* 환경설정 */}
                     <Route path='/bookregister' element={ <AdminBookRegisterInput /> } />    {/* 책 등록 */}
+                    <Route path='/loanmanage' element={<AdminLoanManagement />} /> {/* 대출 반납 관리 */}
                     <Route path='/boardWrite' element={ <NoticeBoardWritePage /> } />
                 </Routes>
                 <AdminSideBar />
