@@ -38,7 +38,7 @@ function ReadingBookList(data) {
 
     useEffect(() => {
         buttonStates.forEach((value, index) => {
-            console.log(`Index: ${index}, Value: ${value}`);
+            // console.log(`Index: ${index}, Value: ${value}`);
         })
     }, [buttonStates])
 
@@ -58,7 +58,7 @@ function ReadingBookList(data) {
             retry: 0,
             refetchOnWindowFocus: false,
             onSuccess: response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setReadingBookList(response.data.reading)
             },
             onError: error => {
@@ -74,7 +74,7 @@ function ReadingBookList(data) {
             retry: 0,
             refetchOnWindowFocus: false,
             onSuccess: response => {
-                console.log(response.data);
+                // console.log(response.data);
             }
         }
     );
@@ -84,6 +84,7 @@ function ReadingBookList(data) {
         mutationFn: bookReturn,
         onSuccess: response => {
             getReadingBooksQuery.refetch();
+            window.location.reload();
         },
         onError: error => {
 
@@ -92,9 +93,9 @@ function ReadingBookList(data) {
 
     const onCheckedElement = (checked, item) => {
         if(checked) {
-            setCheckedList([...checkedList, item]);
+            setCheckedList(checkedList => [...checkedList, item]);
         } else if (!checked) {
-            setCheckedList(checkedList.filter(el => el !== item));
+            setCheckedList(checkedList => checkedList.filter(el => el !== item));
         }
     };
    
@@ -102,8 +103,11 @@ function ReadingBookList(data) {
         checkedList.forEach(loanId => {
             returnBookMutation.mutate(loanId);
         });
+        
     }
-
+    useEffect(() => {
+        console.log(checkedList)
+    }, [checkedList])
     return (
         <>
             <div css={s.header(activeFilter)}>
@@ -144,15 +148,19 @@ function ReadingBookList(data) {
                         const hoursDiff = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         const minutesDiff = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
                         
-                        const per = (timeDiff / totalTime) * 100
+                        const per = (timeDiff / totalTime) * 100;
+                        
                         return (
                             <div css={s.datas(buttonStates[index])} key={loan.loanId}>
                             <div css={s.data(buttonStates[index])}>
                                 <div css={s.bookData}>
                                     <div css={s.checkBox}>
-                                        {/* <input type="checkbox" onChange={e => {onCheckedElement(e.target.checked, loan.loanId);}}/> */}
+                                        
+                                        <input type="checkbox" id={`check${loan.loanId}`} style={{display: "none"}} onChange={e => {onCheckedElement(e.target.checked, loan.loanId);}}/>
+                                        <label htmlFor={`check${loan.loanId}`}>
                                             <BsCheckCircle 
-                                                css={s.checkBtn(buttonStates[index])} size={25} onClick={() => handleButtonClick(index)} />
+                                                    css={s.checkBtn(buttonStates[index])} size={25} onClick={() => handleButtonClick(index)} />
+                                        </label>
                                     </div>
                                     <div css={s.bookImage}>
                                         <img src={loan.imageUrl} alt=""></img>

@@ -1,9 +1,18 @@
+/** @jsxImportSource @emotion/react */
+import * as s from "./style"
+
 export default function NewPost() {
+  
+  
     return (
-      <label>
-        Write your post:
-        <textarea name="postContent" rows={4} cols={40} />
-      </label>
+      <div css={s.background}>
+        <div css={s.layout}>
+          <div>
+
+          </div>
+          
+        </div>
+      </div>
     );
   }
   

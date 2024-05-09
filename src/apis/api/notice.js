@@ -10,5 +10,9 @@ export const getNotice = async (noticeBoardId) => {
 }
 
 export const getNoticeAll = async (params) => {
-    return await instance.get(`/getNotice`, {params});
+    return await instance.get(`/admin/getNotice`, {params});
+}
+
+export const noticeCount = async (params) => {
+    return await instance.get("/admin/notice/count", {params});
 }

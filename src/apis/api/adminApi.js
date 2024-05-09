@@ -9,3 +9,6 @@ export const getAdminReturnList = async () => {
 export const putAdminReturnOrNot = async (loanId) => {
     return await instance.put(`/adminReturnOrNot/${loanId}`)
 }
+export const getAdminOverdue = async () => {
+    return await instance.get(`/adminOverdue`);
+}
