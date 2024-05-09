@@ -13,6 +13,7 @@ import { Bs3SquareFill } from "react-icons/bs";
 import { Bs4SquareFill } from "react-icons/bs";
 import { Bs5SquareFill } from "react-icons/bs";
 import BookDetailModal from "../../components/BookDetailModal/BookDetailModal";
+import ImageSilder from "../../components/ImageSilder/ImageSilder";
 
 
 function Home() {
@@ -64,43 +65,21 @@ function Home() {
     return (
         <>
             <div css={s.layout}>
+                <ImageSilder />
                 <div css={s.navigationBar}>
-                    <div css={s.category}>
-                        
-                    </div>
-                    <div css={s.category}>
-                        
-                    </div>
-                    <div css={s.category}>
-                        
-                    </div>
-                    <div css={s.category}>
-                        
-                    </div>
-                    <div css={s.category}>
-                        
-                    </div>
-                    <div css={s.category}>
-                        
-                    </div>
-                    <div css={s.category}>
-                        
-                    </div>
-                    <div css={s.category}>
-                        
-                    </div>
-                    <div css={s.category}>
-                        
-                    </div>
-                    <div css={s.category}>
-                        
-                    </div>
-                    <div css={s.category}>
-                        
-                    </div>
-                    <div css={s.category}>
-                        
-                    </div>
+                    <div css={s.category}></div>
+                    <div css={s.category}></div>
+                    <div css={s.category}></div>
+                    <div css={s.category}></div>
+                    <div css={s.category}></div>
+                    <div css={s.category}></div>
+                    <div css={s.category}></div>
+                    <div css={s.category}></div>
+                    <div css={s.category}></div>
+                    <div css={s.category}></div>
+                    <div css={s.category}></div>
+                    <div css={s.category}></div>
+                    <div css={s.category}></div>
                 </div>
                 <div css={s.title}>
                     <h1>인기 급상승! 많이 보고 있는 작품</h1>
@@ -126,7 +105,7 @@ function Home() {
                         )
                     }
                 </div>
-                <div css={s.title}>
+                <div css={s.title2}>
                     <h1>금주의 Top 5</h1>
                     <FaRankingStar size={50} color="yellow" css={s.ranking}/>
                 </div>
@@ -136,8 +115,8 @@ function Home() {
                             <div css={s.Rank(index)} key={book.bookId} onClick={() => {
                                 setIsOpen(() => true);
                                 setSelectedBook(() => book);
-                                            }
-                                        }
+                                }
+                            }
                             >
                                 <div css={s.first}>
                                     <div css={s.first2}>
@@ -191,7 +170,7 @@ function Home() {
                     }
                 </div>
 
-                <div css={s.container}>
+                {/* <div css={s.container}>
                     <div css={s.subContainer}>
                         <h1>공지사항</h1>
                     </div>
@@ -201,7 +180,7 @@ function Home() {
                 </div>
                 <div css={s.container}>
 
-                </div>
+                </div> */}
             </div>
             <BookDetailModal book={selectedBook} isOpen={isOpen} setIsOpen={setIsOpen}/>
         </>

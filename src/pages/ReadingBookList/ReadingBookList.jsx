@@ -10,12 +10,6 @@ import { BsCheckCircle } from "react-icons/bs";
 import { FcHighPriority } from "react-icons/fc";
 import { FcCalendar } from "react-icons/fc";
 import { FcClock } from "react-icons/fc";
-// import { FaCheckCircle } from "react-icons/fa";
-// import { FaCheck } from "react-icons/fa";
-
-
-
-
 
 function ReadingBookList(data) {
     const id = data.data.data.userId;
@@ -27,8 +21,6 @@ function ReadingBookList(data) {
         userid: id,
         page: parseInt(searchParams.get("page"))
     });
-
-    const [ progressPercent, setProgressPercent ] = useState(0);
 
     const [ buttonStates, setButtonStates ] = useState(Array(readingBookList.length).fill(false));
     const handleButtonClick = (index) => {
@@ -156,12 +148,11 @@ function ReadingBookList(data) {
                         const hoursDiff = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         const minutesDiff = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
                         
-                        // console.log((totalTime - timeDiff) / totalTime * 100)
-                        const per = (timeDiff / totalTime) * 100
-                        // console.log(per.toFixed(1))
+                        const per = (timeDiff / totalTime) * 100;
+                        
                         return (
-                            <div css={s.datas(buttonStates[index])}>
-                            <div css={s.data(buttonStates[index])} key={loan.loanId}>
+                            <div css={s.datas(buttonStates[index])} key={loan.loanId}>
+                            <div css={s.data(buttonStates[index])}>
                                 <div css={s.bookData}>
                                     <div css={s.checkBox}>
                                         

@@ -34,7 +34,7 @@ function SinginPage(props) {
     } 
     return (
         <>      
-        <GradientColor/>
+        {/* <GradientColor/> */}
                 <div css={s.layout}>
                 <h1>Book Drop</h1>
                 <AuthPageInput

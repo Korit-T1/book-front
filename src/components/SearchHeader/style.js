@@ -7,40 +7,64 @@ export const headerLayout = css`
 
 export const header = css`
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 `;
 
 export const headerLeft = css`
+    width: 475px;
     display: flex;
+    /* box-sizing: border-box; */
+    /* border: 1px solid; */
+`
+
+export const headerCenter = css`
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    /* box-sizing: border-box; */
+    /* border: 1px solid; */
+`
+
+export const headerRight = css`
+    width: 475px;
+    display: flex;
+    /* box-sizing: border-box;
+    border: 1px solid; */
     align-items: center;
 `
 
 export const brandLogo = css`
-    font-size: 24px;
     text-decoration: none;
     font-weight: bold;
     color: #222222;
+
+    & > p {
+        margin: 0;
+        font-size: 70px;
+    }
 `
 
 export const menuNav = css`
     box-sizing: border-box;
+    /* border: 1px solid; */
     list-style: none;
     display: flex;
-    align-items: center;
-    margin-left: 20px;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    width: 100%;
     height: 50px;
+    padding: 0;
 
     & > a {
         transition: all 0.2s ease-in-out;
-        margin-right: 25px;
         text-decoration: none;
         color: #222222;
-        font-weight: 600;
+        font-weight: bold;
+        font-size: 18px;
     }
 
     & > a:hover {
-        font-size: 18px;
+        font-size: 22px;
     }
 `
 
@@ -49,9 +73,22 @@ export const accountNav = css`
 `
 
 export const accountBox = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
-    border: 2px solid #dbdbdb;
+    /* border: 2px solid #dbdbdb; */
+    background-color: #21D4FD;
+    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
+
+    overflow: hidden;
+    
+    & > img {
+        width: 100%;
+        height: 100%;
+    }
+
 `   
