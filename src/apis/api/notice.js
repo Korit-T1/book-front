@@ -16,3 +16,11 @@ export const getNoticeAll = async (params) => {
 export const noticeCount = async (params) => {
     return await instance.get("/admin/notice/count", {params});
 }
+
+export const deleteNotice = async (data) => {
+    const response = await instance.delete("/admin/notice", {data});
+}
+
+export const updateNotice = async (data) => {
+    return await instance.put(`/admin/notice/${data.noticeBoardId}`, data);
+}
