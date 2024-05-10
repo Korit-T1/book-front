@@ -23,3 +23,8 @@ export const layout = css`
     height: 100%;
     overflow: hidden;
 `;
+
+export const inputBox = css`
+    display: flex;
+    flex-direction: column;
+`

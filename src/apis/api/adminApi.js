@@ -12,3 +12,6 @@ export const putAdminReturnOrNot = async (loanId) => {
 export const getAdminOverdue = async () => {
     return await instance.get(`/adminOverdue`);
 }
+export const getAdminUser = async (params) => {
+    return await instance.get(`/adminUser`, {params})
+}
