@@ -1,8 +1,8 @@
 import { useState } from "react";
 import * as s from "./style";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import { getNotice } from "../../apis/api/notice";
+import { useParams } from "react-router-dom"; 
+import { deleteNotice, getNotice } from "../../apis/api/notice";
 
 function BoardDetailPage(props) {
     const { noticeBoardId } = useParams();
@@ -23,6 +23,23 @@ function BoardDetailPage(props) {
         }
     );
 
+    const handleDelete = async () => {
+        if (window.confirm("정말로 이 게시글을 삭제하시겠습니까?")) {
+            try {
+                await deleteNotice([noticeBoardId]);
+                alert("해당 게시글 삭제 완료");
+                window.location.replace("/boardList?page=1&option=0&text=");
+            } catch (error) {
+                console.error("게시글 삭제에 실패했습니다:", error);
+                alert("게시글 삭제에 실패했습니다. 다시 시도해주세요.");
+            }
+        }
+    };
+
+    const handleUpdate = () => {
+        // 수정하기 페이지로 이동
+        window.location.replace(`/boardDetail/edit/${noticeBoardId}`);
+    };
     // HTML 태그를 제거하여 순수한 텍스트만 반환하는 함수
     const removeHTMLTags = (str) => {
         return str.replace(/<[^>]*>?/gm, '');
@@ -37,25 +54,32 @@ function BoardDetailPage(props) {
         return `${year}-${month}-${day}`;
     }
 
-
     return (
         <>
-            {notice && (
-                <div css={s.detailContainer}>
-                   
-                    <h3>{notice.noticeBoardCategoryName}</h3>
-                    <h2 css={s.title}>제목: {notice.title}</h2>
-                    <div css={s.content}>
-                        {/* HTML 태그를 제거한 순수한 텍스트를 표시 */}
-                        {removeHTMLTags(notice.content)}
+            <div>
+                {notice && (
+                    <div css={s.detailContainer}>
+                        <h3>{notice.noticeBoardCategoryName}</h3>
+                        <h2 css={s.title}>제목: {notice.title}</h2>
+                        <div css={s.content}>
+                            {/* HTML 태그를 제거한 순수한 텍스트를 표시 */}
+                            {removeHTMLTags(notice.content)}
+                        </div>
+                        <p css={s.date}>게시일: {formatDate(notice.createDate)}</p>
                     </div>
-                    <p css={s.date}>게시일: {formatDate(notice.createDate)}</p>
-                </div>
-            )}
+                )}
+            </div>
+            <div>
+            
+                <button onClick={handleUpdate}>수정</button>
+                <button onClick={handleDelete}>삭제</button>
+            </div>
         </>
     );
 }
 
 export default BoardDetailPage;
+
+
 
 

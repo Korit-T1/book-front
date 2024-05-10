@@ -84,7 +84,6 @@ function BoardListPage(props) {
                     <option value="2">이벤트</option>
                 </select>
                 <input
-                    type="text"
                     name="text"
                     value={searchData.text}
                     onChange={handleSearchDataChange}

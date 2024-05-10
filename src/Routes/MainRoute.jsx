@@ -11,6 +11,7 @@ import { principalState } from '../atoms/principalAtom';
 import BookSearchPage from '../../src/pages/BookSearchPage/BookSearchPage';
 import BoardListPage from '../pages/BoardListPage/BoardListPage';
 import BoardDetailPage from '../pages/BoardDetailPage/BoardDetailPage';
+import BoardModifyPage from '../pages/BoardModifyPage/BoardModifyPage';
 
 function MainRoute() {
     const [ principal, setPrincipal ] = useRecoilState(principalState);
@@ -47,6 +48,7 @@ function MainRoute() {
                             <Route path='/mypage/*' element={<Mypage />} />
                             <Route path='/boardList' element={<BoardListPage />} />
                             <Route path='/boardDetail/:noticeBoardId' element={<BoardDetailPage />} />
+                            <Route path='/boardDetail/edit/:noticeBoardId' element={<BoardModifyPage />} />
                         </Routes>
                     </MainContainer>
                 </>
