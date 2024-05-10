@@ -5,6 +5,7 @@ import AuthPageInput from "../../components/AuthPageInput/AuthPageInput";
 import { useInput } from "../../hooks/userInput";
 import { useMutation } from "react-query";
 import { signinRequest } from "../../apis/api/signin";
+import GradientColor from "../../components/GradientColor/GradientColor";
 // import { gradientColor } from "../../pages/GradientColor/GradientColor";
 
 
@@ -32,7 +33,8 @@ function SinginPage(props) {
         });
     } 
     return (
-        <>
+        <>      
+        <GradientColor/>
                 <div css={s.layout}>
                 <h1>Book Drop</h1>
                 <AuthPageInput
