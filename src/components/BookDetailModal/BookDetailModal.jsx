@@ -10,6 +10,10 @@ import { useRecoilState } from "recoil";
 import { getReview, registerReview } from "../../apis/api/reviewApi";
 import Rate from "rc-rate";
 import "rc-rate/assets/index.css";
+import { FaStar } from "react-icons/fa";
+
+
+
 
 function BookDetailModal({book, isOpen, setIsOpen}) {
     const [ stockState, setStockState ] = useState([]);
@@ -29,6 +33,7 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
             retry: 0,
             enabled: isOpen,
             onSuccess: response => {
+                console.log(response.data)
                 setStockState(() => response.data.map(stock => ({
                     stockId: stock.bookStockId,
                     loanStatus: stock.loanStatus
@@ -45,6 +50,7 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
             retry: 0,
             enabled: isOpen,
             onSuccess: response => {
+                console.log(response.data)
                 setReviews(response?.data);
             },
             retry: 0
@@ -98,26 +104,32 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                             <img src={book.coverImgUrl} alt="" />
                         </div>
                         <div css={s.infoBox}>
-                            <button onClick={() => setPage(1)}>정보</button>
-                            <button onClick={() => setPage(2)}>리뷰</button>
+                            <div css={s.btns}>
+                                <button css={s.btn} onClick={() => setPage(1)}>정보</button>
+                                <button css={s.btn} onClick={() => setPage(2)}>리뷰</button>
+                            </div>
                             <div>
                                 {
                                 page === 1 
                                 ?
                                     <>
                                     <div css={s.bookInfo}>
-                                        <h3>제목: {book.bookName}</h3>
-                                        <h3>저자: {book.authorName}</h3>
-                                        <h3>출판사: {book.publisherName}</h3>
-                                        <h3>출판일: {book.publishDate}</h3>
+                                        <h1>{book.bookName}</h1>
+                                        <h3>{book.authorName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                        {book.publisherName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                        {book.publishDate.replace("T", " ").substring(0, 10)}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                        {book.categoryName}</h3>
                                     </div>
-                                    <div>
-                                        <h3>평점</h3>
+                                    <div css={s.bookRate}>
                                         <Rate
                                             count={5}
                                             value={book.averageRating}
                                             allowHalf={false}
-                                            style={{fontSize: 30}}
+                                            style={{fontSize: 40, 
+                                                    pointerEvents: "none"
+                                                }}
+                                            character={<FaStar />}
+                                            disabled
                                         />
                                         <span>{Math.floor(book.averageRating)}</span>
                                     </div>  
@@ -127,6 +139,7 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                                                 <tr>
                                                     <th>도서코드</th>
                                                     <th>대출/반납</th>
+                                                    <th>상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -134,18 +147,19 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                                                     bookStocksQuery.isLoading
                                                     ? <></>
                                                     : stockState.map(
-                                                        stock =>
-                                                        <tr key={stock.bookStockId}>
-                                                            <td>{stock.stockId}</td>
-                                                            <td>{
-                                                                stock.loanStatus === 1 
-                                                                ? <button onClick={() => registerLoanMutation.mutate({
-                                                                    userId: principal.userId,   
-                                                                    bookStockId: stock.stockId  //백에서 받는 값이 bookStockId라서 bookStockId이다. 
-                                                                })}>대출</button> 
-                                                                : <button disabled={true}>대출중...</button>
-                                                            }</td>
-                                                        </tr>
+                                                        (stock, index) =>
+                                                            <tr key={stock.bookStockId}>
+                                                                <td>{index + 1}번 도서</td>
+                                                                <td>{
+                                                                    stock.loanStatus === 1 
+                                                                    ? <button onClick={() => registerLoanMutation.mutate({
+                                                                        userId: principal.userId,   
+                                                                        bookStockId: stock.stockId  //백에서 받는 값이 bookStockId라서 bookStockId이다. 
+                                                                    })}>대출</button> 
+                                                                    : <button disabled={true}>대출중...</button>
+                                                                }</td>
+                                                                <td>{index < 2 ? "3일 11시간 49분 남음" : "O"}</td>
+                                                            </tr>
                                                     )
                                                 }
                                             </tbody>
@@ -155,48 +169,80 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                                     </>
                                     :
                                     <>  
-                                        {
-                                            reviewQuery.isLoading 
-                                            ? <></>
-                                            : reviews.length === 0 ? <></> : reviews.map(
-                                                review =>
-                                                <div css={s.reviewContent}>
-                                                   <span><p>{review.content}</p></span>
-                                                
-                                                   <span><p>평점{review.rating}</p></span>
-                                                </div>
-                                            )
-                                        }
-                                        <div>                                  
-                                            <textarea 
-                                                value={reviewValue}
-                                                onChange={handleTextChange}
-                                                cols="30" 
-                                                rows="10" 
-                                                css={s.reviewArea}></textarea>
-                                        </div>
-                                        <div>
-                                            <section css={s.Base}>
-                                                <h1 css={s.Name}>별점</h1>
-                                                <Rate 
+                                        <div css={s.summary}>
+                                            <div>
+                                                <h2>{reviews.length}명의 회원이 평가한 평균 별점</h2>
+                                            </div>
+                                            <div>
+                                                <Rate
                                                     count={5}
-                                                    value={rating}
-                                                    allowHalf={true}
-                                                    style={{fontSize: 30}}
-                                                    onChange={value => setRating(() => value)}
-                                                />
-                                                <span css={s.RatingValue}>{rating}</span>
-                                                <button onClick={
-                                                    () => {
-                                                        registerReviewMutation.mutate({
-                                                            bookId: book.bookId,
-                                                            userId: principal.userId,
-                                                            content: reviewValue,
-                                                            rating: rating   
-                                                        });
-                                                    }
-                                                }>작성</button>
-                                            </section>
+                                                    value={book.averageRating}
+                                                    allowHalf={false}
+                                                    style={{fontSize: 40, 
+                                                            pointerEvents: "none"
+                                                        }}
+                                                    character={<FaStar />}
+                                                    disabled/>
+                                                <span>{Math.round(book.averageRating * 10) / 10}</span>
+                                                <span>/ 10.0</span>
+                                            </div>
+                                        </div> 
+                                        <div css={s.reviewBox}>
+                                            {
+                                                reviewQuery.isLoading 
+                                                ? <></>
+                                                : reviews.length === 0 ? <></> : reviews.map((review, index) =>
+                                                    <div key={index} css={s.reviewContent}>
+                                                        <div css={s.reviewContentLeft}>
+                                                            <p>{review.content}</p>
+                                                            <p>{review.username ? review.username : "탈퇴한 사용자"} | {review.createDate.replace("T", " ").substring(0, 10)}</p>
+                                                        </div>
+                                                        <div css={s.reviewContentRight}>
+                                                            <div>
+                                                                <FaStar size={25} color="orange"/>
+                                                            </div>
+                                                            <div><p>{review.rating}</p></div>
+                                                        </div>
+                                                    </div> 
+                                                )
+                                            }
+                                        </div>
+                                        <div css={s.reviewPages}>
+                                            
+                                        </div> 
+                                        <div css={s.bottom}>
+                                            <div css={s.Base}>
+                                                <div css={s.base1}>
+                                                    <Rate count={5}
+                                                        value={rating}
+                                                        allowHalf={true}
+                                                        style={{fontSize: 25}}
+                                                        character={<FaStar />}
+                                                        onChange={value => setRating(() => value)}
+                                                    />
+                                                </div>
+                                                <div css={s.base2}>
+                                                    <span css={s.RatingValue}>{rating}</span>
+                                                </div>
+                                                <div css={s.base3}>
+                                                    <button css={s.submit} onClick={
+                                                        () => {
+                                                            registerReviewMutation.mutate({
+                                                                bookId: book.bookId,
+                                                                userId: principal.userId,
+                                                                content: reviewValue,
+                                                                rating: rating   
+                                                            });
+                                                        }
+                                                    }>등록</button>
+                                                </div>
+                                            </div>
+                                            <div css={s.comment}>                                  
+                                                <textarea 
+                                                    value={reviewValue}
+                                                    onChange={handleTextChange}
+                                                    css={s.reviewArea}></textarea>
+                                            </div>
                                         </div>
                                     </>
                                 }
