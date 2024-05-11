@@ -83,7 +83,7 @@ function Home() {
                 </div>
                 <div css={s.title}>
                     <h1>인기 급상승! 많이 보고 있는 작품</h1>
-                    <FcBullish size={50} color="yellow" css={s.graph}/>
+                    <FcBullish size={64} css={s.graph}/>
                 </div>
                 <div css={s.container}>
                     {
@@ -107,7 +107,7 @@ function Home() {
                 </div>
                 <div css={s.title2}>
                     <h1>금주의 Top 5</h1>
-                    <FaRankingStar size={50} color="yellow" css={s.ranking}/>
+                    <FaRankingStar size={62} color="yellow" css={s.ranking}/>
                 </div>
                 <div css={s.containerRank}>
                     {
@@ -146,8 +146,8 @@ function Home() {
                 </div>
                 <div css={s.title}>
                     <h1>화제의 신상</h1>
-                    <MdFiberNew size={50} color="#ee4242"/>
-                    <button>게임</button>
+                    <MdFiberNew css={s.newIcon()} size={55} color="#ee4242"/>
+                    {/* <button>게임</button> */}
                 </div>
                 <div css={s.containerNew}>
                     {
@@ -157,7 +157,7 @@ function Home() {
                                 setSelectedBook(() => book);
                                             }
                                         }>
-                                <div css={s.bookImage}>
+                                <div css={s.bookImage2}>
                                     <img src={book.coverImgUrl} alt="" />
                                 </div>
                                 <div css={s.bookInfo}>
@@ -169,7 +169,6 @@ function Home() {
                         )
                     }
                 </div>
-
                 {/* <div css={s.container}>
                     <div css={s.subContainer}>
                         <h1>공지사항</h1>

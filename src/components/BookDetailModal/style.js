@@ -73,6 +73,11 @@ export const bookInfo = css`
 export const bookRate = css`
   border: 1px solid #dbdbdb;
   margin-bottom: 10px;
+  display: flex;
+  span {
+    font-weight: bold;
+    font-size: 30px;
+  }
 `
 
 export const stockInfo = css`
@@ -177,6 +182,8 @@ export const reviewBox = css`
   p, span {
     margin: 0;
   }
+
+
 `;
 
 export const reviewPages = css`
@@ -190,24 +197,50 @@ export const reviewContent = css`
   flex-direction: row;
   justify-content: space-between;
   
+  background-color: #f4f4f4;
   box-sizing: border-box;
-  border: 1px solid;
+  border: 1px solid #dbdbdb;
   height: 20%;
+
 `;
 
 export const reviewContentLeft = css`
   width: 415px;
-  p:nth-of-type(2) {
-    margin-left: 200px;
+  /* box-sizing: border-box;
+  border: 1px solid; */
+
+  div:nth-of-type(1) {
+    height: 70%;
   }
-  box-sizing: border-box;
-  border: 1px solid;
+  div:nth-of-type(2) {
+    display: flex;
+    height: 30%;
+
+    div:nth-of-type(1) {
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      width: 75%;
+    }
+    div:nth-of-type(2) {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      width: 5%;
+    }
+    div:nth-of-type(3) {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      width: 20%;
+    }
+  }
 `;
 
 export const reviewContentRight = css`
-  width: 75px;
-  box-sizing: border-box;
-  border: 1px solid;
+  width: 65px;
+  /* box-sizing: border-box;
+  border: 1px solid; */
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -217,7 +250,7 @@ export const reviewContentRight = css`
   div:nth-of-type(2) {
     p {
       padding-left: 5px;
-      font-size: 23px;
+      font-size: 18px;
     }
   }
 `;

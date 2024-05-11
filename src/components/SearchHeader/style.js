@@ -7,6 +7,7 @@ export const headerLayout = css`
 
 export const header = css`
     display: flex;
+    /* border: 1px solid; */
 `;
 
 export const headerLeft = css`
@@ -34,13 +35,21 @@ export const headerRight = css`
 `
 
 export const brandLogo = css`
+    @font-face {
+    font-family: 'TTHakgyoansimMabeopsaR';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_keris@1.0/TTHakgyoansimMabeopsaR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
     text-decoration: none;
     font-weight: bold;
     color: #222222;
 
     & > p {
-        margin: 0;
-        font-size: 70px;
+        margin: 0px;
+        margin-top: 2px;
+        font-size: 65px;
+        font-family: 'TTHakgyoansimMabeopsaR';
     }
 `
 

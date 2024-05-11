@@ -1,13 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useRef, useState } from "react";
 import * as s from "./style"
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaStar } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getBookCountRequest, searchBooksRequest } from "../../apis/api/bookApi";
 import ReactModal from "react-modal";
 import BookDetailModal from "../../components/BookDetailModal/BookDetailModal";
 import BookSearchPageNumbers from "../../pages/BookSearchPageNumbers/BookSearchPageNumbers";
+import Rate from "rc-rate";
+import { BiCommentDetail } from "react-icons/bi";
 ReactModal.setAppElement("#root");
 
 function BookSearchPage() {
@@ -23,6 +25,14 @@ function BookSearchPage() {
 
     const [ isOpen, setIsOpen ] = useState(false);
     const [ selectedBook, setSelectedBook ] = useState(null);
+
+    const [ activeFilter, setActiveFilter ] = useState(searchData.filter);
+
+    const handleFilterClick = (filterID) => {
+        if(filterID !== activeFilter) {
+            setActiveFilter(filterID);
+        }
+    };
 
     const handleSearchDataChange = (e) => {
         setSearchData(searchData => {
@@ -71,6 +81,7 @@ function BookSearchPage() {
             filter = 0;
         }
         window.location.replace(`/search?page=1&option=${searchData.option}&filter=${filter}&text=${searchData.text}`);
+        handleFilterClick(filter);
     }
 
     return (
@@ -98,12 +109,22 @@ function BookSearchPage() {
                 </div>
             </div>
 
-            <div css={s.filter}>
-                <button onClick={() => searchSubmit(0)}>전체</button>
-                <button onClick={() => searchSubmit(1)}>평점높은순</button>
-                <button onClick={() => searchSubmit(2)}>평점낮은순</button>
-                <button onClick={() => searchSubmit(3)}>리뷰많은순</button>
-                <button onClick={() => searchSubmit(4)}>리뷰적은순</button>
+            <div css={s.filter(activeFilter)}>
+                <button css={s.filterBtn} onClick={() => {
+                    searchSubmit(1)
+                    }}>전체</button>
+                <button css={s.filterBtn} onClick={() => {
+                    searchSubmit(2)
+                    }}>평점높은순</button>
+                <button css={s.filterBtn} onClick={() => {
+                    searchSubmit(3)
+                    }}>평점낮은순</button>
+                <button css={s.filterBtn} onClick={() => {
+                    searchSubmit(4)
+                    }}>리뷰많은순</button>
+                <button css={s.filterBtn} onClick={() => {
+                    searchSubmit(5)
+                    }}>리뷰적은순</button>
             </div>
 
             <div css={s.main}>
@@ -131,6 +152,31 @@ function BookSearchPage() {
                                     </div>
                                     <div css={s.publisherName}>
                                         {!searchQuery?.data?.data?.searchText ? book.publisherName : <span dangerouslySetInnerHTML={{__html: book.publisherName.replaceAll(searchQuery?.data?.data?.searchText, `<span style="color: red;">${searchQuery?.data?.data?.searchText}</span>`)}} />} 출판
+                                    </div>
+                                    <div css={s.rnr}>
+                                        <div css={s.rnr1}>
+                                            <div>
+                                                <Rate
+                                                    count={5}
+                                                    value={book.averageRating}
+                                                    allowHalf={false}
+                                                    style={{fontSize: 20, 
+                                                            pointerEvents: "none"
+                                                        }}
+                                                    character={<FaStar />}
+                                                    disabled
+                                                />
+                                            </div>
+                                            <div css={s.rnr11}>
+                                                <span>{Math.round(book.averageRating * 10) / 10}</span>
+                                            </div>
+                                        </div>
+                                        <div css={s.rnr2}>
+                                            <div>
+                                                <BiCommentDetail color="#607fe4" size={22}/>
+                                            </div>
+                                            <div css={s.rnr22}><span>{book.reviewCount}</span></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

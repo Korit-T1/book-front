@@ -1,4 +1,4 @@
-    import { css } from "@emotion/react";
+import { css, keyframes } from "@emotion/react";
 
 export const layout = css`
     display: flex;
@@ -51,6 +51,19 @@ export const title = css`
     }
 `;
 
+export const newIcon = () => {
+    const motion = keyframes`
+        0% {margin-top: 0px;}
+        100% {margin-top: 12px;}
+    `
+    return css`
+        margin-bottom: 8px;
+        margin-left: 12px;
+        animation: ${motion} 0.3s linear 0s infinite alternate;
+    `
+}
+
+
 export const title2 = css`
     display: flex;
     align-items: center;
@@ -64,12 +77,12 @@ export const title2 = css`
 
 export const graph = css`
     padding-bottom: 12.5px;
-    margin-left: 10px;
+    margin-left: 12px;
 `;
 
 export const ranking = css`
     padding-bottom: 10px;
-    margin-left: 15px;
+    margin-left: 16px;
 `;
 
 export const subContainer = css`
@@ -173,10 +186,30 @@ export const bookImage =  css`
     }
 `;
 
+export const bookImage2 =  css`
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 65%;
+    /* overflow: hidden; */
+
+    &:hover {
+        box-shadow: 0px 0px 10px #00000044;
+    }
+    cursor: pointer;
+    
+    & > img {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #dbdbdb;
+        box-sizing: border-box;
+    }
+`;
+
 export const bookInfo =  css`
     display: flex;
     flex-direction: column;
-    height: 25%;
+    height: 30%;
 `;
 
 export const categoryName = css`
@@ -233,8 +266,9 @@ export const Rank = (index) => {
 
                 & > img {
                     box-sizing: border-box;
-                    border: 1px solid #dbdbdb;
-                    /* height: 100%; */
+                    border: ${index === 0 ? "4px solid" : "1px solid #dbdbdb"};
+                    border-image: ${index === 0 && "linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);"}; 
+                    border-image-slice: 1;
                     width: 100%;
                 }   
             }

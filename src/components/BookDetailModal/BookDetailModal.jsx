@@ -12,9 +12,6 @@ import Rate from "rc-rate";
 import "rc-rate/assets/index.css";
 import { FaStar } from "react-icons/fa";
 
-
-
-
 function BookDetailModal({book, isOpen, setIsOpen}) {
     const [ stockState, setStockState ] = useState([]);
     const [ reviews, setReviews ] = useState([]);
@@ -121,17 +118,22 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                                         {book.categoryName}</h3>
                                     </div>
                                     <div css={s.bookRate}>
-                                        <Rate
-                                            count={5}
-                                            value={book.averageRating}
-                                            allowHalf={false}
-                                            style={{fontSize: 40, 
-                                                    pointerEvents: "none"
-                                                }}
-                                            character={<FaStar />}
-                                            disabled
-                                        />
-                                        <span>{Math.floor(book.averageRating)}</span>
+                                        <div>
+                                            <Rate
+                                                count={5}
+                                                value={book.averageRating}
+                                                allowHalf={false}
+                                                style={{fontSize: 30, 
+                                                        pointerEvents: "none"
+                                                    }}
+                                                character={<FaStar />}
+                                                disabled
+                                            />
+                                            <span>{Math.round(book.averageRating * 10) / 10}</span>
+                                        </div>
+                                        <div>
+                                            <p>회원리뷰({reviews.length}건)</p>
+                                        </div>
                                     </div>  
                                     <div css={s.stockInfo}>
                                         <table>
@@ -194,12 +196,24 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                                                 : reviews.length === 0 ? <></> : reviews.map((review, index) =>
                                                     <div key={index} css={s.reviewContent}>
                                                         <div css={s.reviewContentLeft}>
-                                                            <p>{review.content}</p>
-                                                            <p>{review.username ? review.username : "탈퇴한 사용자"} | {review.createDate.replace("T", " ").substring(0, 10)}</p>
+                                                            <div>
+                                                                <p>{review.content}</p>
+                                                            </div>
+                                                            <div>
+                                                                <div>
+                                                                    <p>{review.username ? review.username : "탈퇴한 사용자"}</p>
+                                                                </div>
+                                                                <div>
+                                                                    <p>|</p>
+                                                                </div>
+                                                                <div>
+                                                                    <p>{review.createDate.replace("T", " ").substring(0, 10)}</p>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div css={s.reviewContentRight}>
                                                             <div>
-                                                                <FaStar size={25} color="orange"/>
+                                                                <FaStar size={20} color="orange"/>
                                                             </div>
                                                             <div><p>{review.rating}</p></div>
                                                         </div>
@@ -208,7 +222,7 @@ function BookDetailModal({book, isOpen, setIsOpen}) {
                                             }
                                         </div>
                                         <div css={s.reviewPages}>
-                                            
+                                            {/* <ReviewPageNumbers /> */}
                                         </div> 
                                         <div css={s.bottom}>
                                             <div css={s.Base}>
