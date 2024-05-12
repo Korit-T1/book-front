@@ -70,7 +70,15 @@ export const findID = css`
     font-size: 20px;
     border: none;
     background-color: white;
+    cursor: pointer;
 
+    &:hover {
+        background-color: #fafafa;
+    }
+
+    &:active {
+        background-color: #eeeeee;
+    }
 `;
 
 export const findPW = css`
@@ -79,6 +87,16 @@ export const findPW = css`
     font-size: 20px;
     border: none;
     background-color: white;
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: #fafafa;
+    }
+
+    &:active {
+        background-color: #eeeeee;
+    }
 `;
 
 export const button1 = css`
