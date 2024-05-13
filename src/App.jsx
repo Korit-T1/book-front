@@ -4,7 +4,7 @@ import MainRoute from "./Routes/MainRoute";
 import SinginPage from "./pages/SigninPage/SigninPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import AdminSigninPage from "./pages/Admin/AdminSigninPage/AdminSigninPage";
-import FindUserNamePage from "./pages/FindUserNamePage/FindUserNamePage";
+
 
 
 function App() {
@@ -16,8 +16,6 @@ function App() {
         <Route path="/usersignup" element={<SignupPage />} />
         <Route path="/admin/*" element={<AdminRoute />}/>
         <Route path="/adminlogin" element={<AdminSigninPage />}/>
-        <Route path="/searchUserInfo/findId" element={<FindUserNamePage />}/>
-  
       </Routes>
     </>
   )

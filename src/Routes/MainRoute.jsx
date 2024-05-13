@@ -12,6 +12,9 @@ import BookSearchPage from '../../src/pages/BookSearchPage/BookSearchPage';
 import BoardListPage from '../pages/BoardListPage/BoardListPage';
 import BoardDetailPage from '../pages/BoardDetailPage/BoardDetailPage';
 import BoardModifyPage from '../pages/BoardModifyPage/BoardModifyPage';
+import FindUserNamePage from '../pages/FindUserNamePage/FindUserNamePage';
+import FindPasswordPage from '../pages/FindPasswordPage/FindPasswordPage';
+
 
 function MainRoute() {
     const [ principal, setPrincipal ] = useRecoilState(principalState);
@@ -49,6 +52,8 @@ function MainRoute() {
                             <Route path='/boardList' element={<BoardListPage />} />
                             <Route path='/boardDetail/:noticeBoardId' element={<BoardDetailPage />} />
                             <Route path='/boardDetail/edit/:noticeBoardId' element={<BoardModifyPage />} />
+                            <Route path='/searchUserInfo/findId' element={<FindUserNamePage />} />
+                            <Route path='/searchUserInfo>/findPw' element={<FindPasswordPage />} />
                         </Routes>
                     </MainContainer>
                 </>
