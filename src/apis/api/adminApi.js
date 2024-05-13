@@ -15,3 +15,6 @@ export const getAdminOverdue = async () => {
 export const getAdminUser = async (params) => {
     return await instance.get(`/adminUser`, {params})
 }
+export const getUser = async (params) => {
+    return await instance.get(`/findUser`, {params})
+}

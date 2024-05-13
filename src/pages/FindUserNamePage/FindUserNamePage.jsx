@@ -26,11 +26,11 @@ function FindUsernamePage(props) {
 
     const findUserQuery = useQuery(
         ['findUser', searchData.name, searchData.phone, searchData.email],
-        () => {
+        async () => {
             if (!searchData.name || !searchData.phone || !searchData.email) {
                 return null;
             }
-            return getAdminUser(searchData);
+            return await getAdminUser(searchData);
         },
         {
             enabled: false,
