@@ -94,25 +94,29 @@ export const footer1 = css`
 `;
 
 export const find = css`
-
-text-align: right;
+    text-align: right;
 
 `;
 
 export const findID = css`
-    
     display :inline-block;
     font-size: 20px;
     border: none;
     background-color: white;
+    cursor: pointer;
 
+    &:hover {
+        background-color: #fafafa;
+    }
+
+    &:active {
+        background-color: #eeeeee;
+    }
 `;
 
 export const findPW = css`
-
     display :inline-block;
     font-size: 20px;
     border: none;
     background-color: white;
-
 `;

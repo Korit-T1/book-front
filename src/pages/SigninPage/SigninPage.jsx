@@ -6,7 +6,8 @@ import AuthPageInput from "../../components/AuthPageInput/AuthPageInput";
 import { useInput } from "../../hooks/userInput";
 import { useMutation } from "react-query";
 import { signinRequest } from "../../apis/api/signin";
-//import { inputStyle, inputBox, backgroundc,signinButton } from "./style";
+import { inputStyle, inputBox, backgroundc, signinButton } from "./style";
+
 
 
 function SigninPage(props) {
@@ -32,40 +33,40 @@ function SigninPage(props) {
             password
         });
     } 
+
 return (
     
     <>
-    <div css={s.backgroundc}>
-        <div css={s.layout}>
-            <h1>Book Drop</h1>
-            <AuthPageInput
-                type={"text"}
-                name={"username"}
-                placeholder={"아이디를 입력해주세요"}
-                value={username}
-                onChange={usernameChange}
-            />
-            <AuthPageInput
-                type={"password"}
-                name={"password"}
-                placeholder={"비밀번호를 입력해주세요"}
-                value={password}
-                onChange={passwordChange}
-            />
-            <button css={s.button} onClick={handleSigninSubmit} >로그인</button>
-            <div css={s.find}>
-                <div>
-                    <button css={s.findID}>아이디 찾기</button>
-                    <button css={s.findPW}>비밀번호 찾기</button>
+        <div css={s.backgroundc}>
+            <div css={s.layout}>
+                <h1>Book Drop</h1>
+                <AuthPageInput
+                    type={"text"}
+                    name={"username"}
+                    placeholder={"아이디를 입력해주세요"}
+                    value={username}
+                    onChange={usernameChange}
+                />
+                <AuthPageInput
+                    type={"password"}
+                    name={"password"}
+                    placeholder={"비밀번호를 입력해주세요"}
+                    value={password}
+                    onChange={passwordChange}
+                />
+                <button css={s.button} onClick={handleSigninSubmit} >로그인</button>
+                <div css={s.find}>
+                    <div>
+                        <button css={s.findID}>아이디 찾기</button>
+                        <button css={s.findPW}>비밀번호 찾기</button>
+                    </div>
                 </div>
+                <button css={s.button}><Link to={"/usersignup"}>회원가입</Link></button>
             </div>
-            <button css={s.button}><Link to={"/usersignup"}>회원가입</Link></button>
+            <div css={s.footer1}>
+                © Book Drop Centre
+            </div>
         </div>
-        <div css={s.footer1}>
-            © Book Drop Centre
-        </div>
-    </div>
-
     </>
     
     );
