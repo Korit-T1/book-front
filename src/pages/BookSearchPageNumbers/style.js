@@ -34,6 +34,10 @@ export const pageButton = (isSelected) => css`
     text-decoration: none;
     font-size: 20px;
     color: ${isSelected ? "white" : "#777777"};
+    
+    :hover {
+        background-color: #f5e2ff;
+    }
 `;
 
 export const pageCount = css`

@@ -14,7 +14,8 @@ import { Bs4SquareFill } from "react-icons/bs";
 import { Bs5SquareFill } from "react-icons/bs";
 import BookDetailModal from "../../components/BookDetailModal/BookDetailModal";
 import ImageSilder from "../../components/ImageSilder/ImageSilder";
-
+import rank from "../../assets/rank.png"
+import graph from "../../assets/graph.png"
 
 function Home() {
     const [ popularBooks, setPopularBooks ] = useState([]);
@@ -83,7 +84,10 @@ function Home() {
                 </div>
                 <div css={s.title}>
                     <h1>인기 급상승! 많이 보고 있는 작품</h1>
-                    <FcBullish size={64} css={s.graph}/>
+                    <div css={s.graph}>
+                        <img src={graph} alt="" />
+                    </div>
+                    {/* <FcBullish size={64} css={s.graph}/> */}
                 </div>
                 <div css={s.container}>
                     {
@@ -107,7 +111,9 @@ function Home() {
                 </div>
                 <div css={s.title2}>
                     <h1>금주의 Top 5</h1>
-                    <FaRankingStar size={62} color="yellow" css={s.ranking}/>
+                    <div css={s.ranking}>
+                        <img src={rank} alt=""/>
+                    </div>
                 </div>
                 <div css={s.containerRank}>
                     {
@@ -124,7 +130,7 @@ function Home() {
                                         {
                                             index === 0 ? 
                                             <>
-                                                <div css={s.aa}>
+                                                <div css={s.aa()}>
                                                     <Bs1Square css={s.num1} size={21} color="white"/>
                                                     <GiImperialCrown size={24} color="white" />
                                                 </div>

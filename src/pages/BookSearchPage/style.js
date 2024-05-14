@@ -77,7 +77,7 @@ export const filter = (id) => css`
         color: rebeccapurple;
         border: none;
         background-color: white;
-        box-shadow: 0px 0px 4px #000000b6;
+        box-shadow: 0px 0px 2px #000000b6;
         font-size: 20px;
         border-radius: 20px;
     }
@@ -85,6 +85,7 @@ export const filter = (id) => css`
     & > button:hover {
         font-size: 22px;
         font-weight: bold;
+        background-color: #f0d7ff;
     }
 
     & > button:nth-of-type(${id}) {

@@ -76,14 +76,32 @@ export const title2 = css`
 `;
 
 export const graph = css`
-    padding-bottom: 12.5px;
-    margin-left: 12px;
+    padding-bottom: 17px;
+    margin-left: 13px;
+
+    width: 70px;
+    height: 70px;
+
+    & > img {
+        width: 100%;
+        height: 100%;
+    }
 `;
 
 export const ranking = css`
     padding-bottom: 10px;
-    margin-left: 16px;
-`;
+    margin-left: 20px;
+
+    width: 55px;
+    height: 55px;
+
+    & > img {
+        width: 100%;
+        height: 100%;
+    }
+`
+
+
 
 export const subContainer = css`
     width: 50%;
@@ -236,6 +254,12 @@ export const authorAndPublisher = css`
 `
 
 export const Rank = (index) => {
+    const shine = index === 0 && keyframes`
+        /* 0% { border-color: #B721FF; }
+        50% { border-color: #21D4FD; }
+        100% { border-color: #B721FF; } */
+    ` 
+    
     const size = 1100 * ((5 - (index * 0.6)) * 5 / 100);
     const font = (index - 24) * (-1);
 
@@ -267,7 +291,7 @@ export const Rank = (index) => {
                 & > img {
                     box-sizing: border-box;
                     border: ${index === 0 ? "4px solid" : "1px solid #dbdbdb"};
-                    border-image: ${index === 0 && "linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);"}; 
+                    border-image: ${index === 0 && "linear-gradient(90deg, #21D4FD 0%, #B721FF 100%);"}; 
                     border-image-slice: 1;
                     width: 100%;
                 }   
@@ -290,7 +314,7 @@ export const Rank = (index) => {
     `;
 }
 
-export const aa = css`
+export const aa = () => css`
     display: flex;
     justify-content: flex-start;
     align-items: center;

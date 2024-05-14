@@ -10,6 +10,7 @@ import BookDetailModal from "../../components/BookDetailModal/BookDetailModal";
 import BookSearchPageNumbers from "../../pages/BookSearchPageNumbers/BookSearchPageNumbers";
 import Rate from "rc-rate";
 import { BiCommentDetail } from "react-icons/bi";
+import 'rc-rate/assets/index.css';
 ReactModal.setAppElement("#root");
 
 function BookSearchPage() {
@@ -159,7 +160,7 @@ function BookSearchPage() {
                                                 <Rate
                                                     count={5}
                                                     value={book.averageRating}
-                                                    allowHalf={false}
+                                                    allowHalf={true}
                                                     style={{fontSize: 20, 
                                                             pointerEvents: "none"
                                                         }}
@@ -168,7 +169,7 @@ function BookSearchPage() {
                                                 />
                                             </div>
                                             <div css={s.rnr11}>
-                                                <span>{Math.round(book.averageRating * 10) / 10}</span>
+                                                <span>{Math.floor(book.averageRating * 2 * 10) / 10}</span>
                                             </div>
                                         </div>
                                         <div css={s.rnr2}>
