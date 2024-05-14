@@ -24,8 +24,9 @@ export default function NewPost() {
       })
     }
     
-
-  useEffect (() => {
+    
+    useEffect (() => {
+    console.log(searchData)
     console.log(adminUserList)
   }, [adminUserList])
 
