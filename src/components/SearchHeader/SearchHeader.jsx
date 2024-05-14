@@ -35,7 +35,7 @@ function SearchHeader() {
                 <header css={s.header}>
                     <div css={s.headerLeft}>
                         <ul css={s.menuNav}>
-                            <Link to={"/search?page=1&option=0&filter=0&text="}><li>통합검색</li></Link>
+                            <Link to={"/search?page=1&option=0&filter=1&text="}><li>통합검색</li></Link>
                             <Link to={"/boardList?page=1&option=0&text="}><li>공지사항</li></Link>
                             {/* <Link><li>게시판</li></Link> */}
                             <Link><li>이용안내</li></Link>

@@ -9,6 +9,7 @@ import { useQueryClient } from "react-query";
 import MypageMain from "../MypageMain/MypageMain";
 import ReturnedBookList from "../ReturnedBookList/ReturnedBookList";
 import ReadingBookList from "../ReadingBookList/ReadingBookList";
+import SignoutPage from "../SignoutPage/SignoutPage";
 
 function Mypage() {
     const queryClient = useQueryClient();
@@ -29,6 +30,7 @@ function Mypage() {
                             <Route path='/reading' element={ <ReadingBookList data={principalData} /> } />
                             <Route path='/returned' element={ <ReturnedBookList data={principalData} /> } />
                             <Route path='/wish' element={ <WishList data={principalData} /> } />
+                            <Route path='/signout' element={ <SignoutPage data={principalData}/>} />
                         </Routes>
                     </div>
                 </div>

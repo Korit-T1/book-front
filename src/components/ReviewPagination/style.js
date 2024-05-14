@@ -37,14 +37,3 @@ export const pageButton = (isSelected) => css`
     font-size: 14px;
     color: ${isSelected ? "white" : "#777777"};   
 `;
-
-
-export const page = css`
-    margin-left: 10px;
-    margin-right: 10px;
-    font-size: 14px;
-`;
-
-export const total = css`
-    font-size: 14px;
-`;

@@ -14,7 +14,8 @@ import { Bs4SquareFill } from "react-icons/bs";
 import { Bs5SquareFill } from "react-icons/bs";
 import BookDetailModal from "../../components/BookDetailModal/BookDetailModal";
 import ImageSilder from "../../components/ImageSilder/ImageSilder";
-
+import rank from "../../assets/rank.png"
+import graph from "../../assets/graph.png"
 
 function Home() {
     const [ popularBooks, setPopularBooks ] = useState([]);
@@ -83,7 +84,10 @@ function Home() {
                 </div>
                 <div css={s.title}>
                     <h1>인기 급상승! 많이 보고 있는 작품</h1>
-                    <FcBullish size={50} color="yellow" css={s.graph}/>
+                    <div css={s.graph}>
+                        <img src={graph} alt="" />
+                    </div>
+                    {/* <FcBullish size={64} css={s.graph}/> */}
                 </div>
                 <div css={s.container}>
                     {
@@ -107,7 +111,9 @@ function Home() {
                 </div>
                 <div css={s.title2}>
                     <h1>금주의 Top 5</h1>
-                    <FaRankingStar size={50} color="yellow" css={s.ranking}/>
+                    <div css={s.ranking}>
+                        <img src={rank} alt=""/>
+                    </div>
                 </div>
                 <div css={s.containerRank}>
                     {
@@ -124,7 +130,7 @@ function Home() {
                                         {
                                             index === 0 ? 
                                             <>
-                                                <div css={s.aa}>
+                                                <div css={s.aa()}>
                                                     <Bs1Square css={s.num1} size={21} color="white"/>
                                                     <GiImperialCrown size={24} color="white" />
                                                 </div>
@@ -146,8 +152,8 @@ function Home() {
                 </div>
                 <div css={s.title}>
                     <h1>화제의 신상</h1>
-                    <MdFiberNew size={50} color="#ee4242"/>
-                    <button>게임</button>
+                    <MdFiberNew css={s.newIcon()} size={55} color="#ee4242"/>
+                    {/* <button>게임</button> */}
                 </div>
                 <div css={s.containerNew}>
                     {
@@ -157,7 +163,7 @@ function Home() {
                                 setSelectedBook(() => book);
                                             }
                                         }>
-                                <div css={s.bookImage}>
+                                <div css={s.bookImage2}>
                                     <img src={book.coverImgUrl} alt="" />
                                 </div>
                                 <div css={s.bookInfo}>
@@ -169,7 +175,6 @@ function Home() {
                         )
                     }
                 </div>
-
                 {/* <div css={s.container}>
                     <div css={s.subContainer}>
                         <h1>공지사항</h1>

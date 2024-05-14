@@ -4,9 +4,6 @@ import * as s from "./style"
 import { SLIDE } from "../../constants/slide"
 import { RiArrowLeftSLine, RiArrowRightSLine  } from "react-icons/ri";
 
-
-
-
 function ImageSilder() {
     const [ slides, setSlides ] = useState(SLIDE);
     const [ curSlide, setCurSlide ] = useState(0);
@@ -47,7 +44,7 @@ function ImageSilder() {
                 ? prevState + MOVE_SLIDE_INDEX
                 : FIRST_SLIDE_INDEX
             );
-          }, 5000)
+          }, 3000)
         );
       };
     

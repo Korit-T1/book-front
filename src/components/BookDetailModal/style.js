@@ -31,8 +31,8 @@ export const imgBox = css`
     }
 `
 export const infoBox = css`
-  /* border: 1px solid;
-  box-sizing: border-box; */
+  border: 1px solid;
+  box-sizing: border-box;
   justify-content: center;
   align-items: center;
   width: 49%;
@@ -73,6 +73,11 @@ export const bookInfo = css`
 export const bookRate = css`
   border: 1px solid #dbdbdb;
   margin-bottom: 10px;
+  display: flex;
+  span {
+    font-weight: bold;
+    font-size: 30px;
+  }
 `
 
 export const stockInfo = css`
@@ -95,39 +100,75 @@ export const stockInfo = css`
     }
 `
 export const summary = css`
+  @font-face {
+      font-family: 'Freesentation-9Black';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
+      font-weight: 900;
+      font-style: normal;
+  }
+  /* @font-face {
+      font-family: 'Freesentation-5Black';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
+      font-weight: 100;
+      font-style: normal;
+  } */
+
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  height: 80px;
-  /* box-sizing: border-box;
-  border: 1px solid; */
+  height: 100px;
+  box-sizing: border-box;
+  border: 1px solid #dbdbdb;
 
   h2 {
     margin: 0;
   }
+`;
 
-  div:nth-of-type(2) {
-    display: flex;
-    /* justify-content: center; */
-    align-items: flex-end;
-
-    span:nth-of-type(1) {
-      font-size: 35px;
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
-
-    span:nth-of-type(2) {
-      margin-left: 5px;
-      font-size: 20px;
-      font-weight: bold;
-      color: gray;
-      margin-bottom: 8.5px;
-    }
+export const sumLeft = css`
+  & > h2 > span {
+    color: orange;
   }
-`
+`;
+
+export const sumRight = css`
+  display: flex;
+  /* box-sizing: border-box;
+  border: 1px solid; */
+
+  flex: 1;
+`;
+
+export const starBox = css`
+  display: flex;
+  align-items: center;
+`;
+
+export const scoreBox = css`
+  display: flex;
+
+  span:nth-of-type(1) {
+    font-size: 45px;
+    font-family: 'Freesentation-9Black';
+    margin-left: 5px;
+    margin-top: 3.5px;
+  }
+  
+  span:nth-of-type(2) {
+    margin-left: 10px;
+    /* font-family: 'Freesentation-5Black'; */
+    font-weight: bold;
+    font-size: 25px;
+    color: #8d8d8d;
+    margin-top: 22px;
+  }
+
+
+`;
+
+
 
 
 export const reviewArea = css`
@@ -171,12 +212,15 @@ export const reviewBox = css`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  justify-content: space-between;
   border: 1px solid #dbdbdb;
-  height: 330px;
+  height: 300px;
 
   p, span {
     margin: 0;
   }
+
+
 `;
 
 export const reviewPages = css`
@@ -190,24 +234,50 @@ export const reviewContent = css`
   flex-direction: row;
   justify-content: space-between;
   
+  background-color: #f4f4f4;
   box-sizing: border-box;
-  border: 1px solid;
-  height: 20%;
+  border: 1px solid #dbdbdb;
+  height: 22%;
+
 `;
 
 export const reviewContentLeft = css`
   width: 415px;
-  p:nth-of-type(2) {
-    margin-left: 200px;
+  /* box-sizing: border-box;
+  border: 1px solid; */
+
+  div:nth-of-type(1) {
+    height: 70%;
   }
-  box-sizing: border-box;
-  border: 1px solid;
+  div:nth-of-type(2) {
+    display: flex;
+    height: 30%;
+
+    div:nth-of-type(1) {
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      width: 75%;
+    }
+    div:nth-of-type(2) {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      width: 5%;
+    }
+    div:nth-of-type(3) {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      width: 20%;
+    }
+  }
 `;
 
 export const reviewContentRight = css`
-  width: 75px;
-  box-sizing: border-box;
-  border: 1px solid;
+  width: 65px;
+  /* box-sizing: border-box;
+  border: 1px solid; */
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -217,7 +287,7 @@ export const reviewContentRight = css`
   div:nth-of-type(2) {
     p {
       padding-left: 5px;
-      font-size: 23px;
+      font-size: 18px;
     }
   }
 `;

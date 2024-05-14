@@ -148,15 +148,19 @@ export const bookInfo = css`
     flex-direction: column;
     margin-left: 10px;
     /* background-color: gray; */
-    width: 48%;
+    width: 46%;
+
+    /* box-sizing: border-box;
+    border: 1px solid; */
 `
 
 export const status = css`
-    box-sizing: border-box;
-    /* border: 1px solid; */
+    /* box-sizing: border-box;
+    border: 1px solid; */
+    justify-content: center;
     flex: 1;
     display: flex;
-    padding-left: 2.5px;
+    padding-right: 2.5px;
 `
 
 export const top = css`
