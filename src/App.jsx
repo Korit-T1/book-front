@@ -4,6 +4,8 @@ import MainRoute from "./Routes/MainRoute";
 import SinginPage from "./pages/SigninPage/SigninPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import AdminSigninPage from "./pages/Admin/AdminSigninPage/AdminSigninPage";
+import SigninPage from "./pages/SigninPage/SigninPage";
+
 
 function App() {
   return (
@@ -18,5 +20,4 @@ function App() {
     </>
   )
 }
-
 export default App;

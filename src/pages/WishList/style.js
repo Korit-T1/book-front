@@ -5,8 +5,6 @@ export const header = (id) => css`
     justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
-    /* border-bottom: 1px solid #dbdbdb; */
-    width: 100%;
     height: 5%;
 
     & > div {
