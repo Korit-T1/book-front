@@ -1,60 +1,58 @@
 import React, { useRef, useState } from 'react';
 import { useQuery } from 'react-query';
-import { getAdminUser } from '../../apis/api/adminApi';
+import { findUserinfo } from '../../apis/api/adminApi';
+
 
 function FindUsernamePage(props) {
+
+    const [username, setUsername] = useState("");
     const [searchData, setSearchData] = useState({
         name: '',
         phone: '',
         email: ''
     });
-    const [username, setUsername] = useState("");
     
-    const inputRefs = {
-        name: useRef(null),
-        phone: useRef(null),
-        email: useRef(null)
-    };
+
+    const nameInputRef = useRef();
+    const phoneInputRef = useRef();
+    const emailInputRef = useRef();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setSearchData(prevData => ({
-            ...prevData,
+        setSearchData(prevSearchData => ({
+            ...prevSearchData,
             [name]: value
         }));
     };
 
-    const findUserQuery = useQuery(
-        ['findUser', searchData.name, searchData.phone, searchData.email],
+    const findUser = useQuery(
+        ["findUser"],
         async () => {
             if (!searchData.name || !searchData.phone || !searchData.email) {
                 return null;
             }
-            return await getAdminUser(searchData);
+            return await findUserinfo(searchData);
         },
         {
-            enabled: false,
             refetchOnWindowFocus: false,
-            onSuccess: (response) => {
-                console.log(response)
-                if (response && response.data.length > 0) {
-                    // 찾은 사용자가 있을 경우 사용자의 아이디를 설정합니다.
-                    setUsername(response.data[0].username);
+            retry: 0,
+            onSuccess: response => {
+                console.log(searchData);
+                if(response && response.data) {
+                    setUsername(response.data.username);
                 } else {
-                    // 해당 정보로 사용자를 찾을 수 없는 경우 메시지를 설정합니다.
-                    setUsername('해당 정보로 사용자를 찾을 수 없습니다.');
+                    setUsername("해당 사용자의 정보를 찾을 수 없습니다.")
                 }
+                
             },
             onError: (error) => {
-                // 에러가 발생한 경우 에러 메시지를 설정합니다.
-                console.error('에러 발생:', error);
-                setUsername('검색 중 오류가 발생했습니다.');
+                console.error("에러발생: ", error);
+                setUsername("검색 중 오류가 발생했습니다.");
             }
         }
-    );
-
+    )
     const handleFindUsername = () => {
-        findUserQuery.refetch();
+        findUser.refetch();
     };
 
     return (
@@ -66,7 +64,7 @@ function FindUsernamePage(props) {
                     placeholder="이름"
                     value={searchData.name}
                     onChange={handleInputChange}
-                    ref={inputRefs.name}
+                    ref={nameInputRef}
                 />
                 <input
                     type="text"
@@ -74,7 +72,7 @@ function FindUsernamePage(props) {
                     placeholder="전화번호"
                     value={searchData.phone}
                     onChange={handleInputChange}
-                    ref={inputRefs.phone}
+                    ref={phoneInputRef}
                 />
                 <input
                     type="text"
@@ -82,7 +80,7 @@ function FindUsernamePage(props) {
                     placeholder="이메일"
                     value={searchData.email}
                     onChange={handleInputChange}
-                    ref={inputRefs.email}
+                    ref={emailInputRef}
                 />
             </div>
             <div>
@@ -90,11 +88,10 @@ function FindUsernamePage(props) {
             </div>
             <div>
                 {/* 사용자의 아이디를 표시합니다. */}
-                {username && <p>찾은 아이디: {username}</p>}
+                {username && <p>아이디: {username.substring(0, 4)}{username.substring(3).replace(/./g, "*")}</p>}
             </div>
         </div>
     );
 }
 
 export default FindUsernamePage;
-

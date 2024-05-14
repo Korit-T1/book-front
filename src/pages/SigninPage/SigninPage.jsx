@@ -60,7 +60,7 @@ function SinginPage(props) {
                 
                 <div css={s.find}>
                     <button css={s.findID}><Link to={"/searchUserInfo/findId"}>아이디 찾기</Link></button>
-                    <button css={s.findPW}>비밀번호 찾기</button>
+                    <button css={s.findPW}><Link to={"/searchUserInfo/findPw"}>비밀번호 찾기</Link></button>
                 </div>
                 <button css={s.section2}><Link to={"/usersignup"}>회원가입</Link></button>
             </div>
