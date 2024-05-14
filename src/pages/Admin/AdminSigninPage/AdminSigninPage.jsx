@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
-
 import AuthPageInput from '../../../components/AuthPageInput/AuthPageInput';
 import { useInput } from "../../../hooks/userInput";
 import { useMutation } from "react-query";
 import { adminSigninRequest } from "../../../apis/api/signin";
+import { IoPersonCircleSharp } from "react-icons/io5";
 
 
 function AdminsigninPage(props) {
@@ -35,15 +35,19 @@ function AdminsigninPage(props) {
         <>
             <div css={s.background}>
                 <div css={s.layout}>
+                    
                     <h1>관리자 로그인</h1>
-                    <AuthPageInput 
+                    <AuthPageInput
+                        style={s.inputBox}
                         type={"text"}
                         name={"username"}
                         placeholder={"아이디"}
                         value={username}
                         onChange={usernameChange}
+                        
                     />
                     <AuthPageInput 
+                        style={s.inputBox}
                         type={"password"}
                         name={"password"}
                         placeholder={"비밀번호"}

@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
+import React from 'react';
 import * as s from "./style";
 import { Link } from "react-router-dom";
 import AuthPageInput from "../../components/AuthPageInput/AuthPageInput";
 import { useInput } from "../../hooks/userInput";
 import { useMutation } from "react-query";
 import { signinRequest } from "../../apis/api/signin";
+import { inputStyle, inputBox, backgroundc, signinButton } from "./style";
 
-// import { gradientColor } from "../../pages/GradientColor/GradientColor";
 
 
-function SinginPage(props) {
+function SigninPage(props) {
     const [ username, usernameChange ] = useInput();
     const [ password, passwordChange ] = useInput();
 
@@ -32,45 +33,43 @@ function SinginPage(props) {
             password
         });
     } 
-    return (
-        <>      
-        {/* <GradientColor/> */}
-                <div css={s.layout}>
+
+return (
+    
+    <>
+        <div css={s.backgroundc}>
+            <div css={s.layout}>
                 <h1>Book Drop</h1>
                 <AuthPageInput
-
                     type={"text"}
                     name={"username"}
                     placeholder={"아이디를 입력해주세요"}
                     value={username}
                     onChange={usernameChange}
-                    
                 />
                 <AuthPageInput
-
                     type={"password"}
                     name={"password"}
                     placeholder={"비밀번호를 입력해주세요"}
                     value={password}
                     onChange={passwordChange}
-
                 />
-
-                <button onClick={handleSigninSubmit} css={s.section1}>로그인</button>
-                
+                <button css={s.button} onClick={handleSigninSubmit} >로그인</button>
                 <div css={s.find}>
-                    <button css={s.findID}><Link to={"/searchUserInfo/findId"}>아이디 찾기</Link></button>
-                    <button css={s.findPW}><Link to={"/searchUserInfo>/findPw"}>비밀번호 찾기</Link></button>
+                    <div>
+                        <button css={s.findID}>아이디 찾기</button>
+                        <button css={s.findPW}>비밀번호 찾기</button>
+                    </div>
                 </div>
-                <button css={s.section2}><Link to={"/usersignup"}>회원가입</Link></button>
+                <button css={s.button}><Link to={"/usersignup"}>회원가입</Link></button>
             </div>
-            
             <div css={s.footer1}>
-                <p>© Book Drop Centre</p>
+                © Book Drop Centre
             </div>
-            
-        </>
-        
+        </div>
+    </>
+    
     );
 }
-export default SinginPage;
+
+export default SigninPage;
