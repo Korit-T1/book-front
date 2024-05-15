@@ -5,8 +5,9 @@ import { useQuery } from 'react-query';
 
 function SearchUsernamePage(props) {
 
-    const [username, setUsername] = useState("");
-    const [searchData, setSearchData] = useState({
+    const [ username, setUsername ] = useState("");
+    const  [errorMessage, setErrorMessage ] = useState("");
+    const [ searchData, setSearchData ] = useState({
         name: '',
         phone: '',
         email: ''
@@ -22,28 +23,49 @@ function SearchUsernamePage(props) {
             ...prevSearchData,
             [name]: value
         }));
+
     };
 
     const findUser = useQuery(
         ["findUser"],
         async () => {
-            await findUserinfo(searchData);
+            if (!searchData.name || !searchData.phone || !searchData.email) {
+                return null;
+            }
+            return await findUserinfo(searchData);
         },
         {
-            enabled: false,
             refetchOnWindowFocus: false,
             retry: 0,
             onSuccess: response => {
-                console.log(searchData);
                 setUsername(response?.data.username);
+                setErrorMessage("");
             },
             onError: (error) => {
                 console.error("에러발생: ", error);
+                setErrorMessage("회원 정보를 찾을 수 없습니다.");
+                setUsername("");
             }
         }
     )
 
     const handleFindUsername = () => {
+        if (!searchData.name.trim()) {
+            setErrorMessage("이름을 입력하세요.");
+            setUsername("");
+            return;
+        }
+        if (!searchData.phone.trim()) {
+            setErrorMessage("전화번호를 입력하세요.");
+            setUsername("");
+            return;
+        }
+        if (!searchData.email.trim()) {
+            setErrorMessage("이메일을 입력하세요.");
+            setUsername("");
+            return;
+        }
+
         findUser.refetch();
     };
 
@@ -79,11 +101,12 @@ function SearchUsernamePage(props) {
                 />
             </div>
             <div>
-                <button onClick={() => handleFindUsername(searchData)}>아이디 찾기</button>
+                <button onClick={handleFindUsername}>아이디 찾기</button>
             </div>
             <div>
                 {/* 사용자의 아이디를 표시합니다. */}
                 {username && <p>아이디: {username.substring(0, 4)}{username.substring(3).replace(/./g, "*")}</p>}
+                {errorMessage && <p>{errorMessage}</p>}
             </div>
         </div>
     );
