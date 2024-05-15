@@ -6,7 +6,7 @@ import { getAdminUser } from "../../../apis/api/adminApi";
 import { useQuery } from "react-query";
 
 export default function NewPost() {
-    const [ searchParams, setSearckParams ] = useSearchParams();
+    const [ searchParams, setSearchParams ] = useSearchParams();
     const [ adminUserList, setAdminUserList ] = useState([]);
     const [ searchData, setSearchData ] = useState({
       username: searchParams.get("username"),

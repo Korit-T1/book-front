@@ -3,7 +3,6 @@ import { useQuery } from 'react-query';
 import { findUserinfo } from '../../apis/api/adminApi';
 
 function FindUserNamePage(props) {
-
     const [username, setUsername] = useState("");
     const [searchData, setSearchData] = useState({
         name: '',
@@ -20,17 +19,16 @@ function FindUserNamePage(props) {
                 [e.target.name]: e.target.value
             }
         });
+        console.log(searchData)
     };
 
     const findUser = useQuery(
         ["findUser"],
         async () => {
-            if (!searchData.name || !searchData.phone || !searchData.email) {
-                return null;
-            }
-            return await findUserinfo(searchData);
+            await findUserinfo(searchData);
         },
         {
+            enabled: false,
             refetchOnWindowFocus: false,
             retry: 0,
             onSuccess: response => {
@@ -82,7 +80,7 @@ function FindUserNamePage(props) {
                 />
             </div>
             <div>
-                <button onClick={handleFindUsername}>아이디 찾기</button>
+                <button onClick={() => handleFindUsername(searchData)}>아이디 찾기</button>
             </div>
             <div>
                 {/* 사용자의 아이디를 표시합니다. */}

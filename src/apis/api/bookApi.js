@@ -17,7 +17,7 @@ export const getBookCountRequest = async (params) => {
 }
 
 export const getBookStocksRequest = async (bookId) => {
-    return await instance.get(`/book/${bookId}/stocks`);
+    return await instance.get(`/books/${bookId}/stocks`);
 }
 
 // 메인 홈페이지

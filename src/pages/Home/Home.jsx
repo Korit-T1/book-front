@@ -153,7 +153,6 @@ function Home() {
                 <div css={s.title}>
                     <h1>화제의 신상</h1>
                     <MdFiberNew css={s.newIcon()} size={55} color="#ee4242"/>
-                    {/* <button>게임</button> */}
                 </div>
                 <div css={s.containerNew}>
                     {

@@ -53,7 +53,7 @@ function MainRoute() {
                             <Route path='/boardDetail/:noticeBoardId' element={<BoardDetailPage />} />
                             <Route path='/boardDetail/edit/:noticeBoardId' element={<BoardModifyPage />} />
                             <Route path='/searchUserInfo/findId' element={<FindUserNamePage />} />
-                            <Route path='/searchUserInfo>/findPw' element={<FindPasswordPage />} />
+                            <Route path='/searchUserInfo/findPw' element={<FindPasswordPage />} />
                         </Routes>
                     </MainContainer>
                 </>
