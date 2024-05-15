@@ -3,7 +3,7 @@ import { editPasswordRequest } from '../../apis/api/editPassword';
 import { useInput } from '../../hooks/userInput';
 import AuthPageInput from '../AuthPageInput/AuthPageInput';
 
-function EditPassword({ userInfo }) {
+function EditPassword({ userId }) {
     const [ newPassword, handleNewPassword, newMessage, setNew, setNewMessage ] = useInput("newPassword");
     const [ newPasswordCheck, handleNewPasswordCheck, newCheckMessage, setNewCheck, setNewCheckMessage ] = useInput("newPasswordCheck");
 
@@ -39,10 +39,13 @@ function EditPassword({ userInfo }) {
     });
 
     const handlePasswordChange = () => {
+
+        console.log(userId);
         changePasswordMutation.mutate({ 
-            userId: userInfo.userId, 
-            newPassword, 
-            newPasswordCheck 
+            userId: userId, 
+            newPassword: newPassword, 
+            newPasswordCheck: newPasswordCheck
+
         });
     };
 
@@ -52,7 +55,9 @@ function EditPassword({ userInfo }) {
             <AuthPageInput type={"password"} value={newPassword} onChange={handleNewPassword} placeholder={"새 비밀번호 입력"} message={newMessage}/>
             <AuthPageInput type={"password"} value={newPasswordCheck} onChange={handleNewPasswordCheck} placeholder={"새 비밀번호 확인"} message={newCheckMessage}/>
             <button onClick={handlePasswordChange}>비밀번호 변경하기</button>
-        </div>
+            <p>{userId}</p>
+        </div>      
+
     );
 }
 

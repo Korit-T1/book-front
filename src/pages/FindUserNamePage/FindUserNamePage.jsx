@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import { findUserinfo } from '../../apis/api/adminApi';
 
-function FindUserNamePage(props) {
+function FindUsernamePage(props) {
 
     const [username, setUsername] = useState("");
     const [searchData, setSearchData] = useState({
@@ -11,15 +11,17 @@ function FindUserNamePage(props) {
         email: ''
     });
     
-    const inputRef = useRef();
+    const nameInputRef = useRef();
+    const phoneInputRef = useRef();
+    const emailInputRef = useRef();
 
     const handleInputChange = (e) => {
-        setSearchData(searchData => {
-            return {
-                ...searchData,
-                [e.target.name]: e.target.value
-            }
-        });
+        const { name, value } = e.target;
+        setSearchData(prevSearchData => ({
+            ...prevSearchData,
+            [name]: value
+        }));
+
     };
 
     const findUser = useQuery(
@@ -35,12 +37,7 @@ function FindUserNamePage(props) {
             retry: 0,
             onSuccess: response => {
                 console.log(searchData);
-                if(response && response.data) {
-                    setUsername(response.data.username);
-                } else {
-                    setUsername("해당 사용자의 정보를 찾을 수 없습니다.")
-                }
-                
+                setUsername(response.data.username);
             },
             onError: (error) => {
                 console.error("에러발생: ", error);
@@ -62,7 +59,8 @@ function FindUserNamePage(props) {
                     placeholder="이름"
                     value={searchData.name}
                     onChange={handleInputChange}
-                    ref={inputRef}
+                    ref={nameInputRef}
+
                 />
                 <input
                     type="text"
@@ -70,7 +68,8 @@ function FindUserNamePage(props) {
                     placeholder="전화번호"
                     value={searchData.phone}
                     onChange={handleInputChange}
-                    ref={inputRef}
+                    ref={phoneInputRef}
+
                 />
                 <input
                     type="text"
@@ -78,7 +77,8 @@ function FindUserNamePage(props) {
                     placeholder="이메일"
                     value={searchData.email}
                     onChange={handleInputChange}
-                    ref={inputRef}
+                    ref={emailInputRef}
+
                 />
             </div>
             <div>
@@ -86,11 +86,11 @@ function FindUserNamePage(props) {
             </div>
             <div>
                 {/* 사용자의 아이디를 표시합니다. */}
-                {username && <p>찾은 아이디: {username}</p>}
+                {username && <p>아이디: {username.substring(0, 4)}{username.substring(3).replace(/./g, "*")}</p>}
             </div>
         </div>
     );
 }
 
-export default FindUserNamePage;
+export default FindUsernamePage;
 

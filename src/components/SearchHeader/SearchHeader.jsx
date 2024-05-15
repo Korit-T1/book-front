@@ -50,7 +50,7 @@ function SearchHeader() {
                         <ul css={s.menuNav}>
                             {/* <Link><li>Q&A</li></Link> */}
                             <Link><li>FAQ</li></Link>
-                            <Link><li>회원가입</li></Link>
+                            <Link to={"/signUp"}><li>회원가입</li></Link>
                             {!isLogin 
                                 ? <Link to={"/userlogin"}><li>로그인</li></Link>
                                 : <Link onClick={() => handleLogoutClick()}><li>로그아웃</li></Link>
