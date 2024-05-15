@@ -67,21 +67,6 @@ function Home() {
         <>
             <div css={s.layout}>
                 <ImageSilder />
-                <div css={s.navigationBar}>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                </div>
                 <div css={s.title}>
                     <h1>인기 급상승! 많이 보고 있는 작품</h1>
                     <div css={s.graph}>
@@ -174,17 +159,6 @@ function Home() {
                         )
                     }
                 </div>
-                {/* <div css={s.container}>
-                    <div css={s.subContainer}>
-                        <h1>공지사항</h1>
-                    </div>
-                    <div css={s.subContainer}>
-
-                    </div>
-                </div>
-                <div css={s.container}>
-
-                </div> */}
             </div>
             <BookDetailModal book={selectedBook} isOpen={isOpen} setIsOpen={setIsOpen}/>
         </>

@@ -5,6 +5,8 @@ export const header = (id) => css`
     justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
+    /* border-bottom: 1px solid #dbdbdb; */
+    width: 100%;
     height: 5%;
 
     & > div {
@@ -124,7 +126,7 @@ export const bookInfo = css`
     flex-direction: column;
     margin-left: 10px;
     /* background-color: gray; */
-    width: 48%;
+    width: 51.5%;
 `
 
 export const top = css`

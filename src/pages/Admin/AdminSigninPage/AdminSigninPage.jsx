@@ -54,7 +54,7 @@ function AdminsigninPage(props) {
                         value={password}
                         onChange={passwordChange}
                     />
-                    <div css={s.go} onClick={handleAdminSigninSubmit}>
+                    <div css={s.go} onClick={() => handleAdminSigninSubmit()}>
                         <img src={KEY} alt=""></img>
                     </div>
                     
