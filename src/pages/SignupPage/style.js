@@ -6,56 +6,35 @@ export const layout = css`
     align-items: center;
     place-items: center;
     flex-direction: column;
-    margin: 0 auto;
+    margin: auto;
     width: 600px;
-    height: 100vh;
-    border-left: 1px solid #dbdbdb;
-    border-right: 1px solid #dbdbdb;
+    height: 98vh;
+    border: 1px solid #c1c1c1;
+    margin-top: 6px;
     background-color: white;
-`;
-
-export const backgroundc = css`
-    background: #b681d5;
-    background-image: 
-    radial-gradient(at 88% 0%,hsla(327, 67%, 64%, 1) 0px, transparent 50%),
-    radial-gradient(at 63% 46%, hsla(307, 76%, 61%, 1) 0px, transparent 50%),
-    radial-gradient(at 95% 53%, hsla(89, 91%, 67%, 1) 0px, transparent 50%),
-    radial-gradient(at 79% 83%, hsla(170, 86%, 65%, 1) 0px, transparent 50%),
-    radial-gradient(at 74% 93%, hsla(71, 93%, 75%, 1) 0px, transparent 50%),
-    radial-gradient(at 52% 13%, hsla(110, 83%, 72%, 1) 0px, transparent 50%),
-    radial-gradient(at 30% 80%, hsla(263, 79%, 66%, 1) 0px, transparent 50%);
-
+    & > * {
+        margin-bottom: 5px; /* 원하는 마진 값으로 변경 */
+    }
 `;
 
 export const button2 = css`
     box-sizing: border-box;
-    border: 1px solid blue;
+    border: 1px solid rebeccapurple;
     border-radius: 3px;
+    margin-top: 20px;
     width: 300px;
-    height: 55px;
-    margin: 25px 0 0;
+    height: 50px;
     font-size: 20px;
     background-color: #ffffff;
-    color: #000000;
+    color: rebeccapurple;
     cursor: pointer;
+    font-weight: bold;
 
     &:hover {
-        background-color: blue;
+        color: #ffffff;
+        background-color: rebeccapurple;
         transition: background-color 0.7s;
     }
-`;
-
-
-export const inputStyle = css`
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    width: 90%;
-    padding: 70px 30px 44px;
-    border-radius: 3px;
-    text-align: center;
-    
 `;
 
 export const section1 = css`
@@ -69,3 +48,20 @@ export const section1 = css`
     cursor: pointer;
     
 `;
+
+export const selects = css`
+    display: flex;
+    margin-bottom: 14.5px;
+    width: 300px;
+    justify-content: space-between;
+`;
+
+export const births = css`
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+`;
+
+export const selection = css`
+    min-width: 149px;
+`

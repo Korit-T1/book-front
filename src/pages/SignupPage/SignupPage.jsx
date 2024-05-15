@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { LOCATION } from "../../constants/localDistrict";
 import { signupRequest } from "../../apis/api/signup";
 import { useMutation } from "react-query";
-import { section1, button } from "./style";
 
 function SignupPage() {
     const navigate = useNavigate();
@@ -155,100 +154,95 @@ function SignupPage() {
     }
 
     return (
-    <div css={s.backgroundc}>
-    <>    
-        <div css={s.layout}>
-            <h1>BookDrop 회원가입</h1>
-            <AuthPageInput 
-                type={"text"}
-                name={"username"}
-                placeholder={"아이디"}
-                value={username}
-                onChange={userNameChange}
-                message={usernameMessage}
-            />
-            <AuthPageInput 
-                type={"password"}
-                name={"password"}
-                placeholder={"비밀번호"}
-                value={password}
-                onChange={passwordChange}
-                message={passwordMessage}
-            />
-            <AuthPageInput 
-                type={"password"}
-                name={"checkPassowrd"}
-                placeholder={"비밀번호 확인"}
-                value={checkPassword}
-                onChange={checkPasswordChange}
-                message={checkPasswordMessage}
-            />
-            <AuthPageInput 
-                type={"text"}
-                name={"name"}
-                placeholder={"이름"}
-                value={name}
-                onChange={nameChange}
-                message={nameMessage}
-            />
-            <AuthPageInput 
-                type={"text"}
-                name={"email"}
-                placeholder={"이메일"}
-                value={email}
-                onChange={emailChange}
-                message={emailMessage}
-            />
-            <AuthPageInput 
-                type={"text"}
-                name={"phone"}
-                placeholder={"휴대전화번호"}
-                value={phone}
-                onChange={phoneChange}
-                message={phoneMessage}
-            />
-            <Select
-                type={"text"}
-                name={"address"}
-                placeholder="주소를 선택하세요"
-                options={addressOptions}
-                onChange={handleAddressChange}
-                message={addressMessage}
-            />
-            <Select
-                type={"text"}
-                name={"gender"}
-                placeholder="성별을 선택하세요"
-                options={genderOptions}
-                onChange={handleGenderChange}
-                message={genderMessage}
-            />
-            <AuthPageInput 
-                type={"text"}
-                name={"age"}
-                placeholder={"나이"}
-                value={age}
-                onChange={ageChange}
-                message={ageMessage}
-            />
-            <AuthPageInput 
-                type={"text"}
-                name={"birth"}
-                placeholder={"생년월일"}
-                value={birth}
-                onChange={birthChange}
-                message={birthMessage}
-            />
-           
-            <div>
-                <button css={s.button2} onClick={handleSignupSubmit}>가입하기</button>
+        <>    
+            <div css={s.layout}>
+                <AuthPageInput 
+                    type={"text"}
+                    name={"username"}
+                    placeholder={"아이디"}
+                    value={username}
+                    onChange={userNameChange}
+                    message={usernameMessage}
+                />
+                <AuthPageInput 
+                    type={"password"}
+                    name={"password"}
+                    placeholder={"비밀번호"}
+                    value={password}
+                    onChange={passwordChange}
+                    message={passwordMessage}
+                />
+                <AuthPageInput 
+                    type={"password"}
+                    name={"checkPassowrd"}
+                    placeholder={"비밀번호 확인"}
+                    value={checkPassword}
+                    onChange={checkPasswordChange}
+                    message={checkPasswordMessage}
+                />
+                <AuthPageInput 
+                    type={"text"}
+                    name={"name"}
+                    placeholder={"이름"}
+                    value={name}
+                    onChange={nameChange}
+                    message={nameMessage}
+                />
+                <AuthPageInput 
+                    type={"text"}
+                    name={"email"}
+                    placeholder={"이메일"}
+                    value={email}
+                    onChange={emailChange}
+                    message={emailMessage}
+                />
+                <AuthPageInput 
+                    type={"text"}
+                    name={"phone"}
+                    placeholder={"휴대전화번호"}
+                    value={phone}
+                    onChange={phoneChange}
+                    message={phoneMessage}
+                />
+                <div css={s.selects}>
+                    <Select css={s.selection}
+                        type={"text"}
+                        name={"address"}
+                        placeholder="주소"
+                        options={addressOptions}
+                        onChange={handleAddressChange}
+                        message={addressMessage}
+                    />
+                    <Select css={s.selection}
+                        type={"text"}
+                        name={"gender"}
+                        placeholder="성별"
+                        options={genderOptions}
+                        onChange={handleGenderChange}
+                        message={genderMessage}
+                    />
+                </div>
+                    <AuthPageInput 
+                        type={"text"}
+                        name={"age"}
+                        placeholder={"나이"}
+                        value={age}
+                        onChange={ageChange}
+                        message={ageMessage}
+                    />
+                    <AuthPageInput 
+                        type={"text"}
+                        name={"birth"}
+                        placeholder={"생년월일"}
+                        value={birth}
+                        onChange={birthChange}
+                        message={birthMessage}
+                    />
+                <div>
+                    <button css={s.button2} onClick={handleSignupSubmit}>가입하기</button>
+                </div>
             </div>
-        </div>
-
-
-    </>
-    
-    </div> 
+        </>
     );
 }
 
