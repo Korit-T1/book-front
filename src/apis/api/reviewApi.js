@@ -5,9 +5,9 @@ export const registerReview = async (data) => {
 }
 
 export const getReview = async (params) => {
-    return await instance.get(`/getReview`, {params});
+    return await instance.get(`/reviews/`, {params});
 }
 
 export const getReviewCount = async (params) => {
-    return await instance.get(`/review/count`, {params})
+    return await instance.get(`/reviews/count`, {params})
 }

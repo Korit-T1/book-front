@@ -3,7 +3,7 @@ import * as s from "./style"
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { getBookStocksRequest } from '../../apis/api/bookApi';
 import ReactModal from 'react-modal';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loanRegister } from "../../apis/api/loanApi";
 import { principalState } from "../../atoms/principalAtom";
 import { useRecoilState } from "recoil";
@@ -11,8 +11,6 @@ import { getReview, getReviewCount, registerReview } from "../../apis/api/review
 import Rate from "rc-rate";
 import 'rc-rate/assets/index.css';
 import { FaStar } from "react-icons/fa";
-import ReviewPagination from "../ReviewPagination/ReviewPagination";
-
 
 function BookDetailModal({ book, isOpen, setIsOpen }) {
     const [ stockState, setStockState ] = useState([]);
@@ -25,6 +23,40 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
     const [ rating, setRating ] = useState(0);
 
     const [ reviewCount, setReviewCount ] = useState(0);
+
+    //
+    const [ rvpage, setRVPage ] = useState(1);
+    const [ numbers, setNumbers ] = useState([]);
+    const totalCount = reviewCount;
+    const itemsPerPage = 4;
+    const maxPageNumber = Math.ceil(totalCount / itemsPerPage);
+    useEffect(() => {
+        const startPageNumber = (page % 10 === 0) ? (page - 9) : (page - (page % 10) + 1);
+        const endPageNumber = (startPageNumber + 9 > maxPageNumber) ? (maxPageNumber) : (startPageNumber + 9);
+        let pageNumbers = []; 
+
+        for(let i = startPageNumber; i <= endPageNumber; i++) {
+            pageNumbers = [...pageNumbers, i];
+        }
+        setNumbers(() => pageNumbers);
+    }, [rvpage, totalCount, maxPageNumber])
+    const goToPage = (pageNumber) => {
+        setRVPage(pageNumber);
+    };
+
+    const goToPrevPage = () => {
+        if (rvpage > 1) {
+            setRVPage(rvpage - 1);
+        }
+    };
+
+    const goToNextPage = () => {
+        if (rvpage < maxPageNumber) {
+            setRVPage(rvpage + 1);
+        }
+    };
+
+    //
 
     const bookStocksQuery = useQuery(
         ["bookStocksQuery"],
@@ -44,10 +76,10 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
     )
 
     const reviewQuery = useQuery(
-        ["reviewQuery"],
+        ["reviewQuery", rvpage],
         async () => await getReview({
             id: book.bookId,
-            page: 1 
+            page: rvpage
         }),
         {
             refetchOnWindowFocus: false,
@@ -143,7 +175,7 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
                                             {book.categoryName}</h3>
                                         </div>
                                         <div css={s.bookRate}>
-                                            <div>
+                                            <div css={s.bookRateL}>
                                                 <Rate
                                                     count={5}
                                                     value={book.averageRating}
@@ -154,9 +186,11 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
                                                     character={<FaStar size={30}/>}
                                                     disabled
                                                 />
+                                            </div>
+                                            <div css={s.bookRateC}>
                                                 <span>{Math.floor(book.averageRating * 2 * 10) / 10}</span>
                                             </div>
-                                            <div>
+                                            <div css={s.bookRateR}>
                                                 <p>회원리뷰({reviewCount}건)</p>
                                             </div>
                                         </div>  
@@ -248,17 +282,37 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
                                             }
                                         </div>
                                         <div css={s.reviewPages}>
-                                            <ReviewPagination count={reviewCount}/>
+                                            <div css={s.layout}>
+                                                <div css={s.pageCount}>
+                                                    <div css={s.pageNumbers}>
+                                                        {rvpage !== 1 && totalCount !== 0 && (
+                                                            <button onClick={() => goToPrevPage()} css={s.pageButton(false)}>
+                                                                &#60;
+                                                            </button>
+                                                        )}
+                                                        {numbers.map((number) => (
+                                                            <button key={number} onClick={() => goToPage(number)} css={s.pageButton(number === rvpage)}>
+                                                                {number}
+                                                            </button>
+                                                        ))}
+                                                        {rvpage !== maxPageNumber && totalCount !== 0 && (
+                                                            <button onClick={() => goToNextPage()} css={s.pageButton(false)}>
+                                                                &#62;
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div> 
                                         <div css={s.bottom}>
                                             <div css={s.Base}>
                                                 <div css={s.base1}>
                                                     <Rate count={5}
-                                                        value={rating}
+                                                        value={rating / 2}
                                                         allowHalf={true}
                                                         style={{fontSize: 25}}
                                                         character={<FaStar />}
-                                                        onChange={value => setRating(() => value)}
+                                                        onChange={value => setRating(() => value * 2)}
                                                     />
                                                 </div>
                                                 <div css={s.base2}>
