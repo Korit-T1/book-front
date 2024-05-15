@@ -38,7 +38,7 @@ function BoardDetailPage(props) {
 
     const handleUpdate = () => {
         // 수정하기 페이지로 이동
-        window.location.replace(`/boardDetail/edit/${noticeBoardId}`);
+        window.location.replace(`/admin/boardDetail/edit/${noticeBoardId}`);
     };
     // HTML 태그를 제거하여 순수한 텍스트만 반환하는 함수
     const removeHTMLTags = (str) => {
@@ -70,7 +70,6 @@ function BoardDetailPage(props) {
                 )}
             </div>
             <div>
-            
                 <button onClick={handleUpdate}>수정</button>
                 <button onClick={handleDelete}>삭제</button>
             </div>

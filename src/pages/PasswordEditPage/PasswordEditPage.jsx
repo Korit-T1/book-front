@@ -44,6 +44,7 @@ function PasswordEditPage() {
             }
         }
     });
+    
 
     const handleEditSubmitClick = () => {
         editPasswordMutation.mutate({
@@ -56,9 +57,15 @@ function PasswordEditPage() {
     return (
         <div>
             <h1>비밀번호 변경</h1>
-            <AuthPageInput type={"password"} value={oldPassword} onChange={handleOldPassword} placeholder={"현재 비밀번호 입력"} message={oldMessage} />
-            <AuthPageInput type={"password"} value={newPassword} onChange={handleNewPassword} placeholder={"새 비밀번호 입력"} message={newMessage}/>
-            <AuthPageInput type={"password"} value={newPasswordCheck} onChange={handleNewPasswordCheck} placeholder={"새 비밀번호 확인"} message={newCheckMessage}/>
+            <AuthPageInput 
+                type={"password"} 
+                value={oldPassword} 
+                onChange={handleOldPassword} 
+                placeholder={"현재 비밀번호 입력"} 
+                message={oldMessage} 
+            />
+            <AuthPageInput type={"password"} name={"password"} value={newPassword} onChange={handleNewPassword} placeholder={"새 비밀번호 입력"} message={newMessage}/>
+            <AuthPageInput type={"password"} name={"checkPassowrd"} value={newPasswordCheck} onChange={handleNewPasswordCheck} placeholder={"새 비밀번호 확인"} message={newCheckMessage}/>
             <button onClick={handleEditSubmitClick}>비밀번호 변경하기</button>
         </div>
     );
