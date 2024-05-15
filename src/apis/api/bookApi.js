@@ -32,3 +32,11 @@ export const getTopFiveBooksRequest = async () => {
 export const getNewBooksRequest = async () => {
     return await instance.get(`/books/new`);
 }
+
+//관리자페이지
+export const bookRegister = async(data) => {
+    const response = await instance.post("/admin/bookRegistration", data);
+}
+export const getCategory = async() => {
+    const response = await instance.get("/admin/getCategory")
+}

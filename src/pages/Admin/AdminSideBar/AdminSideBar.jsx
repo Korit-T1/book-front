@@ -7,18 +7,15 @@ import { SIDE_MENU } from "../../../constants/mypageSideMenu";
 
 
 function AdminSideBar() {
-    const [ show, setShow ] = useState(false);
+    const [ show, setShow ] = useState(true);
 
     return (
 
         <aside css={s.layout(show)}>
-            <button css={s.toggleButton} onClick={() => setShow(prevValue => !prevValue)}>
-                <background />
-                {show ? < FaCaretLeft /> : < FaCaretRight />}
-            </button>
+            
             <ul css={s.menuList}>
                 {SIDE_MENU.map(menu => 
-                    <Link css={s.menuItem} to={`${menu.path}${!menu.params ? "" : "?" + Object.entries(menu.params).map(([key, value]) => key + "=" + value).join("&")}`} key={menu.id} onClick={() => setShow(false)}>
+                    <Link css={s.menuItem} to={`${menu.path}${!menu.params ? "" : "?" + Object.entries(menu.params).map(([key, value]) => key + "=" + value).join("&")}`} key={menu.id}>
                         <li>{menu.name}</li>
                     </Link>)
                 }

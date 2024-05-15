@@ -28,3 +28,6 @@ export const inputBox = css`
     display: flex;
     flex-direction: column;
 `
+export const userBox = css`
+    overflow: auto;
+`
