@@ -1,137 +1,96 @@
 import { css } from "@emotion/react";
 
-export const pageCount = css`
-
+export const background = css`
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -99;
+    height: 100%;
+    width: 100%;
+    background-color: #cccccc;
 `;
-
-export const page = css`
-
-`;
-
-export const count = css`
-
-`;
-
-export const maxPageNumber = css`
-
-`;
-
 export const layout = css`
-    position: absolute;
+    box-sizing: border-box;
+    position: relative;
+    margin: auto;
     display: flex;
     flex-direction: column;
-    background-color: white;
-    height: 100%;
-    width: 100%;
-`;
-
-export const container = css`
     justify-content: center;
-    width: 100%;
+    align-items: center;
+    border: 2px solid #fafafa;
+    padding: 10px;
+    width: 1200px;
     height: 100%;
+    overflow: hidden;
 `;
 
-export const selectInput = css`
+export const box = css`
+    box-sizing: border-box;
     display: flex;
-`;
-
-export const tableLayout = css`
-    position: relative;
-    border: 1px solid #dbdbdb;
-    height: 400px;
-    background-color: white;
-    overflow: auto;
-
-    &::-webkit-scrollbar {
-        box-sizing: border-box;
-        width: 10px;
-        height: 10px;
-        background-color: #fdfdfd;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        box-sizing: border-box;
-        border: 1px solid #fdfdfd;
-        background-color: #dbdbdb;
-    }
-`;
-
-export const table = css`
+    justify-content: center;
+    margin-top: 20px;
+    width: auto;
+    height: auto;
+`
+export const registerTable = css`
+    box-sizing: border-box;
     border-collapse: collapse;
-    width: max-content;
-
-    & td, & th {
-        border: 1px solid #dbdbdb;
-        padding: 0px 5px;
-    }
-    & th {
-        border-top: none;
-    }
-    & td {
-        font-size: 14px;
-    }
-    & tr > td:nth-of-type(1),
-    & tr > th:nth-of-type(1) {
-        border-left: none;
-    }
-    & tr > td:nth-last-of-type(1),
-    & tr > th:nth-last-of-type(1) {
-        border-right: none;
-    }
-
-    & tr > th:nth-of-type(1),
-    & tr > td:nth-of-type(1) {
-        text-align: center;
-        min-width: 30px;
-    }
-
-    & tr > th:nth-of-type(2),
-    & tr > td:nth-of-type(2) {
-        min-width: 80px;
-    }
-    & tr > td:nth-of-type(2) {
-        text-align: right;
-    }
-
-    & tr > th:nth-of-type(3),
-    & tr > td:nth-of-type(3) {
-        min-width: 250px;
-    }
-
-    & tr > th:nth-of-type(4),
-    & tr > td:nth-of-type(4) {
-        min-width: 150px;
-    }
-
-    & tr > th:nth-of-type(5),
-    & tr > td:nth-of-type(5) {
-        min-width: 150px;
-    }
-
-    & tr > th:nth-of-type(6),
-    & tr > td:nth-of-type(6) {
-        min-width: 150px;
-    }
-
-    & tr > th:nth-of-type(7),
-    & tr > td:nth-of-type(7) {
-        min-width: 100px;
-    }
-
-    & tr > th:nth-of-type(8),
-    & tr > td:nth-of-type(8) {
-        min-width: 100px;
-    }
-
-    & tr > th:nth-of-type(9),
-    & tr > td:nth-of-type(9) {
-        min-width: 100px;
-    }
-
-`
-
-export const theadTr = css`
-    position: sticky;
-    top: 0;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    width: 100%;
     background-color: #fdfdfd;
-`
+
+    & td {
+        box-sizing: border-box;
+        border: 1px solid #dbdbdb;
+        background-color: white;
+    }
+`;
+export const registerTh = css`
+    box-sizing: border-box;
+    border: 1px solid #dbdbdb;
+    padding: 5px;
+    width: 80px;
+    cursor: default;
+`;
+
+export const preview = css`
+    box-sizing: border-box;
+    width: 140px;
+`;
+
+export const imageBox = css`
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 100%;
+    overflow: hidden;
+
+    & img {
+        height: 150px;
+    }
+`;
+export const imgUrl = css`
+    display: flex;
+    align-items: flex-end;
+`;
+
+export const imgUrlBox = css`
+    display: inline-block;
+    width: 95%;
+    line-height: 10px;
+`;
+
+export const imgAddButton = css`
+    display: flex;
+    align-items: flex-end;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    & > * {
+        font-size: 20px;
+    }
+`;

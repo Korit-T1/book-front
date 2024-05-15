@@ -64,7 +64,7 @@ export default function NewPost() {
             />
             <button onClick={() => adminUserQuery.refetch()}>검색</button>
           </div>
-          <div>
+          <div css={s.userBox}>
             <table>
               <thead>
                 <tr>
@@ -76,6 +76,7 @@ export default function NewPost() {
                   <th>주소</th>
                   <th>휴대폰</th>
                   <th>생년월일</th>
+                  <th>연체횟수</th>
                 </tr>
               </thead>
               <tbody>
@@ -92,6 +93,7 @@ export default function NewPost() {
                       <td>{adminUsers.address}</td>
                       <td>{adminUsers.phone}</td>
                       <td>{adminUsers.birth}</td>
+                      <td>{adminUsers.overdue}</td>
                     </tr>
                   )
                 }
