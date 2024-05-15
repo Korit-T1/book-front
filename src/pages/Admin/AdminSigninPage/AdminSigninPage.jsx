@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
-import AuthPageInput from '../../../components/AuthPageInput/AuthPageInput';
 import { useInput } from "../../../hooks/userInput";
 import { useMutation } from "react-query";
 import { adminSigninRequest } from "../../../apis/api/signin";
-import { IoPersonCircleSharp } from "react-icons/io5";
-
+import AuthPageInput2 from "../../../components/AuthPageInput2/AuthPageInput2";
+import LOGO from "../../../assets/adminLOGO.png"
+import KEY from "../../../assets/adminKEY.png"
 
 function AdminsigninPage(props) {
     const [ username, usernameChange ] = useInput();
@@ -35,26 +35,29 @@ function AdminsigninPage(props) {
         <>
             <div css={s.background}>
                 <div css={s.layout}>
-                    
-                    <h1>관리자 로그인</h1>
-                    <AuthPageInput
+                    <div css={s.image}>
+                        <img src={LOGO} alt="" />
+                    </div>
+                    <AuthPageInput2
                         style={s.inputBox}
                         type={"text"}
                         name={"username"}
-                        placeholder={"아이디"}
+                        placeholder={"ID"}
                         value={username}
                         onChange={usernameChange}
-                        
-                    />
-                    <AuthPageInput 
+                    />  
+                    <AuthPageInput2
                         style={s.inputBox}
                         type={"password"}
                         name={"password"}
-                        placeholder={"비밀번호"}
+                        placeholder={"PW"}
                         value={password}
                         onChange={passwordChange}
                     />
-                    <br/><button onClick={handleAdminSigninSubmit}>로그인</button>
+                    <div css={s.go} onClick={handleAdminSigninSubmit}>
+                        <img src={KEY} alt=""></img>
+                    </div>
+                    
                 </div>            
             </div>
         </>
