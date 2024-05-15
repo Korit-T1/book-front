@@ -3,12 +3,9 @@ import { editPasswordRequest } from '../../apis/api/editPassword';
 import { useInput } from '../../hooks/userInput';
 import AuthPageInput from '../AuthPageInput/AuthPageInput';
 
-
-
 function EditPassword({ userId }) {
     const [ newPassword, handleNewPassword, newMessage, setNew, setNewMessage ] = useInput("newPassword");
     const [ newPasswordCheck, handleNewPasswordCheck, newCheckMessage, setNewCheck, setNewCheckMessage ] = useInput("newPasswordCheck");
-
 
     const changePasswordMutation = useMutation({
         mutationKey: "changePasswordMutation",
@@ -42,11 +39,13 @@ function EditPassword({ userId }) {
     });
 
     const handlePasswordChange = () => {
+
         console.log(userId);
         changePasswordMutation.mutate({ 
             userId: userId, 
             newPassword: newPassword, 
             newPasswordCheck: newPasswordCheck
+
         });
     };
 
@@ -58,6 +57,7 @@ function EditPassword({ userId }) {
             <button onClick={handlePasswordChange}>비밀번호 변경하기</button>
             <p>{userId}</p>
         </div>      
+
     );
 }
 

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { LOCATION } from "../../constants/localDistrict";
 import { signupRequest } from "../../apis/api/signup";
 import { useMutation } from "react-query";
+import { section1, button } from "./style";
 
 function SignupPage() {
     const navigate = useNavigate();
@@ -154,8 +155,10 @@ function SignupPage() {
     }
 
     return (
+    <div css={s.backgroundc}>
+    <>    
         <div css={s.layout}>
-            <h1>LOGO</h1>
+            <h1>BookDrop 회원가입</h1>
             <AuthPageInput 
                 type={"text"}
                 name={"username"}
@@ -236,10 +239,16 @@ function SignupPage() {
                 onChange={birthChange}
                 message={birthMessage}
             />
+           
             <div>
-                <button onClick={handleSignupSubmit}>가입하기</button>
+                <button css={s.button2} onClick={handleSignupSubmit}>가입하기</button>
             </div>
         </div>
+
+
+    </>
+    
+    </div> 
     );
 }
 

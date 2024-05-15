@@ -5,20 +5,25 @@ export const background = css`
     display: flex;
     justify-content: center;
     align-items: center;
-
     height: 100vh;
 `;
 
 export const layout = css`
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
-    
+    place-items: center;
+    border-radius: 7px;
     flex-direction: column;
-
-    width: 400px;
-    height: 300px;
-    border-left: 1px solid #dbdbdb;
-    border-right: 1px solid #dbdbdb;
+    width: 600px;
+    height: 50vh;
     background-color: white;
+    
+`;
+
+
+export const inputBox = css`
+    border-color: white;
+    border-bottom: 1px solid black;
+    
 `;

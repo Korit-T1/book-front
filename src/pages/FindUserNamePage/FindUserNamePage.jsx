@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import { findUserinfo } from '../../apis/api/adminApi';
 
-
 function FindUsernamePage(props) {
 
     const [username, setUsername] = useState("");
@@ -12,7 +11,6 @@ function FindUsernamePage(props) {
         email: ''
     });
     
-
     const nameInputRef = useRef();
     const phoneInputRef = useRef();
     const emailInputRef = useRef();
@@ -23,6 +21,7 @@ function FindUsernamePage(props) {
             ...prevSearchData,
             [name]: value
         }));
+
     };
 
     const findUser = useQuery(
@@ -38,12 +37,7 @@ function FindUsernamePage(props) {
             retry: 0,
             onSuccess: response => {
                 console.log(searchData);
-                if(response && response.data) {
-                    setUsername(response.data.username);
-                } else {
-                    setUsername("해당 사용자의 정보를 찾을 수 없습니다.")
-                }
-                
+                setUsername(response.data.username);
             },
             onError: (error) => {
                 console.error("에러발생: ", error);
@@ -51,6 +45,7 @@ function FindUsernamePage(props) {
             }
         }
     )
+
     const handleFindUsername = () => {
         findUser.refetch();
     };
@@ -65,6 +60,7 @@ function FindUsernamePage(props) {
                     value={searchData.name}
                     onChange={handleInputChange}
                     ref={nameInputRef}
+
                 />
                 <input
                     type="text"
@@ -73,6 +69,7 @@ function FindUsernamePage(props) {
                     value={searchData.phone}
                     onChange={handleInputChange}
                     ref={phoneInputRef}
+
                 />
                 <input
                     type="text"
@@ -81,6 +78,7 @@ function FindUsernamePage(props) {
                     value={searchData.email}
                     onChange={handleInputChange}
                     ref={emailInputRef}
+
                 />
             </div>
             <div>
@@ -95,3 +93,4 @@ function FindUsernamePage(props) {
 }
 
 export default FindUsernamePage;
+

@@ -11,6 +11,7 @@ function SearchUserInfo(props) {
         name:''
     })
 
+
     const [searchData, setSearchData] = useState({
         username: '',
         name: '',
@@ -31,7 +32,7 @@ function SearchUserInfo(props) {
     const findUser = useQuery(
         ["findUser"],
         async () => {
-            if (!searchData.name || !searchData.phone || !searchData.email) {
+            if (!searchData.username || !searchData.name || !searchData.phone || !searchData.email) {
                 return null;
             }
             return await findUserinfo(searchData);
@@ -47,11 +48,10 @@ function SearchUserInfo(props) {
             }
         }
     )
-
     const handleFindUsername = () => {
         findUser.refetch();
     };
-    
+
     return (
         <div>
             {/* 회원 정보를 입력하는 폼 */}

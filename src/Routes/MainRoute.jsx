@@ -17,6 +17,7 @@ import FindPasswordPage from '../pages/FindPasswordPage/FindPasswordPage';
 
 
 
+
 function MainRoute() {
     const [ principal, setPrincipal ] = useRecoilState(principalState);
   
@@ -55,6 +56,8 @@ function MainRoute() {
                             <Route path='/searchUserInfo/findId' element={<FindUsernamePage />} />
                             <Route path='/searchUserInfo/findPw' element={<FindPasswordPage />} />
                             <Route path='/boardDetail/edit/:noticeBoardId' element={<BoardModifyPage />} />
+                            <Route path='/searchUserInfo/findId' element={<FindUserNamePage />} />
+                            <Route path='/searchUserInfo>/findPw' element={<FindPasswordPage />} />
                         </Routes>
                     </MainContainer>
                 </>

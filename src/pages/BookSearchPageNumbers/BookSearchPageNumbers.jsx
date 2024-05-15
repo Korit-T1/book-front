@@ -59,7 +59,7 @@ function BookSearchPageNumber({ bookCount }) {
             </div>
             <div css={[s.pageCount, {textAlign: 'center'}]}>
                 <div css={s.page}>Page {page} of {maxPageNumber}</div>
-                <div css={s.count}>Count: {bookCount.totalCount}</div>
+                <div css={s.count}>Total: {bookCount.totalCount}</div>
             </div>
         </div>
     );
