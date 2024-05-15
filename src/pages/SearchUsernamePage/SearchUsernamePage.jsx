@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { findUserinfo } from '../../apis/api/adminApi';
 import { useQuery } from 'react-query';
 
+
 function SearchUsernamePage(props) {
 
     const [username, setUsername] = useState("");
@@ -21,18 +22,15 @@ function SearchUsernamePage(props) {
             ...prevSearchData,
             [name]: value
         }));
-
     };
 
     const findUser = useQuery(
         ["findUser"],
         async () => {
-            if (!searchData.name || !searchData.phone || !searchData.email) {
-                return null;
-            }
-            return await findUserinfo(searchData);
+            await findUserinfo(searchData);
         },
         {
+            enabled: false,
             refetchOnWindowFocus: false,
             retry: 0,
             onSuccess: response => {
@@ -81,7 +79,7 @@ function SearchUsernamePage(props) {
                 />
             </div>
             <div>
-                <button onClick={handleFindUsername}>아이디 찾기</button>
+                <button onClick={() => handleFindUsername(searchData)}>아이디 찾기</button>
             </div>
             <div>
                 {/* 사용자의 아이디를 표시합니다. */}
@@ -90,5 +88,6 @@ function SearchUsernamePage(props) {
         </div>
     );
 }
+
 
 export default SearchUsernamePage;
