@@ -1,62 +1,74 @@
 import { css } from "@emotion/react";
 
 export const inputBox1 = css`
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
     border-radius: 3px;
     width: 300px;
-    height: 55px;
-    margin-top: 15px;
-    margin-bottom: 22px;
-    border: 1px solid transparent;
+    margin-top: 10px;
+    max-height: 58px;
+    /* margin-bottom: 22px; */
+    /* box-sizing: border-box;
+    border: 1px solid black; */
 
-    &:hover {
-        border-color: blue;
-        transition: background-color 0.7s;
-        margin-top: 5px;
-    }
+
 `;
 
-export const input = css`
+export const abc = css`
+    display: flex;
+`
+
+export const input1 = css`
     box-sizing: border-box;
     border: 1px solid #dbdbdb;
-    padding: 10px 30px 10px 10px;
+    padding: 10px 30px 10px 15px;
     background-color: white;
     border-radius: 3px;
     width: 100%;
-    height: 100%;
-    font-size: 12px;
-    cursor: pointer;
+    max-height: 50px;
+    font-size: 15px;
+
+    :focus {
+        outline: 1px solid;
+    }
 `;
 
 export const input2 = css`
     box-sizing: border-box;
-    outline: none;
-    border-top: none;
-    border-bottom: 1px solid #dbdbdb;
-    border-left: 1px solid #dbdbdb;
-    border-right: 1px solid #dbdbdb;
-    padding: 10px 30px 10px 10px;
+    border: 1px solid #dbdbdb;
+    padding: 10px 30px 10px 15px;
     background-color: white;
     border-radius: 3px;
     width: 100%;
     height: 100%;
-    font-size: 12px;
+    font-size: 15px;
 
-    cursor: pointer;
+    :focus {
+        outline: 1px solid;
+    }
 `;
 
 export const inputIcon = (type) => css`
-    position: absolute;
+    /* position: absolute;
     top: 10px;
-    right: 10px;
-
+    right: 10px; */
+    width: 8%;
     color: ${type === 'error' ? "#ff6161" : "#00921b"};
 `;
     
 export const messageBox = (type) => css`
-    padding: ${type === "error" ? "5px 10px" : 0};
-    width: 100%;
+    /* flex: 1; */
+    padding-top: ${type === "error" ? "1px" : 0};
+    width: 92%;
     color: ${type === 'error' ? "#ff6161" : "#00921b"};
     font-size: 11px;
     font-weight: 600;
 `;
+
+export const blank = css`
+    width: 300px;
+    height: 60px;
+
+    /* box-sizing: border-box;
+    border: 1px solid; */
+`
