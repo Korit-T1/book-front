@@ -16,8 +16,6 @@ import FindPasswordPage from '../pages/FindPasswordPage/FindPasswordPage';
 import SearchUsernamePage from '../pages/SearchUsernamePage/SearchUsernamePage';
 
 
-
-
 function MainRoute() {
     const [ principal, setPrincipal ] = useRecoilState(principalState);
   

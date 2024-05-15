@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
-import { useQuery } from 'react-query';
 import { findUserinfo } from '../../apis/api/adminApi';
+import { useQuery } from 'react-query';
 
-function SearchUsernamePage() {
+
+function SearchUsernamePage(props) {
+
     const [username, setUsername] = useState("");
     const [searchData, setSearchData] = useState({
         name: '',
@@ -33,7 +35,7 @@ function SearchUsernamePage() {
             retry: 0,
             onSuccess: response => {
                 console.log(searchData);
-                setUsername(response.data.username);
+                setUsername(response?.data.username);
             },
             onError: (error) => {
                 console.error("에러발생: ", error);
