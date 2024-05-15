@@ -56,10 +56,8 @@ return (
                 />
                 <button css={s.button} onClick={handleSigninSubmit} >로그인</button>
                 <div css={s.find}>
-                    <div>
-                        <button css={s.findID}>아이디 찾기</button>
-                        <button css={s.findPW}>비밀번호 찾기</button>
-                    </div>
+                    <button css={s.findID}><Link to={"/searchUserInfo/findId"}>아이디 찾기</Link></button>
+                    <button css={s.findPW}><Link to={"/searchUserInfo/findPw"}>비밀번호 찾기</Link></button>
                 </div>
                 <button css={s.button}><Link to={"/usersignup"}>회원가입</Link></button>
             </div>
