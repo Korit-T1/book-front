@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import { findUserinfo } from '../../apis/api/adminApi';
 
-function FindUserNamePage(props) {
+function SearchUsernamePage() {
     const [username, setUsername] = useState("");
     const [searchData, setSearchData] = useState({
         name: '',
@@ -37,7 +37,6 @@ function FindUserNamePage(props) {
             },
             onError: (error) => {
                 console.error("에러발생: ", error);
-                setUsername("검색 중 오류가 발생했습니다.");
             }
         }
     )
@@ -88,5 +87,5 @@ function FindUserNamePage(props) {
     );
 }
 
-export default FindUsernamePage;
 
+export default SearchUsernamePage;

@@ -12,8 +12,8 @@ import BookSearchPage from '../../src/pages/BookSearchPage/BookSearchPage';
 import BoardListPage from '../pages/BoardListPage/BoardListPage';
 import BoardDetailPage from '../pages/BoardDetailPage/BoardDetailPage';
 import BoardModifyPage from '../pages/BoardModifyPage/BoardModifyPage';
-import FindUsernamePage from '../pages/FindUsernamePage/FindUsernamePage';
 import FindPasswordPage from '../pages/FindPasswordPage/FindPasswordPage';
+import SearchUsernamePage from '../pages/SearchUsernamePage/SearchUsernamePage';
 
 
 
@@ -49,15 +49,13 @@ function MainRoute() {
                     <MainContainer>
                         <Routes>
                             <Route path='/' element={<Home />} />
-                            <Route path='/search' element={<BookSearchPage />} />
                             <Route path='/mypage/*' element={<Mypage />} />
+                            <Route path='/search' element={<BookSearchPage />} />
+                            <Route path='/searchUserInfo/findPw' element={<FindPasswordPage />} />
+                            <Route path='/searchUserInfo/findId' element={<SearchUsernamePage />} />
                             <Route path='/boardList' element={<BoardListPage />} />
                             <Route path='/boardDetail/:noticeBoardId' element={<BoardDetailPage />} />
-                            <Route path='/searchUserInfo/findId' element={<FindUsernamePage />} />
-                            <Route path='/searchUserInfo/findPw' element={<FindPasswordPage />} />
                             <Route path='/boardDetail/edit/:noticeBoardId' element={<BoardModifyPage />} />
-                            <Route path='/searchUserInfo/findId' element={<FindUserNamePage />} />
-                            <Route path='/searchUserInfo/findPw' element={<FindPasswordPage />} />
                         </Routes>
                     </MainContainer>
                 </>
