@@ -1,14 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
 import * as s from "./style";
 import { Link } from "react-router-dom";
 import AuthPageInput from "../../components/AuthPageInput/AuthPageInput";
 import { useInput } from "../../hooks/userInput";
 import { useMutation } from "react-query";
 import { signinRequest } from "../../apis/api/signin";
-import { inputStyle, inputBox, backgroundc, signinButton } from "./style";
-
-
 
 function SigninPage(props) {
     const [ username, usernameChange ] = useInput();

@@ -1,8 +1,4 @@
 import { css } from "@emotion/react";
-import React from "react";
-import styled from 'styled-components';
-
-
 
 export const layout = css`
     display: flex;

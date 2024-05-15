@@ -12,8 +12,7 @@ import BookSearchPage from '../../src/pages/BookSearchPage/BookSearchPage';
 import BoardListPage from '../pages/BoardListPage/BoardListPage';
 import BoardDetailPage from '../pages/BoardDetailPage/BoardDetailPage';
 import BoardModifyPage from '../pages/BoardModifyPage/BoardModifyPage';
-import FindUsernamePage from '../pages/FindUsernamePage/FindUsernamePage';
-import FindPasswordPage from '../pages/FindPasswordPage/FindPasswordPage';
+
 
 
 
@@ -53,11 +52,7 @@ function MainRoute() {
                             <Route path='/mypage/*' element={<Mypage />} />
                             <Route path='/boardList' element={<BoardListPage />} />
                             <Route path='/boardDetail/:noticeBoardId' element={<BoardDetailPage />} />
-                            <Route path='/searchUserInfo/findId' element={<FindUsernamePage />} />
-                            <Route path='/searchUserInfo/findPw' element={<FindPasswordPage />} />
                             <Route path='/boardDetail/edit/:noticeBoardId' element={<BoardModifyPage />} />
-                            <Route path='/searchUserInfo/findId' element={<FindUserNamePage />} />
-                            <Route path='/searchUserInfo>/findPw' element={<FindPasswordPage />} />
                         </Routes>
                     </MainContainer>
                 </>
