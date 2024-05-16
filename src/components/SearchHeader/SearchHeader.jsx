@@ -37,7 +37,6 @@ function SearchHeader() {
                         <ul css={s.menuNav}>
                             <Link to={"/search?page=1&option=0&filter=1&text="}><li>통합검색</li></Link>
                             <Link to={"/boardList?page=1&option=0&text="}><li>공지사항</li></Link>
-                            {/* <Link><li>게시판</li></Link> */}
                             <Link><li>이용안내</li></Link>
                         </ul>
                     </div>
@@ -48,9 +47,8 @@ function SearchHeader() {
                     </div>
                     <div css={s.headerRight}>
                         <ul css={s.menuNav}>
-                            {/* <Link><li>Q&A</li></Link> */}
                             <Link><li>FAQ</li></Link>
-                            <Link to={"/signUp"}><li>회원가입</li></Link>
+                            <Link to={"/usersignup"}><li>회원가입</li></Link>
                             {!isLogin 
                                 ? <Link to={"/userlogin"}><li>로그인</li></Link>
                                 : <Link onClick={() => handleLogoutClick()}><li>로그아웃</li></Link>

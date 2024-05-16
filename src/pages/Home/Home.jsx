@@ -1,10 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as s from "./style"
 import { useQuery } from "react-query";
 import { getNewBooksRequest, getPopularBooksRequest, getTopFiveBooksRequest } from "../../apis/api/bookApi";
-import { FaRankingStar } from "react-icons/fa6";
-import { FcBullish } from "react-icons/fc";
 import { Bs1Square } from "react-icons/bs";
 import { GiImperialCrown } from "react-icons/gi";
 import { MdFiberNew } from "react-icons/md";
@@ -22,7 +20,7 @@ function Home() {
     const [ topFiveBooks, setTopFiveBooks ] = useState([]);
     const [ newBooks , setNewBooks ] = useState([]);
     const [ isOpen, setIsOpen ] = useState(false);
-    const [ selectedBook, setSelectedBook ] = useState(null);
+    const [ selectedBook, setSelectedBook ] = useState();
 
     const getPopularBooksQuery = useQuery(
         ["getPopularBooksQuery"],
@@ -67,21 +65,6 @@ function Home() {
         <>
             <div css={s.layout}>
                 <ImageSilder />
-                <div css={s.navigationBar}>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                    <div css={s.category}></div>
-                </div>
                 <div css={s.title}>
                     <h1>인기 급상승! 많이 보고 있는 작품</h1>
                     <div css={s.graph}>
@@ -174,17 +157,6 @@ function Home() {
                         )
                     }
                 </div>
-                {/* <div css={s.container}>
-                    <div css={s.subContainer}>
-                        <h1>공지사항</h1>
-                    </div>
-                    <div css={s.subContainer}>
-
-                    </div>
-                </div>
-                <div css={s.container}>
-
-                </div> */}
             </div>
             <BookDetailModal book={selectedBook} isOpen={isOpen} setIsOpen={setIsOpen}/>
         </>

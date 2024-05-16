@@ -85,7 +85,7 @@ export const filter = (id) => css`
     & > button:hover {
         font-size: 22px;
         font-weight: bold;
-        background-color: #f0d7ff;
+        background-color: #e0e0e0;
     }
 
     & > button:nth-of-type(${id}) {

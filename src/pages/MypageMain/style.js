@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 
 export const layout = css`
-    border: 1px solid #dbdbdb;
+    /* border: 1px solid #dbdbdb; */
     width: 96%;
     height: 95%;
 
@@ -33,7 +33,7 @@ export const activitys = css`
     box-sizing: border-box;
     /* border: 1px solid black; */
     width: 100%;
-    height: 140px;
+    height: 250px;
     margin-bottom: 20px;
 `;
 
@@ -41,13 +41,9 @@ export const activity = css`
     display: flex;
     box-sizing: border-box;
     justify-content: center;
-    border: 1px solid #dbdbdb;
+    /* border: 1px solid black; */
     width: 90%;
-    height: 80%;
-
-    & > div {
-        border-right: 1px solid #dbdbdb;
-    }
+    height: 100%;
 
     & > div:nth-of-type(3) {
         border-right: none;
@@ -59,7 +55,8 @@ export const act = css`
     box-sizing: border-box;
     flex: 1;
     flex-direction: column;
-    /* justify-content: center; */
+    align-items: center;
+    justify-content: center;
 
 `;
 
@@ -68,14 +65,19 @@ export const title = css`
     justify-content: center;
     align-items: center;
     margin-top: 15px;
+    height: 30px;
     /* border: 1px solid; */
 `;
 
 export const info = css`
     display: flex;
-    margin-top: 10px;
     justify-content: center;
     align-items: center;
+    border-radius: 50%;
+    border: 1px solid #dbdbdb;
+
+    width: 180px;
+    height: 180px;
     /* flex: 1 */
 `;
 
@@ -86,10 +88,10 @@ export const activitys2 = css`
     box-sizing: border-box;
     border-top: 1px solid #dbdbdb;
     width: 100%;
-    height: 500px;
+    height: 400px;
 
     & > div:nth-of-type(1) {
-        border-right: 1px solid #dbdbdb;
+        /* border-right: 1px solid #dbdbdb; */
     }
 `;
 
@@ -98,40 +100,44 @@ export const activity2 = css`
     /* border: 1px solid black; */
     width: 50%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 `;
 
 export const a = css`
     height: 10%;
-    background-color: cadetblue;
+    /* background-color: cadetblue; */
 `;
 
 export const favorite = css`
     display: flex;
-    height: 30%;
-    background-color: antiquewhite;
+    height: 20%;
+    /* background-color: antiquewhite; */
 `;  
 
 export const favoriteInfo = css`
     width: 70%;
-    box-sizing: border-box;
-    border: 1px solid;
+    /* box-sizing: border-box;
+    border: 1px solid; */
 `
 
 export const favoriteIcon = css`
-    width: 30%;
-    box-sizing: border-box;
-    border: 1px solid;
+    width: 60%;
+    /* box-sizing: border-box;
+    border: 1px solid; */
     overflow: hidden;
+    padding-left: 120px;
+    padding-top: 15px;
 
     & > img {
-        width: 100%;
-        height: 100%;
+        width: 80%;
+        height: 80%;
     }
 `
 
 export const most = css`
-    height: 60%;
-    background-color: #dbdbdb
+    height: 70%;
+    /* background-color: #dbdbdb */
 `;  
 
 export const bookInfo = css`
@@ -140,4 +146,39 @@ export const bookInfo = css`
 
 export const bookImage = css`
     
+`;
+
+
+export const ab = css`
+    height: 15%;
+    width: 100%;
+
+`;
+export const cd = css`
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div:nth-of-type(1) {
+        width: 30%;
+        p {
+            margin-right: 10px;
+            font-size: 22px;
+        }
+    }
+    div:nth-of-type(2) {
+        width: 70%;
+        overflow: hidden;
+        width: 200px;
+        height: 350px;
+
+        & > img {
+
+            /* padding-bottom: 50px; */
+            width: 100%;
+            height: 100%;
+        }
+        
+    }
 `;

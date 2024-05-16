@@ -1,23 +1,32 @@
 export const SIDE_MENU = [
     {
         id: 1,
-        path: "/admin",
-        name: "관리자 페이지"
+        path: "/mypage",
+        name: ""
     },
     {
         id: 2,
-        path: "/admin/usermanage",
-        name: "유저 정보 확인",
+        path: "/mypage/password",
+        name: "비밀번호 변경",
     },
     {
         id: 3,
-        path: "/admin/loanmanage",
-        name: "대출 반납 신청 확인",
+        path: "/mypage/reading?page=1&filter=1",
+        name: "현재 대출 중",
     },
     {
         id: 4,
-        path: "/admin/bookmanage",
-        name: "신규 도서 등록",
+        path: "/mypage/returned?page=1&filter=1",
+        name: "대출 및 반납 기록",
     },
-    
+    {
+        id: 5,
+        path: "/mypage/wish?page=1&filter=1",
+        name: "위시리스트",
+    },
+    {
+        id: 6,
+        path: "/mypage/signout",
+        name: "회원 탈퇴"
+    }
 ]

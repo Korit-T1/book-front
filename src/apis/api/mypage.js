@@ -31,3 +31,8 @@ export const updateProfileImageRequest = async (data) => {
 export const getSummaryCountRequest = async (userid) => {
     return await instance.get(`/mypage/summary?userid=${userid}`)
 } 
+
+export const getMostLoanedRequest = async (userid) => {
+    return await instance.get(`/mypage/most?userid=${userid}`)
+
+}

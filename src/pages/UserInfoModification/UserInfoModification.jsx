@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style"
-import AuthPageInput from '../../components/AuthPageInput/AuthPageInput';
+import AuthPageInput2 from '../../components/AuthPageInput2/AuthPageInput2';
 import { useMutation } from "react-query";
 import { useInput } from "../../hooks/userInput"
 import { editPasswordRequest } from "../../apis/api/editPassword";
@@ -64,9 +64,9 @@ function UserInfoModification(data) {
                 <p>이전에 사용한 적 없는 비밀번호가 안전합니다</p>
             </div>
             
-            <AuthPageInput type={"password"} value={oldPassword} onChange={handleOldPassword} placeholder={"현재 비밀번호"} message={oldMessage} /><br></br>
-            <AuthPageInput type={"password"} value={newPassword} onChange={handleNewPassword} placeholder={"새 비밀번호"} message={newMessage}/>
-            <AuthPageInput type={"password"} value={newPasswordCheck} onChange={handleNewPasswordCheck} placeholder={"새 비밀번호 확인"} message={newCheckMessage}/><br></br>
+            <AuthPageInput2 type={"password"} value={oldPassword} onChange={handleOldPassword} placeholder={"현재 비밀번호"} message={oldMessage} /><br></br>
+            <AuthPageInput2 type={"password"} value={newPassword} onChange={handleNewPassword} placeholder={"새 비밀번호"} message={newMessage}/>
+            <AuthPageInput2 type={"password"} value={newPasswordCheck} onChange={handleNewPasswordCheck} placeholder={"새 비밀번호 확인"} message={newCheckMessage}/><br></br>
             
             <div css={s.buttons}>
                 <button css={s.submitBtn} onClick={handleEditSubmitClick}>확인</button>

@@ -79,7 +79,7 @@ function BookSearchPage() {
 
     const searchSubmit = (filter) => {
         if(filter === undefined) {
-            filter = 0;
+            filter = 1;
         }
         window.location.replace(`/search?page=1&option=${searchData.option}&filter=${filter}&text=${searchData.text}`);
         handleFilterClick(filter);
@@ -132,9 +132,9 @@ function BookSearchPage() {
                 {
                     searchQuery.isLoading 
                     ? <></>
-                    : searchQuery.data.data.length === 0 
+                    : searchQuery.data?.data?.length === 0 
                         ? <h1>검색 결과가 없습니다.</h1>
-                        : searchQuery.data.data.map(book => {
+                        : searchQuery.data?.data?.map(book => {
                             return <div css={s.card} key={book.bookId} onClick={
                                 () => {
                                     setIsOpen(() => true);

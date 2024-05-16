@@ -36,7 +36,7 @@ export const pageButton = (isSelected) => css`
     color: ${isSelected ? "white" : "#777777"};
     
     :hover {
-        background-color: #f5e2ff;
+        background-color: #e0e0e0;;
     }
 `;
 

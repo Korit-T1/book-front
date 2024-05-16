@@ -118,7 +118,7 @@ function WishList(data) {
                                     <div css={s.bot}>
                                         <div css={s.rating}>
                                             <div css={s.starBox}><MdStarRate color="red" size={25}/></div>
-                                            <span css={s.rateBox}>{Math.round(wish.avgRating * 100) / 100}</span>
+                                            <span css={s.rateBox}>{Math.floor(wish.avgRating * 2 * 10) / 10}</span>
                                         </div>
                                         <div css={s.review}>
                                             <BiCommentDetail color="#607fe4" size={22}/>
