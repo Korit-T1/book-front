@@ -11,6 +11,8 @@ import { getReview, getReviewCount, registerReview } from "../../apis/api/review
 import Rate from "rc-rate";
 import 'rc-rate/assets/index.css';
 import { FaStar } from "react-icons/fa";
+import STOP from "../../assets/stop.png"
+import OK from "../../assets/ok.png"
 
 function BookDetailModal({ book, isOpen, setIsOpen }) {
     const [ stockState, setStockState ] = useState([]);
@@ -23,6 +25,7 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
     const [ rating, setRating ] = useState(0);
 
     const [ reviewCount, setReviewCount ] = useState(0);
+    const bookId = book?.bookId;
 
     //
     const [ rvpage, setRVPage ] = useState(1);
@@ -69,7 +72,8 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
                 console.log(response.data)
                 setStockState(() => response.data.map(stock => ({
                     stockId: stock.bookStockId,
-                    loanStatus: stock.loanStatus
+                    loanStatus: stock.loanStatus,
+                    dueDate: stock.dueDate
                 })));
             }
         }
@@ -95,7 +99,7 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
     const reviewCountQuery = useQuery(
         ["reviewCountQuery", reviews],
         async () => await getReviewCount({
-            id: book.bookId
+            id: bookId
         }),
         {
             retry: 0,
@@ -160,7 +164,7 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
                             <img src={book.coverImgUrl} alt="" />
                         </div>
                         <div css={s.infoBox}>
-                            <div css={s.btns}>
+                            <div css={s.btns(page)}>
                                 <button css={s.btn} onClick={() => setPage(1)}>정보</button>
                                 <button css={s.btn} onClick={() => setPage(2)}>리뷰</button>
                             </div>
@@ -168,11 +172,22 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
                                 {page === 1 ?
                                     <>
                                         <div css={s.bookInfo}>
-                                            <h1>{book.bookName}</h1>
-                                            <h3>{book.authorName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                                            {book.publisherName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                                            {book.publishDate.replace("T", " ").substring(0, 10)}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                                            {book.categoryName}</h3>
+                                            <div>
+                                                <h1>{book.bookName}</h1>
+                                            </div>
+                                            <div>
+                                                <h3>#{book.authorName}</h3>
+                                                <h3>#{book.publisherName}</h3>
+                                                <h3>#{book.categoryName}</h3>
+                                            </div>
+                                            <div>
+                                                <h3>ISBN</h3><span>|</span>
+                                                <h3>{book.isbn}</h3>
+                                            </div>
+                                            <div>
+                                                <h3>발행(출간)일자</h3><span>|</span>
+                                                <h3>{book.publishDate.replace("T", " ").substring(0, 10)}</h3>
+                                            </div>
                                         </div>
                                         <div css={s.bookRate}>
                                             <div css={s.bookRateL}>
@@ -196,11 +211,12 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
                                         </div>  
                                         <div css={s.stockInfo}>
                                             <table>
-                                                <thead>
+                                                <thead css={s.head}>
                                                     <tr>
-                                                        <th>도서코드</th>
+                                                        <th>No.</th>
                                                         <th>대출/반납</th>
                                                         <th>상태</th>
+                                                        <th>반납예정일</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -208,19 +224,58 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
                                                         bookStocksQuery.isLoading
                                                         ? <></>
                                                         : stockState.map(
-                                                            (stock, index) =>
-                                                                <tr key={stock.stockId}>
-                                                                    <td>{index + 1}번 도서</td>
-                                                                    <td>{
-                                                                        stock.loanStatus === 1 
-                                                                        ? <button onClick={() => registerLoanMutation.mutate({
-                                                                            userId: principal.userId,   
-                                                                            bookStockId: stock.stockId  //백에서 받는 값이 bookStockId라서 bookStockId이다. 
-                                                                        })}>대출</button> 
-                                                                        : <button disabled={true}>대출중...</button>
-                                                                    }</td>
-                                                                    <td>{index < 2 ? "3일 11시간 49분 남음" : "O"}</td>
-                                                                </tr>
+                                                            (stock, index) => {
+                                                                const currentDate = new Date();
+                                                                const dueDate = new Date(stock.dueDate);
+                                                                //
+                                                                const futureDate = new Date(currentDate);
+                                                                futureDate.setDate(currentDate.getDate() + 7);
+
+                                                                const year = futureDate.getFullYear();
+                                                                const month = String(futureDate.getMonth() + 1).padStart(2, '0');
+                                                                const day = String(futureDate.getDate()).padStart(2, '0');
+                                                                const hours = String(futureDate.getHours()).padStart(2, '0');
+                                                                const minutes = String(futureDate.getMinutes()).padStart(2, '0');
+                                                                
+                                                                const futureDateFormat1 = `${year}-${month}-${day}`
+                                                                const futureDateFormat2 = `${hours}:${minutes}`
+                                                                //
+
+                                                                const timeDiff = dueDate.getTime() - currentDate.getTime();
+
+                                                                const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                                                                const hoursDiff = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                                                const minutesDiff = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+
+                                                                const remainStr = daysDiff + "일 " + hoursDiff + "시간 " + minutesDiff + "분 남음"
+                                                                return (
+                                                                    <tr key={stock.stockId}>
+                                                                        <td>{index + 1}</td>
+                                                                        <td>{stock.loanStatus === 1 
+                                                                            ? <button css={s.loanBtn} onClick={() => registerLoanMutation.mutate({
+                                                                                userId: principal.userId,   
+                                                                                bookStockId: stock.stockId  //백에서 받는 값이 bookStockId라서 bookStockId이다. 
+                                                                            })}>대출</button> 
+                                                                            : <button css={s.loanBtn} disabled={true}>대출중</button>
+                                                                        }</td>
+                                                                        <td css={s.stateIcon}>
+                                                                                <img src={stock.loanStatus === 1 ? OK : STOP} alt="" />
+                                                                        </td>
+                                                                        <td>
+                                                                            {stock.loanStatus === 2
+                                                                                ? <>
+                                                                                    <p>{stock.dueDate.replace("T", " ").substring(0, 10)}</p>
+                                                                                    <p>{remainStr}</p>
+                                                                                </> 
+                                                                                : <>
+                                                                                    <p>~ {futureDateFormat1}</p>
+                                                                                    <p>{futureDateFormat2}</p>
+                                                                                </>
+                                                                            }
+                                                                        </td>
+                                                                    </tr>
+                                                                )
+                                                            }
                                                         )
                                                     }
                                                 </tbody>
@@ -230,24 +285,28 @@ function BookDetailModal({ book, isOpen, setIsOpen }) {
 
                                     :<>  
                                         <div css={s.summary}>
-                                            <div css={s.sumLeft}>
-                                                <h2><span>{reviewCount}</span>명의 회원이 평가한 평균 별점</h2>
-                                            </div>
-                                            <div css={s.sumRight}>
-                                                <div css={s.starBox}>
-                                                    <Rate 
-                                                        count={5}
-                                                        allowHalf
-                                                        value={Math.floor(book.averageRating * 10) / 10}
-                                                        character={<FaStar size={40}/>}
-                                                        style={{pointerEvents: "none"}}
-                                                    />
+                                                {(!reviewQuery.isLoading && !reviewCountQuery.isLoading && book) &&
+                                                <>
+                                                <div css={s.sumLeft}>
+                                                        <h2><span>{reviewCount}</span>명의 회원이 평가한 평균 별점</h2>
                                                 </div>
-                                                <div css={s.scoreBox}>
-                                                    <span>{Math.floor(book.averageRating * 2 * 10) / 10}</span>
-                                                    <span>/ 10.0</span>
-                                                </div>        
-                                            </div>
+                                                <div css={s.sumRight}>
+                                                    <div css={s.starBox}>
+                                                        <Rate 
+                                                            count={5}
+                                                            allowHalf
+                                                            value={Math.floor(book.averageRating * 10) / 10}
+                                                            character={<FaStar size={40}/>}
+                                                            style={{pointerEvents: "none"}}
+                                                            />
+                                                    </div>
+                                                    <div css={s.scoreBox}>
+                                                        <span>{Math.floor(book.averageRating * 2 * 10) / 10}</span>
+                                                        <span>/ 10.0</span>
+                                                    </div>        
+                                                </div>
+                                                </>
+                                                }
                                         </div> 
                                         <div css={s.reviewBox}>
                                             {

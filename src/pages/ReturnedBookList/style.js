@@ -197,6 +197,10 @@ export const period = css`
     box-sizing: border-box;
     width: 100%;
     font-size: 16px;
+
+    & > p {
+        padding-bottom: 6px;
+    }
 `
 
 export const finish = css`
@@ -206,7 +210,10 @@ export const finish = css`
     box-sizing: border-box;
     width: 100%;
     font-size: 16px;
-    padding-bottom: 5px;
+
+    & > p {
+        padding-bottom: 8px;
+    }
 `
 
 export const page = css`

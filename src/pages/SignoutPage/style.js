@@ -7,6 +7,7 @@ export const center = css`
     flex-direction: column;
     justify-content: center;
 
+    margin-top: 20px;
     width: 92%;
     height: 90%;
     /* border: 1px solid #dbdbdb; */

@@ -46,7 +46,8 @@ function ReadingBookList(data) {
         setSearchCondition(searchCondition => {
             return {
                 ...searchCondition,
-                page: parseInt(searchParams.get("page"))
+                page: parseInt(searchParams.get("page")),
+                filter: parseInt(searchParams.get("filter"))
             }
         })
     }, [searchParams])
@@ -58,7 +59,7 @@ function ReadingBookList(data) {
             retry: 0,
             refetchOnWindowFocus: false,
             onSuccess: response => {
-                // console.log(response.data);
+                console.log(response.data);
                 setReadingBookList(response.data.reading)
             },
             onError: error => {
@@ -103,33 +104,30 @@ function ReadingBookList(data) {
         checkedList.forEach(loanId => {
             returnBookMutation.mutate(loanId);
         });
-        
     }
+
     useEffect(() => {
         console.log(checkedList)
     }, [checkedList])
+
     return (
         <>
             <div css={s.header(activeFilter)}>
                 <div>
                     <Link css={s.filter} to={"/mypage/reading?page=1&filter=1"}
-                    onClick={() => handleFilterClick(1)}>전체(남은시간순)</Link>
+                    onClick={() => handleFilterClick(1)}>전체</Link>
                 </div>
                 <div>
                     <Link css={s.filter} to={"/mypage/reading?page=1&filter=2"}
-                    onClick={() => handleFilterClick(2)}>평점높은순</Link>
+                    onClick={() => handleFilterClick(2)}>시간 적은 순</Link>
                 </div>
                 <div>
                     <Link css={s.filter} to={"/mypage/reading?page=1&filter=3"}
-                    onClick={() => handleFilterClick(3)}>평점낮은순</Link>
+                    onClick={() => handleFilterClick(3)}>시간 많은 순</Link>
                 </div>
                 <div>
                     <Link css={s.filter} to={"/mypage/reading?page=1&filter=4"}
-                    onClick={() => handleFilterClick(4)}>리뷰많은순</Link>
-                </div>
-                <div>
-                    <Link css={s.filter} to={"/mypage/reading?page=1&filter=5"}
-                    onClick={() => handleFilterClick(5)}>리뷰적은순</Link>
+                    onClick={() => handleFilterClick(4)}>연체됨</Link>
                 </div>
             </div>
             <div css={s.container}>
@@ -175,7 +173,7 @@ function ReadingBookList(data) {
                                             <div css={s.time}>
                                                 <FcClock size={22}/>
                                                 {per > 0
-                                                    ? <p>{daysDiff > 0 && `${daysDiff}일 `}{hoursDiff > 0 && `${hoursDiff}시간 `}{minutesDiff > 0 && `${minutesDiff}분 `}</p>
+                                                    ? <p>{daysDiff > 0 && `${daysDiff}일 `}{hoursDiff > 0 && `${hoursDiff}시간 `}{minutesDiff > 0 && `${minutesDiff}분 `}남음</p>
                                                     : <p>연체됨</p>
                                                 }
                                             </div>
@@ -189,7 +187,7 @@ function ReadingBookList(data) {
                                         </div>
                                     </div>
                                     <div css={s.status}>
-                                        {per < 7.1424 ? <FcHighPriority css={s.warn} size={30}/> : <></>}
+                                        {per < 25 ? <FcHighPriority css={s.warn} size={30}/> : <></>}
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +199,7 @@ function ReadingBookList(data) {
             {!getReadingBooksCountQuery.isLoading &&
                 <div css={s.page}>
                     <ReadingPageNumbers data={getReadingBooksCountQuery.data?.data}/>
-                    <button onClick={() => checkedReturns(checkedList)}>반납</button>
+                    <button onClick={() => checkedReturns(checkedList)}>반납하기</button>
                 </div>
             }
         </>

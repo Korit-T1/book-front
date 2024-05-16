@@ -39,40 +39,104 @@ export const infoBox = css`
   height: 100%;
 `
 
-export const btns = css`
+export const btns = (page) => css`
   display: flex;
-  justify-content: center;
-  border: 1px solid black;
-  box-sizing: border-box;
+  justify-content: space-between;
   height: 40px;
+  margin-bottom: 5px;
+
+  & > button:nth-of-type(${page}) {
+    font-weight: bold;
+    background-color: #c2c2c2;
+  }
 `
 
 export const btn = css`
-  width: 50%;
+  width: 49.5%;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid #dbdbdb;
   box-sizing: border-box;
   cursor: pointer;
+
+  :hover {
+    background-color: #dbdbdb;
+    font-weight: bold;
+    transition-duration: 0.4s;
+  }
+  
+  :active {
+      background-color: #767676
+  }
 `
 
 export const bookInfo = css`
-    border: 1px solid #dbdbdb;
+    /* border: 1px solid #dbdbdb; */
     
     /* padding: 0px 15px; */
-    margin-bottom: 10px;
+    margin-bottom: 3px;
     /* text-overflow: ellipsis; */
     /* white-space: nowrap; */
-    overflow: hidden;
-    height: 200px;
-    & > h1 {
-      font-size: 40px;
+    /* overflow: hidden; */
+    height: 220px;
+
+    h3 {
       margin: 0;
-      padding: 0;
+    }
+
+    & > div:nth-of-type(1) {
+      height: 50%;
+      h1 {
+        font-size: 40px;
+        margin: 0;
+      }
+    }
+
+    & > div:nth-of-type(2) {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 50px;
+      
+      & > h3 {
+        margin: 0;
+      }
+
+      & > h3:nth-of-type(1), h3:nth-of-type(2) {
+        margin-right: 35px;
+      }
+    }
+
+    & > div:nth-of-type(3) {
+      display: flex;
+      align-items: center;
+      margin-bottom: 13px;
+
+      h3:nth-of-type(1) {
+        width: 110px;
+      }
+
+      span {
+        font-weight: bold;
+        margin-right: 20px;
+      }
+    }
+
+    & > div:nth-of-type(4) {
+      display: flex;
+      align-items: center;
+
+      h3:nth-of-type(1) {
+        width: 110px;
+      }
+
+      span {
+        font-weight: bold;
+        margin-right: 20px;
+      }
     }
 `
 
 export const bookRate = css`
-  border: 1px solid #dbdbdb;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -101,31 +165,54 @@ export const bookRateR = css`
   margin-left: 40px;
 
   p {
-    margin: 0px;
+    margin: 0px 0px 0px 0px;
     margin-top: 10px;
-    font-size: 22px;
+    font-size: 20px;
   }
 `
 
 export const stockInfo = css`
-    border: 1px solid #dbdbdb;
-    height: 285px;
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid #dbdbdb;
+    box-sizing: border-box; */
+    /* height: 285px; */
 
     & > table, th, td {
       border-collapse: collapse;
-      border: 1px solid black;
+      border: 1px solid #dbdbdb;
       font-size: 20px;
     }
 
-    th, td {
-      height: 50px;
+    & > table {
+      th, td {
+        height: 56px;
+      }
     }
 
     td {
-      min-width: 100px;
       text-align: center;
+      & > p {
+        margin: 0;
+      }
     }
 `
+
+export const head = css`
+  & > tr > th:nth-of-type(1) {
+    width: 60px;
+  }
+  & > tr > th:nth-of-type(2) {
+    width: 100px;
+  }
+  & > tr > th:nth-of-type(3) {
+    width: 100px;
+  }
+  & > tr > th:nth-of-type(4) {
+    width: 220px;
+  }
+`;
+
 export const summary = css`
   @font-face {
       font-family: 'Freesentation-9Black';
@@ -133,12 +220,6 @@ export const summary = css`
       font-weight: 900;
       font-style: normal;
   }
-  /* @font-face {
-      font-family: 'Freesentation-5Black';
-      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
-      font-weight: 100;
-      font-style: normal;
-  } */
 
   display: flex;
   align-items: center;
@@ -202,7 +283,7 @@ export const scoreBox = css`
 export const reviewArea = css`
   box-sizing: border-box;
   width: 100%;
-  height: 80px;
+  height: 76px;
   resize: none;
   font-size: 18px;
   border: 1px solid #dbdbdb;
@@ -322,14 +403,15 @@ export const reviewContentRight = css`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 17px;
   div:nth-of-type(1) {
-    margin-left: 5px;
+    padding-left: 8px;
   }
   div:nth-of-type(2) {
     p {
+      font-weight: bold;
       padding-bottom: 2px;
-      padding-left: 5px;
+      padding-left: 8px;
       font-size: 20px;
     }
   }
@@ -367,6 +449,7 @@ export const Base = css`
 export const comment = css`
     display: flex;
     height: 80px;
+    /* background-color: #dbdbdb; */
 `
 
 export const submit = css`
@@ -431,8 +514,34 @@ export const pageButton = (isSelected) => css`
     height: 30px;
     background-color: ${isSelected ? "#dbdbdb" : "white"};
     text-decoration: none;
-    font-size: 14px;
-    color: ${isSelected ? "white" : "#777777"};
+    font-size: ${isSelected ? "16px" : "14px"};
+    color: ${isSelected ? "black" : "#777777"};
     cursor: pointer;
+
+    :hover {
+      background-color: #e1e1e1;
+      transition-duration: 0.4s;
+    }
 `;
+
+export const loanBtn = css`
+  width: 65px;
+  border: none;
+  height: 35px;
+  cursor: pointer;
+  /* border: 1px solid orange; */
+  :hover {
+    background-color: orange;
+    transition-duration: 0.5s;
+
+  }
+`
+
+export const stateIcon = css`
+    & > img {
+      margin-top: 4.5px;
+      width: 45px;
+      height:45px;
+    }
+`
 

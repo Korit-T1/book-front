@@ -12,12 +12,12 @@ export const SIDE_MENU = [
     {
         id: 3,
         path: "/mypage/reading?page=1&filter=1",
-        name: "대출 중인 도서",
+        name: "현재 대출 중",
     },
     {
         id: 4,
         path: "/mypage/returned?page=1&filter=1",
-        name: "반납 기록",
+        name: "대출 및 반납 기록",
     },
     {
         id: 5,

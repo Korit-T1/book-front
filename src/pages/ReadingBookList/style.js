@@ -14,7 +14,7 @@ export const header = (id) => css`
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 20%;
+        width: 25%;
         height: 100%;
         border-bottom: 1px solid #dbdbdb;
         border-right: 1px solid #dbdbdb;
@@ -192,6 +192,7 @@ export const publisherName = css`
 `
 
 export const page = css`
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -199,6 +200,26 @@ export const page = css`
     border-top: 1px solid #dbdbdb;
     width: 100%;
     height: 7%;
+
+    & > button {
+        width: 70px;
+        height: 36px;
+        position: absolute;
+        right: 3px;
+        background-color: white;
+        border: 1px solid #dbdbdb;
+        cursor: pointer;
+
+        :hover {
+            background-color: rebeccapurple;
+            color: white;
+            transition-duration: 0.4s;
+        }
+
+        :active {
+            background-color: #350445
+        }
+    }
 `;
 
 export const bot = (percentage) => {
@@ -206,7 +227,7 @@ export const bot = (percentage) => {
         percentage > 80 ? '#2f80ea' : 
         percentage > 60 ? '#00cc00' : 
         percentage > 40 ? '#ffff00' : 
-        percentage > 20 ? '#ff6600' : '#ff0000'; 
+        percentage > 20 ? 'orange' : '#ff0000';
 
     return css`
         flex: 1;
@@ -246,9 +267,10 @@ export const time = css`
     font-size: 16px;
     padding-bottom: 5px;
 
-    & > p:nth-of-type(1) {
-            margin: 0px 0px 0px 5px;
-            padding-top: 2px;
+    & > p {
+            margin: 0;
+            padding-bottom: 1.5px;
+            padding-left: 5px;
     }
 `
 

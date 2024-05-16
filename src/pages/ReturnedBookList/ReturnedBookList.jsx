@@ -72,11 +72,11 @@ function ReturnedBookList(data) {
             <div css={s.header(activeFilter)}>
                 <div>
                     <Link css={s.filter} to={"/mypage/returned?page=1&filter=1"}
-                    onClick={() => handleFilterClick(1)}>최신 반납순(전체)</Link>
+                    onClick={() => handleFilterClick(1)}>최근 반납순(전체)</Link>
                 </div>
                 <div>
                     <Link css={s.filter} to={"/mypage/returned?page=1&filter=2"}
-                    onClick={() => handleFilterClick(2)}>이전 반납순</Link>
+                    onClick={() => handleFilterClick(2)}>오래된 반납순</Link>
                 </div>
                 <div>
                     <Link css={s.filter} to={"/mypage/returned?page=1&filter=3"}

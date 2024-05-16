@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as s from "./style"
 import { useQuery } from "react-query";
 import { getNewBooksRequest, getPopularBooksRequest, getTopFiveBooksRequest } from "../../apis/api/bookApi";
@@ -22,7 +22,7 @@ function Home() {
     const [ topFiveBooks, setTopFiveBooks ] = useState([]);
     const [ newBooks , setNewBooks ] = useState([]);
     const [ isOpen, setIsOpen ] = useState(false);
-    const [ selectedBook, setSelectedBook ] = useState(null);
+    const [ selectedBook, setSelectedBook ] = useState();
 
     const getPopularBooksQuery = useQuery(
         ["getPopularBooksQuery"],
