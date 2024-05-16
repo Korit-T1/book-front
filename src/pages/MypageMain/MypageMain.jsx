@@ -130,7 +130,7 @@ function MypageMain(data) {
                             <p>{mostInfo.bookName}</p>
                             <p>{mostInfo.authorName}</p>
                             <p>{mostInfo.publisherName}</p>
-                            <p>총{mostInfo.count}회 읽었습니다.</p>
+                            <p>총&nbsp;{mostInfo.count}회 읽음.</p>
                         </div>
                         <div>
                             <img src={mostInfo.url} alt="" />

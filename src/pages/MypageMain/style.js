@@ -130,8 +130,8 @@ export const favoriteIcon = css`
     padding-top: 15px;
 
     & > img {
-        width: 90%;
-        height: 95%;
+        width: 80%;
+        height: 80%;
     }
 `
 
@@ -164,6 +164,7 @@ export const cd = css`
         width: 30%;
         p {
             margin-right: 10px;
+            font-size: 22px;
         }
     }
     div:nth-of-type(2) {

@@ -74,7 +74,7 @@ function MypageSideMenu() {
                     <input style={{display: "none"}} ref={imgFileRef} type="file" onChange={handleImgFileChange}></input> 
                 </div>
                 <div css={s.role}>
-                    {principalData.data.name} 님
+                    <h3>{principalData.data.name} 님</h3>
                 </div>
             </div>
             <div css={s.menuBox(activeMenu)}>
