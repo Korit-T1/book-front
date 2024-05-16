@@ -113,11 +113,11 @@ function BoardListPage(props) {
                         </li>
                     ))}
             </ul>
-            <div>
+            {/* <div>
                 <Link to="/admin/boardWrite">
                     <button>글 쓰기</button>
                 </Link>
-            </div>
+            </div> */}
         </div>
     );
 }
