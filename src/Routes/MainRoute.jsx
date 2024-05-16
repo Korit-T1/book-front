@@ -10,12 +10,9 @@ import { useRecoilState } from 'recoil';
 import { principalState } from '../atoms/principalAtom';
 import BookSearchPage from '../../src/pages/BookSearchPage/BookSearchPage';
 import BoardListPage from '../pages/BoardListPage/BoardListPage';
-import BoardDetailPage from '../pages/BoardDetailPage/BoardDetailPage';
-import BoardModifyPage from '../pages/BoardModifyPage/BoardModifyPage';
 import FindPasswordPage from '../pages/FindPasswordPage/FindPasswordPage';
 import SearchUsernamePage from '../pages/SearchUsernamePage/SearchUsernamePage';
-
-
+import BoardUserDetailPage from '../pages/BoardUserDetailPage/BoardUserDetailPage';
 
 
 function MainRoute() {
@@ -54,8 +51,7 @@ function MainRoute() {
                             <Route path='/searchUserInfo/findPw' element={<FindPasswordPage />} />
                             <Route path='/searchUserInfo/findId' element={<SearchUsernamePage />} />
                             <Route path='/boardList' element={<BoardListPage />} />
-                            <Route path='/boardDetail/:noticeBoardId' element={<BoardDetailPage />} />
-                            <Route path='/boardDetail/edit/:noticeBoardId' element={<BoardModifyPage />} />
+                            <Route path='/boardDetail/:noticeBoardId' element={<BoardUserDetailPage />} />
                         </Routes>
                     </MainContainer>
                 </>

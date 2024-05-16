@@ -56,54 +56,67 @@ function AdminMainPage({children}) {
         <>
            <div css={s.background}>
                 <div css={s.layout}>
+                    <div css={s.header}>
+                        <h1>BookDrop</h1>
+                    </div>
                     <div css={s.box}>
                         <div css={s.visitantBox}>
-                            방문자수
+                        <div css={s.boxHead}>
+                            <p css={s.headFont}>신규가입</p>
+                        </div>
                         </div>
                         <div css={s.membership}>
-                            회원목록
+                            <div css={s.boxHead}>
+                                <p css={s.headFont}>공지사항</p>
+                            </div>
                         </div>
                     </div>
                     <div css={s.loanBox}>
-                        대출신청
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>아이디</th>
-                                    <th>이름</th>
-                                    <th>책제목</th>
-                                    <th>도서코드</th>
-                                    <th>이메일</th>
-                                    <th>주소</th>
-                                    <th>전화번호</th>
-                                    <th>대출신청일자</th>
-                                    <th>반납예정일자</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                   adminLoanList.length == 0
-                                   ?<></>
-                                   : adminLoanList.map(
-                                        adminLoan =>
-                                        <tr key={adminLoan.loanId}>
-                                            <td>{adminLoan.userName}</td>
-                                            <td>{adminLoan.name}</td>
-                                            <td>{adminLoan.bookName}</td>
-                                            <td>{adminLoan.bookStockId}</td>
-                                            <td>{adminLoan.email}</td>
-                                            <td>{adminLoan.address}</td>
-                                            <td>{adminLoan.phone}</td>
-                                            <td>{adminLoan.loanDate}</td>
-                                            <td>{adminLoan.dueDate}</td>
-                                        </tr>
-                                   )
-                                }
-                            </tbody>
-                        </table>
+                        <div css={s.boxHead}>
+                            <p css={s.headFont}>대출신청</p>
+                        </div>
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>아이디</th>
+                                        <th>이름</th>
+                                        <th>책제목</th>
+                                        <th>도서코드</th>
+                                        <th>이메일</th>
+                                        <th>주소</th>
+                                        <th>전화번호</th>
+                                        <th>대출신청일자</th>
+                                        <th>반납예정일자</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                    adminLoanList.length == 0
+                                    ?<></>
+                                    : adminLoanList.map(
+                                            adminLoan =>
+                                            <tr key={adminLoan.loanId}>
+                                                <td>{adminLoan.userName}</td>
+                                                <td>{adminLoan.name}</td>
+                                                <td>{adminLoan.bookName}</td>
+                                                <td>{adminLoan.bookStockId}</td>
+                                                <td>{adminLoan.email}</td>
+                                                <td>{adminLoan.address}</td>
+                                                <td>{adminLoan.phone}</td>
+                                                <td>{adminLoan.loanDate}</td>
+                                                <td>{adminLoan.dueDate}</td>
+                                            </tr>
+                                    )
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div css={s.returnBox}>
-                    반납신청
+                        <div css={s.boxHead}>
+                            <p css={s.headFont}>반납신청</p>
+                        </div>
                         <table>
                             <thead>
                                 <tr>

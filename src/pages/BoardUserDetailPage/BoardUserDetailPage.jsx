@@ -1,10 +1,11 @@
-import { useState } from "react";
 import * as s from "./style";
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom"; 
-import { deleteNotice, getNotice } from "../../apis/api/notice";
 
-function BoardDetailPage(props) {
+import { useState } from "react";
+import { useQuery } from "react-query";
+import { Link, useParams } from "react-router-dom"; 
+import { getNotice } from "../../apis/api/notice";
+
+function BoardUserDetailPage(props) {
     const { noticeBoardId } = useParams();
     const [notice, setNotice] = useState(null);
 
@@ -22,24 +23,6 @@ function BoardDetailPage(props) {
             }
         }
     );
-
-    const handleDelete = async () => {
-        if (window.confirm("정말로 이 게시글을 삭제하시겠습니까?")) {
-            try {
-                await deleteNotice([noticeBoardId]);
-                alert("해당 게시글 삭제 완료");
-                window.location.replace("/boardList?page=1&option=0&text=");
-            } catch (error) {
-                console.error("게시글 삭제에 실패했습니다:", error);
-                alert("게시글 삭제에 실패했습니다. 다시 시도해주세요.");
-            }
-        }
-    };
-
-    const handleUpdate = () => {
-        // 수정하기 페이지로 이동
-        window.location.replace(`/boardDetail/edit/${noticeBoardId}`);
-    };
     // HTML 태그를 제거하여 순수한 텍스트만 반환하는 함수
     const removeHTMLTags = (str) => {
         return str.replace(/<[^>]*>?/gm, '');
@@ -69,16 +52,14 @@ function BoardDetailPage(props) {
                     </div>
                 )}
             </div>
-            <div>
-            
-                <button onClick={handleUpdate}>수정</button>
-                <button onClick={handleDelete}>삭제</button>
-            </div>
+            <Link to={"/boardList?page=1&option=0&text="}>
+                    <button>목록</button>
+            </Link>
         </>
     );
 }
 
-export default BoardDetailPage;
+export default BoardUserDetailPage;
 
 
 

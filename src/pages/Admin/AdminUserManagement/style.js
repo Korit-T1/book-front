@@ -15,7 +15,6 @@ export const layout = css`
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     border: 2px solid #fafafa;
     padding: 10px;
@@ -26,6 +25,8 @@ export const layout = css`
 
 export const inputBox = css`
     display: flex;
+    width: 200px;
+    height: 100px;
     flex-direction: column;
 `
 export const userBox = css`

@@ -5,13 +5,12 @@ import EditPassword from '../EditPassword/FindPasswordEdit';
 
 function SearchUserInfo(props) { 
 
+    const [ errorMessage, setErrorMessage ] = useState("");
     const [ userInfo, setUserInfo ] = useState({
         userId:'',
         username:'',
         name:''
     })
-
-
     const [searchData, setSearchData] = useState({
         username: '',
         name: '',
@@ -42,13 +41,39 @@ function SearchUserInfo(props) {
             retry: 0,
             onSuccess: response => {
                 setUserInfo(response?.data)
+                setErrorMessage("");
             },
             onError: (error) => {
                 console.error("에러발생: ", error);
+                setErrorMessage("회원 정보를 찾을 수 없습니다.");
+                setUserInfo("");
             }
         }
     )
+
     const handleFindUsername = () => {
+
+        if (!searchData.username.trim()) {
+            setErrorMessage("아이디를 입력하세요.");
+            setUserInfo("");
+            return;
+        }
+
+        if (!searchData.name.trim()) {
+            setErrorMessage("이름을 입력하세요.");
+            setUserInfo("");
+            return;
+        }
+        if (!searchData.phone.trim()) {
+            setErrorMessage("전화번호를 입력하세요.");
+            setUserInfo("");
+            return;
+        }
+        if (!searchData.email.trim()) {
+            setErrorMessage("이메일을 입력하세요.");
+            setUserInfo("");
+            return;
+        }
         findUser.refetch();
     };
 
@@ -92,9 +117,10 @@ function SearchUserInfo(props) {
             </div>
             <div>
                 {userInfo?.name && <p>이름: {userInfo?.name}님의 계정이 확인되었습니다.</p>}
+                {errorMessage && <p>{errorMessage}</p>}
             </div>
             <div>
-                <EditPassword userId={userInfo?.userId}/>
+                {userInfo?.userId && <EditPassword userId={userInfo.userId}/>}
             </div>
         </div>
     );
