@@ -9,6 +9,10 @@ export const center = css`
     width: 50%;
     height: 90%;
     border: 1px solid #dbdbdb;
+    & > h1 {
+        margin-top: 70px;
+        margin-bottom: 40px;
+    }
 `;
 
 export const ment = css`
@@ -23,7 +27,7 @@ export const ment = css`
 `;
 
 export const buttons = css`
-    margin-top: 20px;
+    margin-top: 40px;
     display: flex;
     width: 300px;
     height: 100px;

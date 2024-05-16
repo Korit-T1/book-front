@@ -540,8 +540,8 @@ export const loanBtn = css`
 export const stateIcon = css`
     & > img {
       margin-top: 4.5px;
-      width: 45px;
-      height:45px;
+      width: 40px;
+      height: 40px;
     }
 `
 

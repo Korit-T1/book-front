@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import * as s from "./style"
 import { useQuery } from "react-query";
 import { getNewBooksRequest, getPopularBooksRequest, getTopFiveBooksRequest } from "../../apis/api/bookApi";
-import { FaRankingStar } from "react-icons/fa6";
-import { FcBullish } from "react-icons/fc";
 import { Bs1Square } from "react-icons/bs";
 import { GiImperialCrown } from "react-icons/gi";
 import { MdFiberNew } from "react-icons/md";
