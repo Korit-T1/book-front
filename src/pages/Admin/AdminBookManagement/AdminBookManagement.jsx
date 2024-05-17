@@ -58,6 +58,7 @@ function AdminBookManagement(props) {
         getCategory,
         {
             onSuccess: response => {
+                console.log(response);
                 setCategoryOptions(() => response?.data?.map(category => {
                     return {
                         value: category.categoryId,

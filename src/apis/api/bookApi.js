@@ -39,4 +39,5 @@ export const bookRegister = async(data) => {
 }
 export const getCategory = async() => {
     const response = await instance.get("/admin/getCategory")
+    return response
 }
